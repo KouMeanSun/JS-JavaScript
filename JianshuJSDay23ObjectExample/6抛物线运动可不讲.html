@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box{
+				width: 50px;
+				height: 50px;
+				background: red;
+				border-radius: 50%;
+				position: absolute;
+				left: 40px;
+				top: 20px;
+			}
+			
+		</style>
+		<script type="text/javascript">
+			
+			onload = function(){
+						var oBox = document.getElementById("box");
+			//x 方向：方向有一个速度，固定的速度
+			//y 方向：速度最开始应该是负数，然后让这个速度每次增加2，当达到顶峰，（速度为0）时，最后就往下
+			//（正方向：速度为整数）运动
+			
+			var xSpeed = 10;//向右
+			var ySpeed = -24;//负数
+			
+			var timer = setInterval(function(){
+				if(oBox.offsetTop>=document.documentElement.clientHeight-50){
+					oBox.style.top = document.documentElement.clientHeight - 50 +"px";
+					ySpeed *= -0.6;//把速度反方向
+				}
+				ySpeed +=2;//将速度增加
+				oBox.style.left = oBox.offsetLeft + xSpeed + "px";
+				oBox.style.top  = oBox.offsetTop  + ySpeed + "px";
+			},50);
+			
+			var timer2 = setInterval(function(){
+				--xSpeed<0 ? clearInterval(timer2):"";
+			},400);
+			}
+		</script>
+	</head>
+	<body>
+		<div id="box"></div>
+	</body>
+</html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <script>
+
+            //面向对象
+            //使用对象进行编程
+            //Object
+            //构造函数(类) 创建 对象
+
+            //Object对象
+            var obj  = new Object();
+            //属性
+            obj.name = "旺财";
+            //方法
+            obj.run = function(){
+                console.log(this.name);
+            }
+
+            //工厂模式: 批量创建对象
+            function createObject(name, age) {
+                var obj = new Object();
+                obj.name = name;
+                obj.age = age;
+                obj.run = function(){
+                    console.log(this.name + this.age);
+                }
+                return obj;
+            }
+            var obj = createObject("张三", 100);
+            var obj2 = createObject("李四", 200);
+
+            //面向对象: 类和对象
+            //构造函数(类)
+            function Person(_name, _age){
+                //这里的this就是person
+                this.name = _name;
+                this.age = _age;
+                this.show = function(){
+                    console.log(this.name + this.age);
+                }
+                //function show(){}
+            }
+            //person:对象, Person:类
+            var person = new Person("张三", 100); //在内部this = new Object(), 在最后返回this给person
+            person.show()
+            var person2 = new Person("李四", 200); //在内部也new Object()
+            person2.show();
+            /*
+            var obj = new Object();
+            var arr = new Array()
+            var str = new String();
+            */
+
+            //构造函数名首字母大写, 使用new关键字创建对象, 在构造函数内使用this
+
+            //闭包: 保存局部变量的内存不被释放
+            //匿名函数的自运行
+            var fn = function(){
+                console.log("fn");
+            }
+            fn(); //需要主动调用
+
+            //自动执行
+            (function(){
+                
+                    console.log("fn2");
+               
+            })();
+
+            //传参
+            var aa = (function(m){
+                console.log(m); //4
+                function bb(n) {
+                    console.log(n)
+                }
+                return bb; //bb既是函数名,也是指向该函数的指针(对象)
+            })(4); //把4传递给m
+            aa(3); //aa=bb, bb(3);
+
+            //函数嵌套函数, 内部函数使用外部函数的变量或参数, 变量或参数的内存就不会被释放
+            //和全局变量和局部变量的区别
+            /*
+             * 1, 有全局变量的不会被释放的特点
+             * 2, 有局部变量的不可以被外部访问的特点
+             */
+            for (var i=0; i<aLi.length; i++) {
+
+                aLi[i].onclick = (function(index){
+                    //index会是对应的下标, index不会被释放
+                    retrun function(){
+                        console.log(index);
+                    }
+                })(i)
+            }
+            /*
+            aLi[0].onclick = (function(index){
+                    //index会是对应的下标
+                    retrun function(){
+                        console.log(index);
+                    }
+                })(0)
+
+            aLi[1].onclick = (function(index){
+                    //index会是对应的下标
+                    retrun function(){
+                        console.log(index);
+                    }
+                })(1)
+            */
+
+            //this关键字
+            //是一个指针(对象), 指向当前对象, 在运行函数时这个函数所依附的对象
+            //A和B吵架: A对B说: 老子要砍死你!
+            //        B也对A说: 老子要弄死你!
+            // 这里的老子(this)指向的是不同的人(对象)
+            //事件中的this
+            target.onclick = function(){
+                console.log(this); //这里的this指的是target
+            }
+            var obj = {};
+            obj.test = target.onclick;
+            target.onclick(); //此时的this是target
+            obj.test(); //此时的this是obj
+
+            //定时器中的this, 就是window
+            //setInterval(function(){
+            //    //这里的this是window对象
+            //}, 1000);
+            //setTimeout(); 里面的this也是window对象
+
+            //构造函数里的this: 是使用类(构造函数)创建的这个对象
+
+            //原型: 函数里自带的一个属性: prototype对象
+            //prototype的作用: 让使用同一个构造函数创建的所有对象都可以共享prototype中的属性和方法
+            function Person(){}
+            Person.prototype.name = "李四";
+            Person.prototype.show = function(){
+                console.log(this.name);
+            }
+            var person = new Person();
+            console.log(person.name);
+            person.show();
+
+            person.name = "王五";
+            console.log(person.name); //王五
+            //访问属性获方法时, 都会去查找
+            //1, 先查找对象中是否有这个属性, 如果有则返回该属性值, 如果没有则到2
+            //2, 再查找原型对象中是否有这个属性, 如有则返回该属性值, 如果没有则返回undefined
+
+            //原型的缺点:
+            //1, 所有对象共享使用相同的引用类型数据,只要其中一个对象对其修改,则其他对象的该属性值也被修改了
+            //2, 数据没办法初始化, 不同的对象使用的是相同的初始化数据
+
+            //构造函数 + 原型
+            //构造函数: 能够传参(可以初始化数据), 不同的对象里面的属性或方法在内存中都是独立的
+            //原型对象: 可以把公用的属性或方法写在这
+            //属性: 就用构造函数
+            //方法: 使用原型
+
+            //继承
+            //原型链继承
+            //父类
+            function Person(){
+                this.name = "zhangsan";T
+            }
+            //子类
+            function Employee(){
+                //this.name = "zhangsan";
+                this.age = 100;
+            }
+            var person = new Person();
+            Employee.prototype = person; //{name:"zhangsan"};
+
+            var employee = new Employee();
+            console.log(employee.age);
+            console.log(employee.name);
+
+            //借用构造函数(对象冒充)
+            //call() / apply()
+            //父类
+            function Cat(_fur){
+                this.fur = _fur;
+            }
+            //子类
+            function TomCat(_fur, _friend) {
+                //this.fur = _fur;
+
+                //这里的this是tomcat
+                Cat.call(this, _fur);
+                //Cat.apply(this, [_fur]);
+
+                this.friend = _friend;
+            }
+
+            //组合继承 (原型链+借用构造函数)
+            //父类
+            //使用构造函数包含属性, 使用原型包含方法
+            function Cat(_name, _age){
+                this.name = _name;
+                this.age = _age;
+            }
+            Cat.prototype.show = function(){
+                console.log(this.name + this.age);
+            }
+
+            //子类
+            function TomCat(_name, _age, _fur) {
+                Cat.call(this, _name, _age); //继承属性
+                this.fur = _fur; //自己的属性
+            }
+            TomCat.prototype = new Cat();
+
+            //tomcat对象有: name,age,fur属性, 和show方法
+            var tomcat = new TomCat("tom", 10, "灰色的");
+
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

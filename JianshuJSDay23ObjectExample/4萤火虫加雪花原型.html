@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body,html{
+				width: 100%;
+				height: 100%;
+				background: url(images/bg.jpg) no-repeat center;
+				background-size:cover;
+			}
+			img{
+				width: 18px;
+				height: 18px;
+				position: absolute;
+			}
+		</style>
+		<script type="text/javascript" src="js_4/move_new.js" ></script>
+		<script type="text/javascript" src="js_4/Fireworm.js" ></script>
+		<script type="text/javascript" src="js_4/Snow.js" ></script>
+		<script type="text/javascript">
+			onload = function(){
+				//创建30个萤火虫
+				for(var i=0;i<30;i++){
+					new Fireworm();
+				}
+				//定时器
+				var count = 40;
+				var timer = setInterval(function(){
+					if(count--){
+						new Snow();//创建雪花
+					}else{
+						clearInterval(timer);
+					}
+				},200);
+			}
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

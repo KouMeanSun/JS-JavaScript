@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+				border: none;
+			}
+			body,html{
+				width: 100%;
+				height: 100%;
+				background: black;
+				overflow: hidden;
+			}
+			.fire{
+				width: 3px;
+				height: 30px;
+				position: absolute;
+			}
+			.spark{
+				width: 3px;
+				height: 3px;
+				position: absolute;
+				border-radius: 1.5px;
+			}
+		</style>
+		<script type="text/javascript" src="move_new.js" ></script>
+		<script type="text/javascript">
+			//烟花，火
+				//Fire类
+				function Fire(targetPoint){
+					//属性，节点ele，T
+					//方法，初始化数据init（）
+					//发射launch（）
+					//爆炸 boom（）
+					
+					//属性，节点ele
+					this.ele = document.createElement("div");
+					
+					//初始化方法
+					this.init = function(){ 
+						this.ele.className = "fire";
+						this.ele.style.background = randomColor();
+						//初始位置
+						this.ele.style.left = targetPoint.left +"px";
+						this.ele.style.top  = document.documentElement.clientHeight + "px";
+						
+						document.body.appendChild(this.ele);//添加到body中
+						return this;
+					}
+					//发射
+					this.launch = function(){
+						var self = this;
+						animate(this.ele,{top:targetPoint.top,height:3},{callBack:function(){
+							//发射后爆炸
+							self.boom();
+						}});
+					};
+					
+					//爆炸
+					this.boom = function(){
+						
+						//移出烟花火fire
+						document.body.removeChild(this.ele);
+						
+						//创建很多个星火spark，再让他们做抛物线运动
+						var count = parseInt(Math.random()*30)+30;
+						for(var i=0;i<count;i++){
+							var spark = new Spark(targetPoint);
+							spark.init().fall();//初始化并抛物线运动
+						}
+					};
+				}
+			
+			//Spark类
+			function Spark(startPoint){
+				//属性：ele
+				//方法：初始化方法init（）
+				//      抛物线运动fall（）
+				
+				//属性ele
+				this.ele = document.createElement("div");
+				
+				//初始化方法：init（）
+				this.init = function(){
+					this.ele.className = "spark";
+					this.ele.style.background = randomColor();//随机颜色
+					//位置
+					//这里的startPoint是鼠标点击的位置
+					this.ele.style.left = startPoint.left + "px";
+					this.ele.style.top  = startPoint.top + "px";
+					
+					document.body.appendChild(this.ele);
+					return this;
+				};
+				
+				//抛物线运动fall（）
+				this.fall = function(){
+					var self = this;//把this保存到self里
+					var xSpeed = parseInt(Math.random()*20)*(Math.random()>0.5?1:-1);
+					var ySpeed = parseInt(Math.random()*20)*(Math.random()>0.7?1:-1);
+					
+					var timer = setInterval(function(){
+						var x = self.ele.offsetLeft + xSpeed;
+						var y = self.ele.offsetTop +ySpeed;
+						
+						//如果超出了边界
+						if(x>document.documentElement.clientWidth
+						   ||x<0||y>document.documentElement.clientHeight){
+							document.body.removeChild(self.ele);//清除spark节点
+							clearInterval(timer);//清除定时器
+						}
+						   ySpeed++;
+						   self.ele.style.left = x + "px";
+						   self.ele.style.top  = y+ "px";
+					},50);
+					
+				}
+			};
+			//随机颜色
+			function randomColor(){
+				return "rgba("+parseInt(Math.random()*256)+","+parseInt(Math.random()*256)+","+parseInt(Math.random()*256)+",1)";
+				
+			}
+			
+			//在页面上点击
+			document.onclick = function(evt){
+				var oEvent = evt || event;
+				//创建一个烟花
+				var fire = new Fire({left:oEvent.clientX,top:oEvent.clientY});
+				fire.init().launch();//初始化并且发射
+			}
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

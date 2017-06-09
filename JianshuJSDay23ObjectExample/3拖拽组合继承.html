@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			div{
+				width: 100px;
+				height: 100px;
+				position: absolute;
+				left: 10px;
+				top: 10px;
+			}
+			.pink{
+				background: pink;
+			}
+			.red{
+				background: red;
+			}
+			.yellow{
+				background: yellow;
+			}
+		</style>
+		<script type="text/javascript" src="js_3/DragBox.js" ></script>
+		<script type="text/javascript" src="js_3/DragBoxLimit.js" ></script>
+		<script type="text/javascript" src="js_3/DragBoxLimitText.js" ></script>
+		<script type="text/javascript">
+			onload = function(){
+				new DragBox("box");//粉红色box
+				new DragBoxLimit("box1");//红色box
+				new DragBoxLimitText("box2");//黄色box
+			}
+		</script>
+	</head>
+	<body>
+		<div id="box" class="pink"></div>
+		<div id="box1" class="red"></div>
+		<div id="box2" class="yellow"></div>
+	</body>
+</html>
