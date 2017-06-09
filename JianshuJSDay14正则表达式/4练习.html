@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+
+	<style>
+			body {
+				background: #abc;
+			}
+			#box {
+				background: #cde;
+				width: 250px;
+				height: 300px;
+				padding: 10px;
+			}
+			#alert {
+				background: orange;
+				width: 230px;
+				height: 30px;
+				line-height: 30px;
+			}
+			
+		</style>
+<script>
+		/*
+		 , 有以下表单, 验证用户名, 密码, 手机号
+     1, 用户名只包含数字,字母,下划线, 且长度不小于6位
+     2, 密码长度在8到16位
+     3, 手机号只能输入数字, 且长度为11
+		*/
+		
+			onload = function() {
+				var aInput = document.getElementsByTagName("input");
+				var oAlert = document.getElementById("alert");
+				
+				//用户名
+				aInput[0].onblur = function() {
+					//1, 用户名只包含数字,字母,下划线, 且长度不小于6位
+					var value = this.value;
+					// /[a-zA-Z0-9_]/ == \w
+					var isTrue = /\w{6,}/.test(value);
+					if (isTrue) {
+						oAlert.innerHTML = "用户名合法";
+					} else {
+						oAlert.innerHTML = "用户名不合法, 请检查";
+					}
+				}
+				
+				//2, 密码长度在8到16位
+				aInput[1].onblur = function() {
+					var value = this.value;
+					var isTrue = /^.{8,16}$/.test(value);
+					if (isTrue) {
+						oAlert.innerHTML = "密码合法";
+					} else {
+						oAlert.innerHTML = "密码长度在8到16位";
+					}
+				}
+				
+				//3, 手机号只能输入数字, 且长度为11
+				aInput[2].onblur = function() {
+					var value = this.value;
+					var isTrue = /^1\d{10}$/.test(value);
+					if (isTrue) {
+						oAlert.innerHTML = "手机号合法";
+					} else {
+						oAlert.innerHTML = "手机号不合法";
+					}
+				}
+				
+				
+				
+			}
+		</script>
+		
+	</head>
+	<body>
+		<form>
+			<div id="box">
+				<h2>注册</h2>
+				用户名: 
+				<input type="text" /> <br />
+				密&nbsp;&nbsp;&nbsp;&nbsp;码: 
+				<input type="password" /><br />
+				手机号:
+				<input type="text" /><br />
+				<input type="submit" value="提交" />
+				<input type="reset" />
+				<br /><br /><br />
+				<div id="alert"></div>
+			</div>
+		</form>
+	</body>
+</html>

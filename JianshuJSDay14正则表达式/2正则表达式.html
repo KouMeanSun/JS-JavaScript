@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			//.:点 元符号，代表一个任意单个字符（除去换行）;
+			var pattern = /g..gle/;
+			var str = "g2bgle";
+//			console.log(pattern.test(str));//true
+		//*:表示*前面的字符可以出现任意多次（0次或者多次）
+			//一般配合其他字符或者字符串使用
+			var pattern = /g.*gle/;
+			var str     = "g234fasggle";
+//			console.log(pattern.test(str));
+
+		//[];表示范围，如：[a-z]表示小写字母a到z
+			var pattern = /g[a-z]*gle/;
+			var str     = "good3agaggle";
+//			console.log(pattern.test(str));//true
+		
+		//[];可以包含多个范围，如下面的范围：a-z,A-Z,0-9或者_
+			var pattern =  /g[a-zA-Z0-9_]gle/;
+			var str = "g5gle";
+//			console.log(pattern.test(str));
+		//^:非字符，不允许出现的，
+			var pattern =/g[^0-9]gle/;
+			var str = "g5gle";
+//			console.log(pattern.test(str));//false
+
+		//+:表示+号前面的字符至少出现一次
+		 var pattern = /g[0-9]+gle/;
+		 var str  = "g9gle";
+//		 console.log(pattern.test(str));//true
+	
+		//\w:表示数字字母下划线，等价于[a-zA-Z0-9_]
+		var pattern = /g\w*gle/;
+		var str     = "google";
+//		console.log(pattern.test(str));//true
+		
+		//\d :表示数字，等价于：[0-9];
+		var pattern = /g\d*gle/;
+		var str     = "g24324242gle";
+//		console.log(pattern.test(str));//true
+
+		//\D:表示非数字，等价于：[^0-9];
+		var pattern = /g\D*gle/;
+		var str     = "google";
+//		console.log(pattern.test(str));//true
+
+		//{4}:表示其前面的字符出现4次
+		//{4,}:表示其前面的字符至少出现4次
+		//{4，8}：表示其前面的字符出现4到8次
+			var pattern = /g\D{4}gle/;
+			var str     = "goooogle";
+//			console.log(pattern.test(str));//true
+
+		var pattern = /g\D{4,}gle/;
+		var str     = "goooooooooooooooooogle";
+//		console.log(pattern.test(str));//true
+
+		var pattern = /g\D{4,8}gle/;
+		var str     = "goooooogle";
+//		console.log(pattern.test(str));//true
+//		document.write(pattern.test(str));
+
+		// /^  表示从开始匹配字符
+		var pattern = /^[0-9]oo/;
+		var str     = "8oogle";
+//		console.log(pattern.test(str));//true
+
+		// $/:表示从结尾匹配字符
+		var pattern = /[0-9]$/;
+		var str     = "google8";
+//		console.log(pattern.test(str ));//true
+
+		//如果同时使用，中间要完全匹配
+		var pattern  = /^google$/;
+		var str      = "google";
+//		console.log(pattern.test(str ));//true
+    		var str2 = "googlegoogle";
+//  		document.write(pattern.test(str2));//false
+    /
+		// \s :表示空格
+		var pattern = /goo\sgle/;
+		var str  	= "goo gle";
+//		cosole.log(pattern.test(str ));//true
+
+		// \b;检测边界
+		var pattern = /google\b/;
+		var str    	= "googleaa gadfaoogle fasdfgoogle";
+//		console.log(pattern.test(str));//true
+		var str2    	= "googleaa gadfaoogle fasdf";
+//		document.write(pattern.test(str2));//fasle
+
+		// |;或，只要满足一个条件就可以了，
+		var pattern = /google|baidu|bing/;	
+		var str 		= "daadgagasbaidu1341";
+//		console.log(pattern.test(str));//true
+
+		//();会把字符串当做整体
+		var pattern = /(google){4,8}/;
+		var str		= "googlegooglegooglegooglegoogle";
+//		console.log(pattern.test(str));//true
+		var str2		= "googlegooglegooglegooglegooglegooglegooglegooglegooglegoogle";
+//		document.write(pattern.test(str2));//true  , 因为在前面已经找到了的符合个数的“google”
+		
+		//匹配8..8之间的任意字符
+		var pattern = /8(.*)8/; //.表示任意单个字符，表示*前面的字符可以出现任意多次（0次或者多次）
+		var str		= "googlegoo 8glegoog 8legoogle8";
+//		console.log(patt1ern.test(str));//true
+		//先找到包含88格式，并且包含的字符串，然后找到8..8之间中间的字符串
+//		console.log(str.match(pattern));//[8glegoog 8legoogle8,glegoog 8legoogle]
+		//      //这里取的是第一个小括号中的值，暂时不讲
+//		var substr = RegExp.$1;
+//		console.log("substr:"+substr);
+//		console.log(RegExp.$1);//[glegoog 8legoogle]
+//		document.write(RegExp.$1);
+
+//=============开始讲分组
+//使用分组
+var pattern = /^([a-z]+)\s([0-9]{4})$/i;
+var str = "google 2016";
+console.log(pattern.exec(str)); //"google 2016,google,2016"
+console.log(pattern.exec(str)[0]); //google 2016
+console.log(pattern.exec(str)[1]); //google  RegExp.$1
+console.log(pattern.exec(str)[2]); //2016    RegExp.$2
+console.log(RegExp.$1); //google  RegExp.$1
+console.log(RegExp.$2); //2016  RegExp.$1
+
+//=============结束讲分组
+		
+		
+		//使用exec（），将匹配到的内容返回
+//			var pattern = /^[a-z]+/i;//+:表示+号前面的字符至少出现一次
+//          var str = "google 2016";
+//          console.log(pattern.exec(str)); //google
+		
+//		   var pattern = /^[a-z]+\s[0-9]{4}$/i;
+//          var str = "google 2016";
+//          console.log(pattern.exec(str)); //google 2016	
+
+
+		    //使用了分组()
+//          var pattern = /^([a-z]+)\s([0-9]{4})$/i;
+//          var str = "google 2016";
+//          console.log(pattern.exec(str));
+//          //[google 2016, google, 2016]
+
+		  //捕获性分组
+//          var pattern = 、/(\d+)([a-z])/;
+//          var str = "123abc";
+//          console.log(pattern.exec(str[])); //[123a,123,a]
+
+	  //非捕获性分组(?:)   ----(添加?:后不会单独捕获第二个括号中的内容)
+//          var pattern = /(\d+)(?:[a-z])/;
+//          var str = "123abc"
+//          console.log(pattern.exec(str)); //[123a,123]
+
+//          var pattern = /(A?(B?(C?)))/;
+//          var str = "ABC";
+//          console.log(pattern.exec(str)); //[ABC,ABC,BC,C]
+
+		 //转义字符 : \
+//          var pattern = /\.\[\/b\]/;
+//          var str = ".[/b]"
+//          console.log(pattern.exec(str));
+
+		
+       		 //m : 换行模式
+            //g: 全局模式g
+            //i: 忽略大小写
+//          var pattern = /^\d+/mgi;
+//          var str = "1.google\n2.baidu\n3.bing";
+//          console.log(str.replace(pattern, "#"));//#.google
+            //#.baidu
+            //#.bing
+            
+            
+            
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	<script type="text/javascript">
+		/**
+		 * 在第二个输入框随机输入一串字符串，然后在第一个输入框输入指定字符串，
+		 * 点击替换，把第二个输入框的匹配的字符串替换成**
+		 */
+		
+		/*
+			 3, 在第二个输入框中随机输入一个字符串，
+			 然后在第一个输入框中输入特定字符串, 点击替换,
+			 将第二个输入框中的匹配的字符串替换成**, 
+			 */
+			var str = "fsdjflkabcsjdkfabcljsdkleabcuroiwef";
+			var subStr = "abc";
+			var reg = new RegExp(subStr, "g"); //  /abc/g  
+			console.log(str.replace(reg, "**"));
+		
+	</script>
+	
+	</head>
+	<body>
+		练习3
+		<input type="text"  />
+		<input type="button"  value="替换"/>
+		<br />
+		<input type="text"  />
+	</body>
+</html>

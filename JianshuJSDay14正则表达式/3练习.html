@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+		//1.找出下面字符串中的bag,beg,big,bog, 忽略大小写, 并将其改为bug
+            var str = "I am a big man , I have so much bag, so everyone call me beg man, bog bog bog, I hate you !"
+//          console.log(str.replace(/bag|beg|big|bog/gi, "bug"));
+            //I am a bug man , I have so mucih bug, so everyone call me bug man, bug bug bug, I hate you !
+		
+		
+		
+		
+        /*
+         * 2.
+         , 有以下表单, 验证用户名, 密码, 手机号
+     1, 用户名只包含数字,字母,下划线, 且长度不小于6位
+     2, 密码长度在8到16位
+     3, 手机号只能输入数字, 且长度为11
+        */
+            onload = function(){
+//          	    var aInput = document.getElementsByTagName("input");
+//              var oAlert = document.getElementById("alert");
+//
+//              //用户名
+//              aInput[0].onblur = function() {
+//                  //1, 用户名只包含a数字,字母,下划线, 且长度不小于6位
+//                  var value = this.value;
+//                  // /[a-zA-Z0-9_]/ == \w
+//                  var isTrue = /\w{6,}/.test(value);
+//                  if (isTrue) {
+//                      oAlert.innerHTML = "用户名合法";
+//                  } else {
+//                      oAlert.innerHTML = "用户名不合法, 请检查";
+//                  }
+//              }
+//
+//              //2, 密码长度在8到16位
+//              aInput[1].onblur = function() {
+//                  var value = this.value;
+//                  var isTrue = /^.{8,16}$/.test(value);
+//                  if (isTrue) {
+//                      oAlert.innerHTML = "密码合法";
+//                  } else {
+//                      oAlert.innerHTML = "密码长度在8到16位";
+//                  }
+//              }
+//
+//              //3, 手机号只能输入数字, 且长度为11
+//              aInput[2].onblur = function() {
+//                  var value = this.value;
+//                  var isTrue = /^1\d{10}$/.test(value);
+//                  if (isTrue) {
+//                      oAlert.innerHTML = "手机号合法";
+//                  } else {
+//                      oAlert.innerHTML = "手机号不合法";
+//                  }
+//              }
+            	 //提交按钮暂时不写，有同学提就课后自己实现
+        
+        //==============3
+        	/*
+			 3, 在第二个输入框中随机输入一个字符串，
+			 然后在第一个输入框中输入特定字符串, 点击替换,
+			 将第二个输入框中的匹配的字符串替换成**, 
+			 */
+			var str = "fsdjflkabcsjdkfabcljsdkleabcuroiwef";
+			var subStr = "abc";
+			var reg = new RegExp(subStr, "g"); //  /abc/g  
+			console.log(str.replace(reg, "**"));
+        
+           var aInput = document.getElementsByTagName("input");
+          
+           aInput[1].onclick = function(){
+           	 var str = aInput[2].value;
+           var subStr = aInput[0].value;
+           	var reg = new RegExp(subStr,"g");
+           	 aInput[2].value = str.replace(reg, "**");
+           }
+        //=============
+        /** 2, 假设有一个多字符的片断重复出现，
+	把"really"、"really really "，
+	以及任意数量连续出现的"really"字符串换成一个简单的"very "
+
+		Billy tried really hard 
+		Sally tried really really hard 
+		Timmy tried really really really hard 
+		Johnny tried really really really really hard
+
+		* */
+		var str = "Billy tried really hard Sally tried really really hard Timmy tried really really really hard Johnny tried really really really really hard";
+			console.log(str.replace(/(really\s)+/g, "very "));
+			
+			//1 Billy tried very hard Sally tried very hard Timmy tried very hard Johnny tried very hard
+            //2 Billy tried very  hard Sally tried very  very  hard Timmy tried very  very  very  hard Johnny tried very  very  very  very  hard
+            }
+		</script>
+	</head>
+	<body>
+		        <!--<form>
+            <div id="box">
+                <h2>注册</h2>
+                用户名:
+                <input type="text" /> <br />
+                密&nbsp;&nbsp;&nbsp;&nbsp;码:
+                <input type="password" /><br />
+                手机号:
+                <input type="text" /><br />
+                <input type="submit" value="提交" />
+                <input type="reset" />
+                <br /><br /><br />
+                <div id="alert"></div>
+            </div>
+        </form>-->
+        
+        <input type="text"  />
+        <input type="button" value="替换" />
+        <br />
+        <input type="text" />
+	</body>
+</html>

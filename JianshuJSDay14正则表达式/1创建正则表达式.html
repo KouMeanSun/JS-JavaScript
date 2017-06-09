@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			/**
+			 * 正则表达式；匹配字符串是否符合指定的规则
+			 * 常用语表单验证
+			 * 
+			 */
+			//正则表达式的创建方式，new关键字
+			//1.使用new关键字
+			var box = new RegExp("box");//这里传一个参数，是我们要找的字符串
+//			console.log(box);//  /box/
+//			console.log(typeof box);//object
+			
+			//2.使用字面量的方式
+			var box = /box/;
+//			console.log(box);// /box/
+//			console.log(typeof box);//  object
+			
+			//带字符模式，
+			var box = new RegExp("box","gi");
+//			console.log(box); //  /obx/gi 
+//			console.log(typeof box);// object
+
+			//g:表示全局查找，i：忽略大小写
+			
+			//===使用正则表达式匹配字符串
+		//1.test()：返回true，则符合，返回false则不符合
+		 var str = "This is box Box boX BOX";
+		 var pattern = /box/gi;
+//		 console.log(pattern.test(str));//true
+//		 console.log(/box/gi.test(str));//true
+
+		//2.exec();返回数组则符合，null则不符合
+		var str = "This is box Box boX BOX"; 
+		var pattern = /BOX/gi;
+//		console.log(pattern.exec(str));
+		
+//		var result = "";
+//		while(result = pattern.exec(str)){
+//			console.log(result);
+//		}
+	   //字符串提供的正则匹配的方法（函数）；
+	   //1.match();返回数组则符合，null则不符合
+	    var str = "This is box Box boX BOX";
+//		console.log(str.match(/box/gi));//[box,Box,boX,BOX]
+
+		//2.replace();查找并替换，返回新的字符串
+		var str = "This is box Box boX BOX";
+//		console.log(str.replace(/box/gi,"***"));
+		//3.search();查找并返回找到的字符串的下标，如果找不到则返回-1；
+		var str = "This is box Box boX BOX";
+//		console.log(str.search(/box/gi));//8
+
+		//4.split();拆分字符串，如果可以拆分，则返回拆分后的数组，否则返回原字符串
+		var str = "This is box Box boX BOX";
+//		console.log(str.split(" ")); // [This, is ,box, Box, boX ,BOX]
+
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
