@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+				border: none;
+			}
+			ul,li{
+				list-style: none;
+			}
+			#box{
+				width: 800px;
+				height: 300px;
+				position: relative;
+				margin: 10px auto;
+				overflow: hidden;
+			}
+			#list{
+				width: 600px;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+			#list li{
+				width: 600px;
+				height: 300px;
+				padding-left: 100px;
+			}
+			#list img{
+				width: 600px;
+				height: 300px;
+			}
+		</style>
+		<script type="text/javascript" src="move.js" ></script>
+		<script type="text/javascript">
+			onload = function(){
+				var oList = document.getElementById("list");//需要移动的ul
+				var aLi   = oList.getElementsByTagName("li");//每一张图片的li
+				
+				//赋值，并且添加三张图片
+				oList.innerHTML += oList.innerHTML;
+				
+				//每张图片的高度
+				var iHeight = aLi[0].offsetHeight;
+				
+				//来记录当前显示的图片的下标
+				var i = 0;
+				
+				var iTop = 0;//oList和顶部的距离
+				
+				//创建一个定时器,每隔3秒执行一次
+				var timer = setInterval(move,3000);
+				
+				//移动一张图片
+				function move(){
+					i++;//将图片的下标加1，表示要移动到下一张图片了！
+					
+					//计算出要移动的目标值
+					iTop = -i*iHeight;
+					
+					//没有动画效果
+//					oList.style.top  = iTop + "px";//有个bug，实现不了无线死循环
+//					startMove(oList,"top",iTop,next1);//有bug
+					startMove(oList,"top",iTop,next);
+				}
+				
+				//回调函数,有bug
+//				function next1(){
+//					console.log("回调函数,i="+i);
+//					if(i==3){
+//						oList.style.top = 0;
+//						i=0;
+//					}
+//				}
+				
+				//回调函数
+				function next(){
+			//移动到第4张图片（第四张图片和第一张图片是一样的），
+			//瞬间移动到第一张图片，如果不加动画，用户是感受不到的，
+			//oList.style.top = 0;
+			if(i>=aLi.length/2){
+				oList.style.top = 0;
+				i = 0;
+			}
+				
+				}
+			 
+			}
+		</script>
+	</head>
+	<body>
+		<div id="box">
+			<ul id="list">
+				<li style="background: yellow;"><img src="images/1.jpg"/></li>
+				<li style="background: blue;"><img src="images/2.jpg"/></li>
+				<li style="background: pink;"><img src="images/3.jpg"/></li>
+			</ul>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+				border: none;
+			}
+			ul,li{
+				list-style: none;
+			}
+			#box{
+				width: 600px;
+				height: 300px;
+				margin: 100px auto;
+				position: relative;
+				overflow: hidden;
+			}
+			#list{
+				height: 300px;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+			#list li{
+				width: 600px;
+				height: 300px;
+				float: left;
+			}
+			#list img{
+				width: 600px;
+				height: 300px;
+			}
+			
+			#list2 {
+				width: 70px;
+				height: 15px;
+				position: absolute;
+				right: 30px;
+				bottom: 30px;
+				
+			}
+			#list2 li{
+				width: 13px;
+				height: 13px;
+				border: 1px solid black;
+				background: yellow;
+				float: left;
+				line-height: 13px;
+				text-align: center;
+				margin-left: 5px;
+				cursor: pointer;				
+			}
+			
+			#list2 .active{
+				background: red;
+			}
+			
+		</style>
+		<script type="text/javascript" src="move.js" ></script>
+		<script type="text/javascript">
+			onload = function(){
+				var oList = document.getElementById("list");
+				var aLi   = oList.getElementsByTagName("li");
+				
+				var oList2 = document.getElementById("list2");
+				var aLi2   = oList2.getElementsByTagName("li");
+				
+				//赋值，添加一倍的图片
+				oList.innerHTML += oList.innerHTML;
+				
+				
+				
+				//宽度
+				var iWidth = aLi[0].offsetWidth;
+				
+				//根据图片数量重新确定list宽度！
+				oList.style.width = iWidth*aLi.length + "px";
+				
+				//记录图片的下标
+				var i=0;
+				
+				//启动定时器，每隔3秒执行一次运动
+				var timer = setInterval(move,3000);
+				
+				//移动一次，切换一张图片
+				function move(){
+					//1.图片的下标加1
+					i++;
+					//2.计算目标值
+					var iLeft = -i*iWidth;
+					
+					//3.执行动画
+					startMove(oList,"left",iLeft,next);
+					
+					//4.切换点击按钮的状态
+					for(var j=0;j<aLi2.length;j++){
+						if(j==i){
+							aLi2[j].className = "active";
+						}else{
+							aLi2[j].className = "";
+						}
+					}
+					
+					if(i==aLi.length/2){
+						aLi2[0].className ="active";
+					}
+					
+				}
+				
+				//运动执行完毕的回调函数
+				function next(){
+					if(i>=aLi.length/2){
+						oList.style.left = 0;
+						i=0;
+					}
+				}
+				
+				//===给按钮添加点击事件
+				for(var j=0;j<aLi2.length;j++){
+					aLi2[j].index = j;
+					aLi2[j].onclick = function(){
+						//移动图片
+						i = this.index - 1;
+						btnMove();
+					}
+				}
+				
+				//点击按钮移动方法
+				function btnMove(){
+					move();
+					clearInterval(timer);
+					timer = setInterval(move,3000);
+				}
+				
+				//翻页，上一页，下一页
+				var preBtn = document.getElementsByTagName('a')[0];
+				var nextBtn = document.getElementsByTagName("a")[1]
+				
+				preBtn.onclick = function(){
+					if(i==0){
+						oList.style.left = -iWidth*aLi.length/2 + "px";
+						i = aLi.length/2 -2;
+					}else{
+						i = i-2;
+					}
+					btnMove();
+				}
+				
+				
+				nextBtn.onclick = function(){
+					next();
+					btnMove();
+				}
+				
+			}
+		</script>
+	</head>
+	<body>
+		<div id="box">
+			<ul id="list">
+				<li><img src="images/1.jpg"/></li>
+				<li><img src="images/2.jpg"/></li>
+				<li><img src="images/3.jpg"/></li>
+			</ul>
+			<ul id="list2">
+				<li class="active">1</li>
+				<li>2</li>
+				<li>3</li>
+			</ul>
+		</div>
+		<a href="#">上一页</a>
+		<a href="#">下一页</a>
+	</body>
+</html>
