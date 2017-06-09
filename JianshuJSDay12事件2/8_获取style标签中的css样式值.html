@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <style>
+            #box {
+                background-color: red;
+                width: 100px;
+                height: 200px;
+            }
+        </style>
+        <script>
+            onload = function(){
+                var oBox = document.getElementById("box");
+                console.log(oBox.style.width);
+
+                //oBox.style: 获取oBox的style属性
+                //如果是内联样式, oBox.style的方式可以获取样式值
+                //如果是内部样式(在style标签中), 我们使用以下方式:
+                if (window.getComputedStyle) { //判断是否是IE9+,或谷歌,或火狐
+                    //这种方式: 可以获。Box的css样式(支持IE9+, 谷歌, 火狐)
+                    var oStyle = window.getComputedStyle(oBox, null);
+                    console.log(oStyle.width);
+                }
+                else
+                    var oStyle = oBox.currentStyle; //IE8及以下
+                    console.log(oStyle.width);
+                }
+
+                //使用三目运算符
+                var oStyle = window.getComputedStyle ? window.getComputedStyle(oBox, null) : oBox.currentStyle;
+                console.log(oStyle.height);
+                
+            }
+        </script>
+    </head>
+    <body>
+        <div id="box"></div>
+    </body>
+</html>

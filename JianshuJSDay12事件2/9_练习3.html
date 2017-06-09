@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <style>
+            #iphone_box {
+                background: url(images/images1/iphone.jpg);
+                width: 426px;
+                height: 640px;
+                margin: 10px auto;
+                position: relative;
+            }
+
+            #lock_box {
+                width: 360px;
+                height: 66px;
+                position: absolute;
+                left: 34px;
+                top: 545px;
+/*                background: red;
+*/            }
+
+            #lock {
+                background: url(images/images1/unlock_btn.jpg);
+                width: 93px;
+                height: 62px;
+                position: absolute;
+                left: 0px;
+                top: 0;
+                cursor: pointer;
+            }
+
+        </style>
+        <script>
+
+            /*
+             offsetWidth: 获取元素节点自身的宽度
+             offsetHeight: 获取元素节点自身的高度
+
+             offsetLeft: 和最近的参照物左边界的距离
+             offsetTop: 和最近的参照物上边界的距离
+
+             offsetX: 鼠标位置距离目标元素(鼠标点击的元素)的左边界的距离
+             offsetY: 鼠标位置距离目标元素(鼠标点击的元素)的上边界的距离
+             */
+
+            onload = function() {
+                var oIphone = document.getElementById("iphone_box");
+                var oLockBox = document.getElementById("lock_box");
+                var oLock = document.getElementById("lock");
+
+
+
+                //开始拖拽
+                oLock.onmousedown = function(evt) {
+                    var oEvent = evt || event;
+
+                    //var disX = oEvent.clientX - oIphone.offsetLeft - oLockBox.offsetLeft - oLock.offsetLeft;
+                    var disX = oEvent.offsetX;
+        			console.log("disX:"+disX);
+                    //拖动滑块
+                    document.onmousemove = function(evt) {
+                        var oEvent = evt || event;
+
+                        //移动滑块
+                        var x = oEvent.clientX - oIphone.offsetLeft - oLockBox.offsetLeft - disX;
+
+                        //是否超出左边界
+                        if (x < 0) {
+                            x = 0;
+                        }
+                        //是否超出右边界
+                        if (x > oLockBox.offsetWidth-oLock.offsetWidth) {
+                            x = oLockBox.offsetWidth-oLock.offsetWidth;
+                        		
+                        }
+
+                        oLock.style.left = x + "px";
+                    }
+                    //松开鼠标
+                    document.onmouseup = function(evt) {
+                        document.onmousemove = null;
+                        document.onmouseup = null;
+
+                        var oEvent = evt || event;
+
+                        if (oLock.offsetLeft > (oLockBox.offsetWidth - oLock.offsetWidth) / 2)     {
+                            //超过一半
+                            oLock.style.left = oLockBox.offsetWidth - oLock.offsetWidth + "px";
+							//--看心情讲与不讲
+                        		oIphone.style.background = "url(images/images1/iphone2.jpg)";
+                        		oLockBox.style.display = "none";
+                        }
+                        else {
+                            //没到一半
+                            oLock.style.left = 0;
+                        }
+                    }
+                }
+
+            }
+        </script>
+    </head>
+    <body>
+        <div id="iphone_box">
+            <div id="lock_box">
+                <div id="lock"></div>
+            </div>
+        </div>
+    </body>
+</html>

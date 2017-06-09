@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <style>
+            div {
+                padding: 40px;
+                background: #ccc;
+                border: 1px solid yellow;
+            }
+        </style>
+        <script>
+            onload = function() {
+
+                //标识符(变量和函数名),可以右字母,数字,下划线和美元符组成,第一个不可以为数字
+                function $(name) {
+                    return document.getElementById(name);
+                }
+                //添加点击事件
+                //给这四个节点对象添加一个点击事件, 所触发的事件的执行函数是同一个
+                // 赋值运算符=, 是从右往左进行运算
+                $("box").onclick = $("box1").onclick = $("box2").onclick = $("box3").onclick = function() {
+                    alert(this.id);
+                    this.style.backgroundColor = "blue";
+                }
+
+            }
+        </script>
+    </head>
+    <body>
+        <div id="box">冒泡0
+            <div id="box1">冒泡1
+                <div id="box2">冒泡2
+                    <div id="box3">冒泡3</div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

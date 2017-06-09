@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <script>
+            onload = function() {
+                var oBox = document.getElementById("box");
+
+                //实现拖拽
+                //onmousedown: 鼠标按下
+                //onmousemove: 鼠标移动
+                //onmouseup: 鼠标松开
+
+                //1, 给oBox对象添加鼠标按下事件(onmousedown)
+                oBox.onmousedown = function(evt){
+                    var oEvent = evt || event;
+
+                    //先计算出鼠标点击时距离oBox左边界的距离disX
+                    //    和鼠标点击时距离oBox上边界的距离disY
+                    var disX = oEvent.clientX - parseInt(oBox.style.left);
+                    var disY = oEvent.clientY - parseInt(oBox.style.top);
+
+                    //2, 再给document对象添加鼠标移动事件(onmousemove)
+                    document.onmousemove = function(evt){
+                        var oEvent = evt || event; //这里的oEvent和前面的oEvent是不一样的
+
+                        //每次移动,都要更新oBox的left和top值
+                        //值: 鼠标位置(clientX,clientY) 减去 和oBox左上边界的距离(disX,disY)
+                        oBox.style.left = oEvent.clientX - disX + "px";
+                        oBox.style.top = oEvent.clientY - disY + "px";
+                    }
+
+                    //3, 给document对象添加鼠标松开事件(onmouseup)
+                    document.onmouseup = function(){
+                        //取消onmousemove事件
+                        document.onmousemove = null;
+                        document.onmouseup = null; //同时将onmouseup也取消
+                    }
+                }
+
+            }
+        </script>
+    </head>
+    <body>
+        <div id="box" style="background: red; width: 100px; height: 100px; position: absolute; left: 10px; top: 10px;"></div>
+    </body>
+</html>

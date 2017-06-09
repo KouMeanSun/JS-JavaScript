@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <script>
+
+            onload = function() {
+                var oA = document.getElementsByTagName("a")[0];
+                oA.onclick = function(){
+                    if (confirm("你确定要跳转吗?")) {
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
+                }
+            }
+
+        </script>
+    </head>
+    <body>
+        <a href="http://www.baidu.com">百度一下</a>
+    </body>
+</html>

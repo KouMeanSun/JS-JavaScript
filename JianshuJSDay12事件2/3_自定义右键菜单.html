@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                border: none;
+            } 
+
+            #list {
+                width: 60px;
+                height: 90px;
+                background: #ccc;
+                border: 1px solid white;
+                position: absolute;
+                left: 10px;
+                top: 10px;
+                display: none;
+                list-style: none;
+            }
+
+            li {
+                width: 60px;
+                height: 29px;
+                border-bottom: 1px solid white;
+                line-height: 29px;
+                text-align: center;
+                cursor: pointer;
+            }
+
+        </style>
+        <script>
+
+            //阻止右键菜单(系统自带的右键菜单)
+            document.oncontextmenu = function() {
+                console.log("点击了右键");
+                return false;
+            }
+
+            //自定义右键菜单
+            onload = function() {
+                var oBox = document.getElementById("box");
+                var oList = document.getElementById("list");
+
+                //添加鼠标按下事件
+                oBox.onmousedown = function(evt) {
+                    var oEvent = evt || event;
+
+                    if (oEvent.button == 2) {
+                        //右键了鼠标.
+                        oList.style.left = oEvent.clientX + "px";
+                        oList.style.top = oEvent.clientY + "px";
+                        oList.style.display = "block"; //显示菜单
+                    }
+                }
+
+                //添加点击事件,隐藏右键菜单
+                document.onclick = function() {
+                    oList.style.display = "none"; //隐藏菜单
+                }
+
+                //给菜单选项添加点击事件
+                var aLi = oList.getElementsByTagName("li");
+                for (var i=0; i<aLi.length; i++) {
+                    aLi[i].index = i;
+                    aLi[i].onclick = function() {
+                        var index = this.index; //下标
+
+                        if (index == 0) {
+                            console.log("点击了剪切按钮");
+                        }
+                        else if (index == 1) {
+                            console.log("点击了复制按钮");
+                        }
+                        else if (index == 2) {
+                            console.log("点击了粘贴按钮");
+                        }
+                    }
+                }
+            }
+
+        </script>
+    </head>
+    <body>
+        <div id="box" style="background: red; width: 200px; height: 200px;"></div>
+        <ul id="list">
+            <li>剪切</li>
+            <li>复制</li>
+            <li>粘贴</li>
+        </ul>
+    </body>
+</html>

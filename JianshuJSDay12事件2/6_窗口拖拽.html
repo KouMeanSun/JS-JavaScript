@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <style>
+            #box {
+                background: red;
+                width: 300px;
+                height: 300px;
+                position: absolute;
+                /*left: 100px;
+                top: 50px;*/
+                border-radius: 5px;
+            }
+
+            #top {
+                background: purple;
+                width: 300px;
+                height: 30px;
+                border-top-left-radius: 5px;
+                border-top-right-radius: 5px;
+            }
+
+            #close {
+                width: 50px;
+                height: 30px;
+                line-height: 30px;
+                color: white;
+                margin-left: 10px;
+                cursor: pointer;
+            }
+
+        </style>
+        <script>
+            onload = function() {
+                var oBox = document.getElementById("box");
+                var oTop = document.getElementById("top");
+
+                //实现拖拽
+                //1, 给oTop添加onmousedown
+                oTop.onmousedown = function(evt){
+                    var oEvent = evt || event;
+
+                    //计算红色的oBox的边界和鼠标的距离
+                    var disX = oEvent.clientX - parseInt(oBox.style.left);
+                    var disY = oEvent.clientY - parseInt(oBox.style.top);
+
+                    //2, 给document添加onmousemove
+                    document.onmousemove = function(evt) {
+                        var oEvent = evt || event;
+
+                        //每次移动鼠标, 更新红色的oBox的left和top
+                        oBox.style.left = oEvent.clientX - disX + "px";
+                        oBox.style.top = oEvent.clientY - disY + "px";
+                    }
+
+                    //3, 给document添加onmouseup
+                    document.onmouseup = function(){
+                        //取消事件
+                        document.onmousemove = null;
+                        document.onmouseup = null;
+                    }
+
+                }
+
+                //关闭
+                var oClose = document.getElementById("close");
+                oClose.onclick = function(){
+                    oBox.style.display = "none";
+                }
+            }
+        </script>
+
+    </head>
+    <body>
+        <div id="box" style="left: 100px; top: 50px;">
+            <div id="top">
+                <div id="close">关闭</div>
+            </div>
+        </div>
+    </body>
+</html>

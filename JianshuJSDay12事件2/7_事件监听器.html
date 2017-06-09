@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <script>
+            onload = function() {
+                var aInput = document.getElementsByTagName("input");
+
+                //使用事件监听器添加点击事件
+                // addEventListener: 是在IE8及以前不兼容
+                /*
+                 * click: 事件的名称
+                 * func1: 事件执行函数名称
+                 * false: 表示冒泡的事件传递方式(true:表示使用捕捉(反向冒泡))
+                 */
+                aInput[0].addEventListener("click", func1, false);
+
+                function func1(){
+                    console.log("点击了按钮1");
+                }
+
+                //给按钮2添加点击事件
+                aInput[1].addEventListener("click", func2, false);
+
+                function func2() {
+                    //删除按钮1的使用addEventListener添加的点击事件
+                    aInput[0].removeEventListener("click", func1);
+                }
+
+            }
+        </script>
+    </head>
+    <body>
+        <input type="button" value="按钮1" />
+        <input type="button" value="取消按钮1的点击事件" />
+    </body>
+</html>

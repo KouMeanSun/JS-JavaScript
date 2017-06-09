@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <script>
+
+            //事件的target属性 : 存放触发事件的节点对象
+            onload = function() {
+
+                var oBox = document.getElementById("box");
+                var oInput = oBox.getElementsByTagName("input")[0];
+
+                
+                //document添加点击事件
+                
+//              document.onclick = function(evt) {
+//                  var oEvent = evt || event;
+//                  console.log("document: " + oEvent.target.nodeName);
+                    //[object HTMLHtmlElement] html
+                    //[object HTMLDivElement] div
+                    //[object HTMLInputElement] input
+//              }
+
+//              //box添加点击事件
+//              oBox.onclick = function(evt) {
+//                  var oEvent = evt || event;
+//                  console.log("div: " + oEvent.target.nodeName);
+//                  //DIV
+//                  //INPUT
+//              }
+//
+//              //input按钮添加点击事件
+//              oInput.onclick = function(evt) {
+//                  var oEvent = evt || event;
+//                  console.log("input: " + oEvent.target.nodeName);//INPUT
+//              }
+
+                
+
+                //事件的冒泡
+                //事件传递机制: 在页面上是从上层往下层传递事件
+
+                //事件的捕获
+                //事件传递机制: 在页面上是从下层往上层传递事件
+
+                // 目前大部分浏览器默认都是冒泡的事件传递方式
+                document.onclick = function() {
+                    console.log("document");
+                }
+                document.documentElement.onclick = function() {
+                    console.log("html");
+                }
+                document.body.onclick = function() {
+                    console.log("body");
+                }
+                oBox.onclick = function(evt) {
+                    console.log("div");
+
+                    var oEvent = evt || event;
+                    //阻止冒泡:
+//                  oEvent.cancelBubble = true;//支持IE
+//                  oEvent.stopPropagation(); //支持非IE
+                }
+                oInput.onclick = function(evt) {
+                    console.log("input");
+
+                    var oEvent = evt || event;
+                    //阻止冒泡:
+                      oEvent.cancelBubble = true;//支持IE
+                      oEvent.stopPropagation(); //支持非IE
+
+                }
+
+                
+
+            }
+
+        </script>
+    </head>
+    <body>
+        <div id="box" style="background: red; width: 100px; height: 100px;">
+            <input type="button" value="按钮" />
+        </div>
+    </body>
+</html>

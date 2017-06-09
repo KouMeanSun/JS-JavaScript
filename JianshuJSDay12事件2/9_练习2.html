@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <style>
+            body {
+                background: black;
+            }
+            div {
+                background: url(images/star.png);
+                width: 10px;
+                height: 10px;
+                position: absolute;
+                left: 10px;
+                top: 10px;
+            }
+        </style>
+        <script>
+            onload = function() {
+                var aDiv = document.getElementsByTagName("div");
+
+                //鼠标移动
+                document.onmousemove = function(evt) {
+                    var oEvent = evt || event;
+                    aDiv[0].style.left = oEvent.clientX + "px";
+                    aDiv[0].style.top = oEvent.clientY + "px";
+                    for (var i=aDiv.length-1; i>0; i--) {
+                        aDiv[i].style.left = aDiv[i-1].style.left;
+                        aDiv[i].style.top = aDiv[i-1].style.top;
+                    }
+                    
+                }
+
+            }
+        </script>
+    </head>
+    <body>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </body>
+</html>

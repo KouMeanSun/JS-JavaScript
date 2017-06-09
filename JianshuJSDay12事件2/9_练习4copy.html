@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <style type="text/css">
+        	div{
+        		width: 640px;
+        		height: 378px;
+        	}
+        </style>
+        <script>
+            onload = function() {
+//              var oImg = document.getElementsByTagName("img")[0];
+				var oBox = document.getElementsByTagName("div")[0];
+                //开始拖拽
+                var lastIndex = 0; //记录最后一张图的下标
+                document.onmousedown = function(evt){
+                    var oEvent = evt || event;
+
+                    //点击鼠标时的x值
+                    var startX = oEvent.clientX;
+                    var index = 0;
+                    //鼠标移动
+                    document.onmousemove = function(evt){
+                        var oEvent = evt || event;
+
+                        //鼠标移动过程中距离startX的距离
+                        //var x = oEvent.clientX - startX;
+                        var x =  startX - oEvent.clientX;
+                        //图片名称的下标
+//                      var imgIndex =  (77*6 + parseInt(x/10) + lastIndex) % 77;
+					//加上一个较大的数防止产生负数，找不到图片
+					var imgIndex = (77+parseInt(x/10)+lastIndex)%77;
+						console.log("imgIndex:"+imgIndex);
+                        //改变图片
+//                      oImg.src = "images/images4/" + imgIndex + ".jpg";
+						var src = "images/images4/" + imgIndex + ".jpg";
+						//"url(images/images4/10.jpg)"
+						oBox.style.background = "url("+src+")";
+                        index = imgIndex;
+                    }
+                    //鼠标松开
+                    document.onmouseup = function(){
+                        document.onmousemove = null;
+                        document.onmouseup = null;
+
+                        lastIndex = index;
+                    }
+                }
+
+            }
+        </script>
+    </head>
+    <body>
+        <!--<img src="images/images4/0.jpg" />-->
+        <div  style="background: url(images/images4/0.jpg); "></div>
+    </body>
+</html>
