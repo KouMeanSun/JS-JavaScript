@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			//写一个函数，判断一年是不是闰年
+			function fn1(year){
+				  if (year%4 == 0 && year%100 != 0 || year%400 == 0){
+        				 return "是闰年";
+    					 }else {
+         				return "是平年";
+    					 }
+			}
+//			var s = fn1(2016);
+//			document.write(s);
+
+		//写一个函数判断一个数是不是素数
+ //(又称质数,除了1和本身以外不再有其他数整除)
+ 		function fn2(n){
+
+    			 for (var i=2; i<n; i++){
+         		if(n%i == 0) {
+             //不是素数
+            			 return "不是素数";
+        		 		}
+   			  }
+    			 return "是素数";
+ 		}
+// 		var s = fn2(9);
+// 		document.write(s);
+				 //年月日分别为自定义函数的参数，判断某一个日期是否为正确的日期;
+//    如:   2016年12月33日不是正确的日期
+//          2016年11月13日是正确的日期
+
+ function fn3(year, month, day) {
+     if (month > 12) {
+         return "不是正确的日期";
+     } else {
+         var theDays = 0; //第month月份的总天数
+         if (month==1 || month==3 || month==5 || month==7 || month==8 || month==10 || month==12) {
+             theDays = 31;
+         }
+         else if (month==2) {
+             var s = fn1(year); //调用函数fn1
+             if (s == "是闰年") {
+                 //是闰年
+                 theDays = 29;
+             } else {
+                 //是平年
+                 theDays = 28;
+             }
+         }
+         else {
+             theDays = 30;
+         }
+
+         if (day <= theDays) {
+             return "是正确的日期";
+         } else {
+             return "不是正确的日期";
+         }
+
+     }
+ }
+ 	var s = fn3(2016, 2, 39);
+ 	document.write(s);
+
+ 		
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

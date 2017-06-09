@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			//递归
+// 5的阶乘
+ // 5*4*3*2*1
+ // 2*1
+ // 3 * 2*1
+ // 4 * 3*2*1
+ // 5 * 4*3*2*1		
+ // n * (n-1)!
+ // n * (n-1)*(n-2)!
+ //...
+ // 3!
+ // 3 * 2!
+ // 3 * 2 * 1!
+ // 3 * 2 * 1
+ 
+  //fn(n) = n * fn(n-1);
+  //计算n!的函数
+//		function fn(n) {
+//  		 	if(n == 1){
+//      		 return 1;
+//  			 }
+//   		return n * fn(n-1);
+// 		}
+// 		var s = fn(5);
+// 		document.write(s);
+
+		//1, 计算1+2+3+…+99+100的和
+ //fn2(n) = n + fn2(n-1)
+   //fn2是计算1-n的和
+    function fn2(n){
+      if (n == 1) {
+         return 1;
+      }
+     return n + fn2(n-1);
+    }
+//	var s = fn2(100);
+// 	document.write(s);
+	 //2, 输入一个n,打印n个hello world
+// function fn3(n){
+//   if(n == 1){
+//       document.write("hello world");
+//       return;
+//   	}
+//   		document.write("hello world");		
+//   		fn3(n-1);
+// 		}
+// 	fn3(3);
+
+	//3.求1到n的和
+		function fn4(n){
+			if(n==1){
+				return 1;
+			}
+			return n+fn4(n-1);
+		}
+		console.log(fn4(9));
+
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			  //onclick="btnClick()" :点击事件,点击后会调用btnClick()函数
+
+            //
+            function btnClick(){
+
+                var oInput = document.getElementById("id1");
+                oInput.value = ""; //取出输入框中的值
+            }
+		</script>
+	</head>
+	<body>
+		<input id="id1" type="text" value="" placeholder="请输入电影名" />
+        <input type="button" value="搜索" onclick="btnClick()"/>
+	</body>
+</html>

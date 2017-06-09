@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			/**
+			 * 标准函数
+			 * 
+			 * function 定义函数的关键字
+			 * 
+			 * （参数1名字，参数2名字，参数3名字。。。）：参数可以有零个或者多个
+			 *  return 返回值 ：   返回一个值
+			 * 
+			 * function 函数名（参数1名字，参数2名字，参数3名字。。。）｛
+			 * 		js语句，
+			 * 		return 返回值；
+			 * ｝
+			 * 
+			 */
+			
+			//求两个数的和
+			/**
+			 * 参数1，参数2
+			 *  返回参数1加上参数2的结果
+			 */
+			function sum(one,two){
+				console.log("one="+one);
+				console.log("two="+two);
+				
+				var total = one + two;
+				return total;
+			}
+			//函数调用
+			//10,2是两个参数
+			//s 得到的是函数的返回值
+//			var s = sum(10,2);
+//			console.log("s="+s);
+			//1，写一个函数计算1到n的和，并返回结果打印出来：（n为函数参数）
+			function sum1(n){
+				var s = 0;
+				for(var i = 1;i<=n;i++){
+					s +=i;
+				}
+				console.log("return 前的代码");
+				return s;
+				console.log("return 后的代码");
+			}
+//			var s = sum1(5);
+//			console.log("s="+s);
+			
+			//2.写一个函数，计算n的阶乘
+			function jc(n){
+				var s = 1;
+				for(var i = 1;i<=n;i++){
+					s *=i;
+				}
+				return s;
+			}
+//			var s = jc(6);
+//			console.log("s="+s);
+			//3.写一个函数，计算两个数的最小公倍数
+			function fn(a,b){
+				var max = a>b?a:b;
+				for(var i=max ;i<=a*b;i++){
+					if(i%a==0 && i%b==0){
+						return i;//返回最小公倍数，
+						//退出整个函数，并且后面的语句不会执行
+					}
+				}
+			}
+//			var s = fn(6,9);
+//			console.log("s="+s);
+			
+			/**
+			 * 形参，实参，都可以叫参数
+			 * 形参，函数定义的时候，函数名后面括号中的参数，不能用var来修饰
+			 * 实参，函数调用时函数名后面的参数
+			 */
+			function sum(one1,two2){//one1,two2是形参，形式上的
+				var s = one1 +two2;
+				return s;
+			}
+//			console.log(sum(1,2));//1,2是实参，是实际存在的
+			
+			//参数可以传多个，与函数的定义无关
+			function test(paramx,paramy){//paramx,paramy是两个形参
+				alert("test函数被调用");
+				alert(paramx+","+paramy);
+			}
+//			test(1,"b",3,4);//函数调用
+
+			//arguments 数组，
+			/**
+			 * 在函数内，arguments 保存了实参
+			 * arguments.length,参数的长度，（数组的长度）
+			 * arguments[0],获取下标为0的值，（下标是从0开始的）
+			 */
+			function sum2(a,b){
+				var sum = a+b;
+				console.log(sum);//3
+				
+				console.log(arguments);//1,2,3,4,5,6,7
+				console.log(arguments.length);//7
+				console.log(arguments[0]);//1
+			}
+//			sum2(1,2,3,4,5,6,7);
+
+			//向一个函数传入一个不定数量的数值求和
+			function sum3(){
+				var sum = 0;
+				for(var i = 0;i<arguments.length;i++){
+					sum += arguments[i];
+				}
+				console.log("sum="+sum);
+			}
+//			sum3(1,3,4,5,6,7,8,9);
+
+			//在函数调用过程中，形参值发生变化，而实参的值不会变化
+			function add(n){
+				n +=5;
+				console.log("n="+n);
+			}
+			var m =10;
+//			add(m);//调用函数add
+//			console.log("m="+m);//10
+			
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

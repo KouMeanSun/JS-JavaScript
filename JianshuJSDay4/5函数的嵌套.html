@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			//函数的嵌套
+ 		//函数内部可以再包含其他函数
+ 		//函数之间允许相互调用，也允许向外调用,
+ 		//不可以调用同级函数的嵌套函数
+ 		
+ 		function a(){
+    			 console.log("a");
+
+     		b(); //调用函数b
+    			 function b(){
+        			 console.log("b");
+        			 c(); //调用函数c
+         			aa(); //调用函数aa
+    			 }
+     			function c(){
+        			 console.log("c");
+    			 }
+ 		}
+ 			function aa(){
+    			 console.log("aa");
+    			 //c(); //不可以调用同级函数的嵌套函数
+ 			}
+
+ 			a();
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

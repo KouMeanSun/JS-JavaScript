@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			//onclick="btnClick()" :点击事件,点击后会调用btnClick()函数
+
+            //
+            function btnClick(){
+
+                var oInput = document.getElementById("id1");
+                var oBox = document.getElementById("box");
+                var n = oInput.value; //取出输入框中的值
+                if (n%2 == 0) {
+//                  console.log("是偶数");
+				oBox.innerHTML = "是偶数";
+                } else{
+//                  console.log("是奇数");
+				oBox.innerHTML = "是奇数";
+                }
+            }
+		</script>
+	</head>
+	<body>
+		<input id="id1" type="text" placeholder="请输入一个数字" />
+        <input type="button" value="检测奇偶性" onclick="btnClick()"/>
+        <div id="box"></div>
+	</body>
+</html>
