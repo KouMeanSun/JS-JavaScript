@@ -1,0 +1,13 @@
+
+body {
+	background:url(../images/bg1.gif);
+}
+
+#box {
+	width: 600px;
+	height: 400px;
+	border: 2px solid white;
+	background: #FFCC66;
+	margin: 20px auto;
+}
+

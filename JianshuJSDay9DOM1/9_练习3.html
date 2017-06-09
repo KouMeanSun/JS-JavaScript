@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			window.onload = function(){
+				var arr = ["red", "blue", "white", "black", "orange", "green"];
+                var oBox = document.getElementById("box");
+
+                //console.log(parseInt("14px")); //14
+
+                var change = 5; //文字大小变化量
+                var i = 0;
+                
+                var fontSize = 14;
+                setInterval(function(){
+                    //建议这么讲
+                     fontSize = fontSize+change;
+                    
+                    var color = arr[i%6];
+                    //====方式1
+                    oBox.style.fontSize = fontSize + "px";
+                    oBox.style.color = color; //改变颜色
+
+					//===方式2
+//					var styleValue = "background:purple; height:200px; width:200px;color: "+color+";font-size: "+fontSize+"px";
+//					oBox.setAttribute("style",styleValue);
+                    i++;
+                    if (i%6 == 0) {
+                        change *= -1;
+                    }
+
+                }, 1000);
+			}
+		</script>
+	</head>
+	<body>
+		<div id="box" style="background: purple; font-size: 14px; width: 200px; height: 200px;">看我72变</div>
+	</body>
+</html>

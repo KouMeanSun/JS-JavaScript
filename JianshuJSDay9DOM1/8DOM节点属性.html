@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			window.onload = function(){
+				var oBox = document.getElementById("box");
+				
+				//DOM节点的工有三个属性,nodeName,nodeType,nodeValue
+				//元素节点的这三个属性
+//				console.log(oBox.nodeName);//DIV
+//				console.log(oBox.nodeType);//1
+//				console.log(oBox.nodeValue);//null
+
+			//childNodes:获取所有子节点，包括元素节点和文本节点
+			console.log(oBox.childNodes. length);//5
+			console.log(oBox.childNodes[0].nodeName);//#text
+			console.log(oBox.childNodes[1].nodeName);//EM
+			console.log(oBox.childNodes[2].nodeName);//#text
+			console.log(oBox.childNodes[3].nodeName);//DIV
+			console.log(oBox.childNodes[4].nodeName);//text
+			console.log("============================");
+			console.log(oBox.childNodes[0].nodeType);//3
+			console.log(oBox.childNodes[1].nodeType);//1
+			console.log(oBox.childNodes[2].nodeType);//3
+			console.log(oBox.childNodes[3].nodeType);//1
+			console.log(oBox.childNodes[4].nodeType);//3
+			console.log("============================");
+			console.log(oBox.childNodes[0].nodeValue);//测试div
+			console.log("----------------");
+			console.log(oBox.childNodes[1].nodeValue);//null
+			console.log("----------------");
+			console.log(oBox.childNodes[2].nodeValue);//
+			console.log("----------------");
+			console.log(oBox.childNodes[3].nodeValue);//null
+			console.log("----------------------")
+			console.log(oBox.childNodes[4].nodeValue);//
+			
+			console.log("================");
+			for(var i=0;i<oBox.childNodes.length;i++){
+				var n = oBox.childNodes[i];
+				if(n.nodeType ==1){
+					//元素节点
+					console.log("元素节点："+n.nodeName);
+				}else if(n.nodeType == 3){
+					//文本节点
+					console.log("文本节点："+n.nodeName);
+				}
+			};
+			
+			//innerHTML和nodevalue的区别
+			//1.取值，innerHTML取元素节点的值
+			//        nodeValue取文本，属性节点的值
+			
+			//2.赋值，innerHTML可以解析html标签，
+			//       nodeValue不可以解释，原样显示
+			
+			
+			var oSpan = document.getElementById("span");
+//			oSpan.innerHTML = "<strong>你们很棒</strong>"
+			//对文本节点使用nodeValue
+			oSpan.childNodes[0].nodeValue = "<strong>你们棒棒哒</strong>"
+			
+			//innerHTML,innerText,outHTML
+			/***
+			 * innerHTML :元素节点包含的所有内容
+			 * inerText  ：元素节点包含的文本
+			 * outHTML   :包含本身元素节点，以及该元素节点所包含的内容
+			 */
+			var oBox1 = document.getElementById("box1");
+			console.log(oBox1.innerHTML);//<span id="span1" >test1</span><span>test2</span>test3
+			console.log(oBox1.innerText);///test1 test2 test3
+			console.log(oBox1.outerHTML);//
+			/**
+			 * <div id="box1">
+	  		<span id="span1">test1</span><span>test2</span>test3
+	  	</div>
+			 */
+			};
+		</script>
+	</head>
+	<body>
+		<div id="box">测试div
+		<em>这是斜体</em>
+		<div>这是div</div>
+		</div>
+		
+		<span id="span">1615棒棒哒</span>
+	  	<div id="box1">
+	  		<span id="span1" >test1</span><span>test2</span>test3
+	  	</div>
+	</body>
+</html>

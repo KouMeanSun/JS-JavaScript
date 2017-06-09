@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		        <style>
+            img {
+                width: 100px;
+            }
+            </style>
+            <script>
+            	            window.onload = function() {
+                var oTable = document.getElementById("tb");
+                var aImg = oTable.getElementsByTagName("img");
+                var oShowImg = document.getElementById("showImg");
+
+                for (var i=0; i<aImg.length; i++) {
+
+                    //console.log(i);
+                    aImg[i].index = i;
+                    /*
+                     * aImg[0].index = 0
+                     * aImg[1].index = 1
+                     * aImg[2].index = 2
+                     */
+                    //给三个img元素节点加点击事件
+                    aImg[i].onclick = function() {
+                        //console.log("----" + i);
+                        //oShowImg.src = aImg[i].src; //不能这样使用
+
+                        //这里的this是aImg[i]
+                        /*
+                         * 如果点击第一张图this == aImg[0]
+                         * 如果点击第二张图this == aImg[1]
+                         * 如果点击第三张图this == aImg[2]
+                         */
+                        //this.index :(aImg[0].index=0),(aImg[1].index=1),(aImg[2].index=2)
+                        var index = this.index;
+                        console.log(index);
+
+                        console.log(this.src);
+                        oShowImg.src = this.src;
+                    }
+                }
+                //console.log(i);
+
+            }
+            </script>
+            
+	</head>
+	<body>
+		<table border="1" id="tb">
+            <tr>
+                <td><img src="images/1.jpg" /></td>
+                <td><img src="images/2.jpg" /></td>
+                <td><img src="images/3.jpg" /></td>
+            </tr>
+        </table>
+        <img src="images/1.jpg" id="showImg"/>
+	</body>
+</html>

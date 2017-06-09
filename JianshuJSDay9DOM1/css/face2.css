@@ -1,0 +1,12 @@
+
+body {
+	background:url(../images/bg2.jpg);
+}
+
+#box {
+	width: 400px;
+	height: 300px;
+	border: 2px solid white;
+	background: #C6F;
+	margin: 20px auto;
+}
