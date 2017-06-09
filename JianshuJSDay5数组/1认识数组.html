@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			/**
+			 * 数组：
+			 * Array
+			 * 数组的定义，一组数据，一般是相同类型，不一定是数字
+			 * 
+			 */
+//			new Array(参数，参数，参数)
+//			只有一个参数的时候，参数代表数组的长度，（new 可以省略，但是一般情况下要尽量用上）
+		var box  = new Array();//创建了一个空数组
+		var box  = new Array(10);//创建了一个数组，该数组包含10个元素
+		var box  = new Array(10,20,30);//如果超过两个参数，那么参数就是数组的元素
+		var box  = new Array("hello");//如果是一个非数字的参数，则该参数也是数组的元素
+//		alert(box);
+			//字面量的方式创建
+			var box = [];//空数组
+			var box = [10,20,30];//包含三个元素的数组
+//			alert(box);
+		//通过下标访问数组中的元素
+//		document.write(box[0]);//box[0] 的值就是10，数组的下标是聪0开始的
+//		document.write(box[2]);//30
+		
+		//length属性
+		//数组的长度，可读，可写
+		var acolor = ["red","yellow","blue"];
+//		document.write(acolor.length);
+//		document.write(acolor);
+		acolor.length = 4;//改变length
+//		document.write(acolor.length);
+//		document.write(acolor);
+		
+		//数组最后一个元素
+//		document.write(acolor[acolor.length-1]);
+		
+		//数组的赋值
+		acolor[0] = "white";//如果元素存在，则替换原来的值
+		acolor[3] = "black";//如果不存在，则添加该元素到指定的下标
+		
+		//循环赋值
+		var a = [];
+		for(var i=0;i<10;i++){
+			a[i]=i*i;
+		}
+//		document.write(a);
+		var b = [];
+		for(var i=0;i<10;i++){
+			b[i] = Math.random()*10;//Math.random()随机数，（0～1）
+			
+		}
+//		document.write(b);
+	//数组的使用
+	   var a = [0,1,4,9,16,25,36,49,64,81];
+	   //普通for,又叫数组的遍历
+//	   for(var i=0;i<a.length;i++){
+//	   		document.write(a[i]+"<br />");
+//	   }
+	   //for in 循环，专门遍历数组，（快速遍历）
+//	   for(var i in a){//i是下标
+//	   		document.write(a[i]+"<br />");
+//	   }
+		
+	  //1.求数组中所有元素的和
+	  var a = [1,3,4,5,5,6,2,3,46,7,7,7];
+	  var sum  = 0;
+//	  for(var i in a){
+//	  	 sum += a[i];
+//	  }
+//	  document.write(sum);
+		//让数组中的元素换位置，重要！！！！
+		var a = [1,3,2,4,5,6,7];
+		//交换a［1］和a［2］
+		var tmp = a[1];
+		a[1] = a[2];
+		a[2] = tmp;
+//		document.write(a);
+
+		//通过三个变量交换两个变量的值
+		var x = 1,y=2;
+		var tmp = x;//用第三个变量tmp保存x的值，tmp：1
+		x = y;     //把y的值赋给x，x==2,y==2,tmp==1
+		y = tmp;  //把tmp的值（之前存了x的值赋给y，y==1,x==2,tmp==1
+		
+		//了解，扩展
+		//不通过第三个变量交换两个变量的值
+		var x =1,y=2;// 
+		/**
+		 *       x   01
+		 *       y   10
+		 * 第一次：x= 11,y=10
+		 * 第二次：y= 01,x x= 11
+		 * 第三次：x= 10,
+		 */
+		
+//		x = x^y;// 11
+//		y = x^y;//
+//		x = x^y;
+//		document.write("x="+x+"<br />");
+//		document.write("y="+y);
+		
+		//求数组的最大数和最小数,重要！！！
+		//求数组最小数的下标
+		var a = [1,3,4,-1,5,2,4,9,666];
+		var max = a[0];
+		var min = a[0];
+		var j = 0;//最小数的下标
+		for(var i =0;i<a.length;i++){
+			if(a[i]>max){
+				max = a[i];
+			}
+			if(a[i]<min){
+				min = a[i];
+				j =i;//修改下标
+			}
+			
+		}
+		document.write("max="+max+"<br />");
+		document.write("min="+min+"<br />");
+		document.write("j="+j)
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
