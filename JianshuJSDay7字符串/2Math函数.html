@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			/**
+			 * Math  它是数学相关的函数！
+			 * 
+			 */
+			//Math.random()  计算一个随机数！[0~1),前闭后开区间！
+//			document.write(Math.random()+"<br />");//0.6975970810682508
+//			//Math.round()  四舍五入
+//			document.write(Math.round(3.64)+"<br />");//4
+//			// Math.max() 求两个数中较大的
+//			document.write(Math.max(3,4)+"<br />");//4
+//			//Math.min()    求两个数较小的
+//			document.write(Math.min(87,998)+"<br />");//87
+//			//Math.abs() 求绝对值
+//			document.write(Math.abs(-1)+"<br />");///  1
+//			//Math.ceil() 向上取整！
+//			document.write(Math.ceil(2.1)+"<br />");//   3
+//			// Math.floor（）向下取整
+//			document.write(Math.floor(4.9)+"<br />");//   4
+//			//Math.pow() 求一个数的几次幂  ！
+//			document.write(Math.pow(2,3)+"<br />");//  8
+//			//Math.sqrt  开平方！
+//			document.write(Math.sqrt(144));//   12
+			
+			
+			///  1.要获取一个随机数 65~90，的到相应的随机数之后，再根据ascii转化成字母
+			// 65+  0~25
+//			var a =  parseInt(Math.random()*26)+65;
+//			var b = String.fromCharCode(a);//类方法！
+//			document.write(b)
+
+			//综合练习
+			var str = "aabbDDFF8743c2425252dfgfdgFFF";
+			//1
+//			document.write(str.length);
+			//2
+//			document.write(str[3]+","+str[6]+","+str[9]);
+			//3
+//			for(var i=0;i<str.length;i++){
+//				if(str[i]=="c"){
+//					document.write("存在制定字符串！");
+//					break;
+//				}
+//			}
+//			if(i==str.length){
+//				document.write("不存在制定字符串");
+//			}
+			//4
+			var a = str.replace(/g/g,"2");
+//			document.write(a);
+			//5 
+			var subStr = str.substring(3,6);
+//			document.write(subStr);
+		
+			//6	
+			for(var i=0;i<str.length;i++){
+				if((str[i]>="a" && str[i]<="z") || (str[i]>="A" && str[i]<="Z")){
+					//是字母
+					var str2 = "@"+str[i]+"@";
+					document.write(str2+" ");
+				}else{
+					document.write(str[i]+" ");
+				}
+				
+				if((i+1)%5==0){
+					document.write("<br />");
+				}
+			}
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
