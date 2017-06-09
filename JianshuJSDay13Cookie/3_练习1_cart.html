@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <script src="base.js"></script>
+        <script>
+            onload = function() {
+                var oList = document.getElementById("list");
+
+                //商品1, 商品3, 商品5
+                for (var i=1; i<=6; i++) {
+                    var name = "商品"+i;
+                    var value = getCookie(name);
+                    if (value) {
+                        //说明该name在购物车中
+                        var liNode = document.createElement("li");
+                        liNode.innerHTML = "商品名称:" + name + ", 商品价格: " + value;
+                        oList.appendChild(liNode);
+                    }
+                }
+                //console.log(cookie);
+            }
+        </script>
+    </head>
+    <body>
+        <h3>我的购物车</h3>
+        <ul id="list">
+
+        </ul>
+    </body>
+</html>

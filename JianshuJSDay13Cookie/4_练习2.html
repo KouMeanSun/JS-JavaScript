@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <style>
+            body {
+                background: #abc;
+                font-size: 13px;
+            }
+            #box {
+                background: #bcd;
+                width: 200px;
+                height: 100px;
+                border: 1px solid gray;
+                border-radius: 5px;
+                padding: 10px;
+                margin:  10px auto;
+            }
+        </style>
+
+        <script src="base.js"></script>
+        <script>
+        
+        
+            onload = function() {
+
+                var aInput = document.getElementsByTagName("input");
+
+                //判断是否保存了账号和密码
+                var oldUsername = getCookie("username");
+                var oldPassword = getCookie("password");
+				console.log(document.cookie);
+                if (oldUsername) {
+                    aInput[0].value = oldUsername;
+                    aInput[1].value = oldPassword;
+                }
+
+                //点击提交
+                aInput[3].onclick = function() {
+
+                    if (aInput[2].checked) {
+                        var username = aInput[0].value; //账号
+                        var pwd = aInput[1].value; //密码
+
+                        var d = new Date();
+                        d.setDate(d.getDate()+10); //10天后的日期
+                        setCookie("username", username, d);
+                        setCookie("password", pwd, d);
+                        console.log("提交之后："+document.cookie);
+                    }
+                }
+
+            }
+            
+            //====调试测试用
+            function removeCookieClick(){
+            		removeCookie("username");
+            		removeCookie("password");
+            }
+        </script>
+
+    </head>
+    <body>
+        <form>
+        <div id="box">
+            <label>账号</label>
+            <input type="text" />
+            <br />
+
+            密码
+            <input type="password" />
+            <br />
+
+            <input type="checkbox" />
+            十天内免登录
+            <br />
+
+            <input type="submit" value="提交"/>
+            <input type="button" value="还原" />
+        </div>
+        </form>
+        <br />
+        <!--<input type="button" value="清除cookie" onclick="removeCookieClick()" />-->
+    </body>
+</html>

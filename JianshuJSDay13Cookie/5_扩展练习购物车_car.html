@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <script src="base.js"></script>
+        <script>
+            onload = function() {
+                var oList = document.getElementById("list");
+ 			    var GOODNAMES = "GOODSNAMES";//cookie记录商品名字数组的key
+                var GOODPRICES = "PRICES";//cookie记录商品价数组的key
+				//====cookie 读取cookie里的数据
+				var goodsNameStr = getCookie(GOODNAMES);
+				var goodsPriceStr = getCookie(GOODPRICES);
+				
+				//===把字符串转化为数组
+				var goodsNameArray = [];
+				var goodsPriceArray = [];
+				if(goodsNameStr){
+				   goodsNameArray = goodsNameStr.split("&");
+				   goodsPriceArray = goodsPriceStr.split("&");
+				}
+				
+				
+				
+				//=====end cookie
+				
+				for(var i = 0;i<goodsNameArray.length;i++){
+					var name = goodsNameArray[i];
+					var price = goodsPriceArray[i];
+					var liNode = document.createElement("li");
+					liNode.innerHTML = "商品名称："+name+",商品价格："+price;
+					oList.appendChild(liNode);
+				}
+
+//              //商品1, 商品3, 商品5
+//              for (var i=1; i<=6; i++) {
+//                  var name = "商品"+i;
+//                  var value = getCookie(name);
+//                  if (value) {
+//                      //说明该name在购物车中
+//                      var liNode = document.createElement("li");
+//                      liNode.innerHTML = "商品名称:" + name + ", 商品价格: " + value;
+//                      oList.appendChild(liNode);
+//                  }
+//              }
+                //console.log(cookie);
+            }
+        </script>
+    </head>
+    <body>
+        <h3>我的购物车</h3>
+        <ul id="list">
+
+        </ul>
+    </body>
+</html>

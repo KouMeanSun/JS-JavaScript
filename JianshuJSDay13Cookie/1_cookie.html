@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <script>
+     console.log("cookie");
+            //cookie: 在浏览器上存储数据,方便下一次打开浏览器获取该数据
+
+            //document.cookie
+            //"name=value;expires=date;path=访问路径;domain=访问域名;secure"
+            //name=value 是必须设置的
+
+            //设置cookie: 保存数据到浏览器
+            
+//          document.cookie = "name=张三";
+//          document.cookie = "password=123456";
+//
+//          //获取cookie: 把之前保存的数据拿下来用
+//          console.log(document.cookie);
+//          alert(document.cookie);
+            //name=张三; password=123456
+
+            
+
+            //URI编码/URI解码
+            
+//           encodeURIComponent("元芳") : //URI编码
+//           decodeURIComponent(document.cookie) :// URI解码
+             
+            
+//          document.cookie = "username=" + encodeURIComponent("元芳");
+//          var cookie = decodeURIComponent(document.cookie);
+//          console.log(cookie);
+            
+
+            //失效时间
+            //expires=date
+            // 可以设置在将来的某一天, 那么在这天之前cookie是可以使用的,超过该日期cookie就不可用
+            // 默认值: 在浏览器关闭的时刻
+//          
+            var d = new Date();
+            d.setDate(d.getDate() + 7); //7天后
+//          document.cookie = "password=" + encodeURIComponent("元芳") + ";expires=" + d;
+//          alert(document.cookie);
+            //主动删除cookie
+            //设置失效时间在现在或者过去的某一天
+//          var d = new Date(); //当前时间
+//          document.cookie = "password=" + encodeURIComponent("元芳") + ";expires=" + d;
+            
+/
+            //path=访问路径
+            //默认值: 当前文件所在路径
+//          var d = new Date("2016-8-8");
+//          document.cookie = "name2=123;expires=" + d + ";path=/";
+//          console.log(document.cookie);
+//
+//          //domain=域名
+//          //设置访问域名
+//          document.cookie = "name3=123; expires=" + d + ";domain=baidu.com";
+//          console.log(document.cookie);
+//s
+//          //secure 安全设置
+            //只允许https协议成可以访问该cookie
+//          document.cookie = "name4=123; expires=" + d + "; secure";
+//          console.log(document.cookie);
+
+        </script>
+    </head>
+    <body>
+    	cookie
+    </body>
+</html>
