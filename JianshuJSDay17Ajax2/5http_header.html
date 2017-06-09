@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="AjaxBase.js" ></script>
+		<script type="text/javascript">
+			var xhr = createXHR();
+			
+			xhr.open("GET","http://localhost:8080/ajax/checkname?regname="+encodeURIComponent("lisa"),true);
+			
+			/**
+			 * 设置请求头信息！
+			 * 
+			 * 请求头一般是放一些私密的信息给服务器,token,sign,或者信息的id等等
+			 * 
+			 */
+			
+			xhr.setRequestHeader("token","23423423dfadfsdfadasgsdg");
+			xhr.setRequestHeader("userid","zhangsan");
+			
+			xhr.send(null);
+			
+			xhr.onreadystatechange = function(){
+				if(xhr.readyState==4 && xhr.status==200){
+					console.log("=============请求成功！")
+					console.log(decodeURIComponent(xhr.responseText));
+					
+					console.log("=====响应头的信息");
+					console.log(xhr.getAllResponseHeaders());
+					
+					console.log(xhr.getResponseHeader("Content-Type"));
+				}else{
+					console.log("请求失败！xhr.readyState:"+xhr.readyState+","+xhr.status);
+				}
+			}
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

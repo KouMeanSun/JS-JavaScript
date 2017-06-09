@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+//			function fn(){
+//				console.log("调用了fn函数");
+//			}
+//			
+//			fn();
+
+	/**
+	 * 回调函数
+	 */
+//	function fn(name){
+//		console.log("name:"+name);
+//	}
+//	fn("george");
+
+//		function fn(func){
+//			console.log("调用了fn函数");
+//			
+//			//调用了参数（函数）
+//			func();
+//		}
+////	
+//		fn(callback);
+//		function callback(){
+//			console.log("调用了callback");
+//		}
+
+//	   fn(function(){
+//	   	console.log("fn函数的回调函数");
+//	   });
+
+	//-------------
+	
+//	var obj = {
+//		name:"宝宝",
+//		fn:function(username){
+//			console.log("name="+username);
+//		}
+//	}
+//	
+//	//声明 func2
+	function func2(ooobj){
+		console.log("调用了func2函数，名字为："+ooobj.name);
+		//回调
+		ooobj.fn("蓉");
+	}
+//	
+//	func2(obj);
+
+//		func2({
+//			name:"阿宝",
+//			fn:function(username){
+//				console.log("name="+username);
+//			}
+//		});
+
+	//============对象的遍历
+	var person = {
+		name:"包拯",
+		age:"800",
+		fn:function(){
+			console.log("杀人");
+		}
+	}
+		
+	// for in
+	for( var i in person){
+		//i是属性的名字
+//		person[i]  对应属性名字为i的值
+		
+	console.log("i:"+i+",value:"+person[i]);
+	}
+		
+
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

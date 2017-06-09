@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="AjaxBase.js" ></script>
+		<script type="text/javascript">
+		var xhr = createXHR();
+		
+		/**
+		 * 一般情况下后台接口开发人员会在接口文档说明用那种请求方式
+		 * 说明该接口是get请求还是post请求，或者两者都有
+		 */
+		
+		//POST请求，参数不写在url后面，
+		xhr.open("POST","http://localhost:8080/ajax/checkname",true);
+		
+		//设置我们的请求头信息，以表单的形式提交
+		xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoder");
+		
+		//POST请求到服务器
+		xhr.send("regname=lisa");
+		
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState==4 && xhr.status==200){
+				console.log(xhr.responseText);
+			}else{
+				console.log("请求失败：xhr.readyState："+xhr.readyState+",:"+xhr.status);
+			}
+		}
+		
+		</script>
+		
+	</head>
+	<body>
+	</body>
+</html>

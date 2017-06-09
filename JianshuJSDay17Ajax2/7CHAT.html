@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+				border: none;
+			}
+			ul,li{
+				list-style: none;
+			}
+			#box{
+				width: 500px;
+				height: 550px;
+				border: 3px solid #ccc;
+				margin: 10px auto;
+				padding: 10px;
+			}
+			#list{
+				width: 480px;
+				height: 430px;
+				border: 1px dashed #ccc;
+				padding: 10px;
+				overflow: auto;
+			}
+			#txt{
+				width: 500px;
+				height: 50px;
+				border: 1px solid orange;
+				margin-top: 10px;
+				
+			}
+			#send{
+				width: 60px;
+				height: 30px;
+				float: right;
+			}
+			
+			#list li span{
+				display: inline-block;
+				height: 30px;
+				line-height: 30px;
+				background: #99f;
+				padding: 0 5px;
+				border-radius: 5px;
+				margin-bottom: 5px;
+			}
+		</style>
+		<script type="text/javascript" src="AjaxBase.js" ></script>
+		<script type="text/javascript">
+			onload = function(){
+				var oList = document.getElementById("list");
+				var oTxt  = document.getElementById("txt");
+				var oSend = document.getElementById("send");
+				
+				var mName = prompt('请输入您的名字',"");
+				
+				//创建一个处理[发送功能]的xhr
+				var sendXHR = createXHR();
+				
+				sendXHR.onreadystatechange = function(){
+					if(sendXHR.readyState==4 && sendXHR.status==200){
+						console.log("发送消息到服务器成功！"+sendXHR.responseText)
+						//获取服务器最新的聊天内容！
+						getDatas();
+					}else{
+						console.log("请求失败：sendXHR.readyState："+",sendXHR.status:"+sendXHR.status);
+					}
+				}
+				
+				//=====================获取服务器请求数据xhr
+				var getXHR = createXHR();
+				
+				getXHR.onreadystatechange = function(){
+					if(getXHR.readyState==4 && getXHR.status==200){
+						console.log("获取到了聊天数据："+getXHR.responseText);
+						
+						//json解析
+						var dataList = JSON.parse(getXHR.responseText);
+						
+						//删除旧的数据
+						oList.innerHTML = "";
+						
+						//循环添加新的数据到网页上
+						for(var i=0;i<dataList.length;i++){
+							var obj = dataList[i];
+							
+							//创建li节点
+							var liNode = document.createElement("li");
+							//创建span节点
+							var spanNode = document.createElement("span");
+							spanNode.innerHTML = "["+obj.name+":]"+obj.content;
+							liNode.appendChild(spanNode);
+							oList.appendChild(liNode);
+							
+						}
+					}else{
+						console.log("获取服务器聊天信息失败:getXHR.readyState:"+getXHR.readyState+",getXHR.status:"+getXHR.status);
+					}
+				}
+				//获取服务器最新的聊天内容！
+				function getDatas(){
+				var urlStr = "http://localhost:8080/ajax/chat?type=query";	
+				
+				getXHR.open("GET",urlStr,true);
+				
+				getXHR.send(null);
+				
+				}
+				
+				
+				
+				//发送按钮的点击事件
+				oSend.onclick = function(){
+					//拼接正确的请求url
+					var urlStr = "http://localhost:8080/ajax/chat?type=send&sender="+mName+"&msg="+oTxt.value;
+					//创建xhr对象，把数据发送给服务器
+					sendXHR.open("GET",urlStr,true);
+					//发送请求到服务器
+					sendXHR.send(null);
+					
+				}
+				
+				//写一个定时器，实时刷新聊天内容
+				setInterval(getDatas,1000);
+			}
+		</script>
+	</head>
+	<body>
+		<div id="box">
+			<ul id="list">
+				<li>
+					<span>[波老师：]这周末吃饭吗？</span>
+				</li>
+				<li>
+					<span>[我：]这星期日吗？</span>
+				</li>
+			</ul>
+			<textarea id="txt"></textarea>
+			<input type="button" value="发送" id="send" />
+		</div>
+	</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="AjaxBase.js" ></script>
+		<script type="text/javascript">
+			onload = function(){
+			var oList = document.getElementById("list");
+			
+			/**
+			 * 1.获取数据
+			 * 2.解析数据
+			 * 3.更新到网页局部
+			 * 
+			 */
+			//1.创建请求对象！
+			var xhr = createXHR();
+			
+			//2.准备请求服务器
+			xhr.open("GET","http://localhost:8080/ajax/weibo",true);
+			
+			
+			//3.请求服务器！
+			xhr.send(null);
+			
+			//4.监听服务器响应
+			xhr.onreadystatechange = function(){
+				if(xhr.readyState==4 && xhr.status == 200){
+					//JSON解析
+					var dataList = JSON.parse(xhr.responseText);
+					for(var i=0;i<dataList.length;i++){
+						
+						//动态创建节点
+						var liNode = document.createElement("li");
+						
+						var divNode1 =document.createElement("div");
+						var divNode2 =document.createElement("div");
+						
+						divNode1.innerHTML = dataList[i].content;
+						divNode2.innerHTML = dataList[i].comtcnt+"人评论     "+dataList[i].likecnt+"人赞";
+					
+						liNode.appendChild(divNode1);
+						liNode.appendChild(divNode2);
+						
+						oList.appendChild(liNode);
+					}
+					
+					
+				}else{
+					console.log("xhr.readyState:"+xhr.readyState+",xhr.status:"+xhr.status);
+				}
+			};
+				
+			}
+		</script>
+	</head>
+	<body>
+		<ul id="list">
+			<li>
+				<div>小明背井离乡10年，家乡人没有井水喝了！</div>
+				<div>15评论       100赞 </div>
+			</li>
+		</ul>
+		<li>
+				<div>小明背井离乡10年，家乡人没有井水喝了！</div>
+				<div>15评论       100赞 </div>
+			</li>
+	</body>
+</html>

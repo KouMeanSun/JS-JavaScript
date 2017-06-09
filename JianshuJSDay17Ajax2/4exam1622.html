@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			span{
+				display: inline-block;
+				width: 60px;
+				height: 30px;
+				background: blue;
+				line-height: 30px;
+				text-align: center;
+				color: white;
+				margin-left: 10px;
+				cursor: pointer;
+			}
+			.active{
+				background: orange;
+			}
+		</style>
+		<script type="text/javascript" src="AjaxBase.js" ></script>
+		<script type="text/javascript">
+			onload = function(){
+				var oList = document.getElementById("list");
+				var oBtns = document.getElementById("btns");
+				
+				//获取服务器数据
+				var xhr = createXHR();
+				//设置请求
+				xhr.open("GET","http://localhost:3000/ajax/football?pageNo=1",true);
+				//发送请求到服务器
+				xhr.send(null);
+				//监听状态的变化！
+				xhr.onreadystatechange = function(){
+					if(xhr.readyState == 4 && xhr.status == 200){
+						//解析json
+						var responseObj = JSON.parse(xhr.responseText);
+						
+						
+						
+						var total = responseObj.total;
+						var dataList = responseObj.data;
+						var pageCount = responseObj.pageCount;
+						
+						//如果是第一次加载数据，则计算需要多少个span
+						if(oBtns.children.length==0){
+							////计算需要多少页
+							var pageNum = Math.ceil(total/pageCount);
+							
+							//根据pageNum创建翻页按钮
+							for(var i=0;i<pageNum;i++){
+								//创建span节点
+								var spanNode = document.createElement("span");
+								spanNode.innerHTML = i+1;
+								oBtns.appendChild(spanNode);
+								if(i==0){//如果是第一个，修改背景色
+									spanNode.className ="active";
+								}
+								//给每一个按钮添加一个翻页事件！
+								spanNode.onclick = pageClick;
+							}
+						}
+						
+						//更新页面
+						
+						//清空旧数据
+						oList.innerHTML = "";
+						
+						//添加新的数据
+						for(var i=0;i<dataList.length;i++){
+							var obj = dataList[i];
+							
+							var content = obj.content;
+							
+							//创建li节点
+							var liNode = document.createElement("li");
+							liNode.innerHTML = content;
+							oList.appendChild(liNode);
+						}	
+					}else{
+						console.log("请求失败！xhr.readyState:"+xhr.readyState+",xhr.status:"+xhr.status);
+					}
+					
+				}
+			
+			//每一个按钮的点击事件
+			function pageClick(){
+				//根据不同的按钮，求出来不同按钮要加载的数据
+				xhr.open("GET","http://localhost:3000/ajax/football?pageNo="+this.innerHTML,true);
+				xhr.send(null);
+				//改变翻页按钮的状态！
+				for(var i=0;i<oBtns.children.length;i++){
+					if(i==this.innerHTML-1){
+						this.className = "active";
+					}else{
+						oBtns.children[i].className = "";
+					}
+					
+				}
+			}
+			
+			
+			}
+		</script>
+	</head>
+	<body>
+		<ul id="list"></ul>
+		<div id="btns"></div>
+	</body>
+</html>

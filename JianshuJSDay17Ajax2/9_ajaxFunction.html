@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			//创建xhr对象
+			function createXHR(){
+			 	if(window.XMLHttpRequest){
+			 		return new XMLHttpRequest();
+			 	}
+			 	
+			 	return  new ActiveXObject("Microsoft.XMLHTTP");
+			 }
+			
+		/**
+		 * ajax封装
+		 */
+		function ajax(obj){
+			//1创建xhr
+			var xhr = createXHR();
+			
+			//调用open方法
+//			xhr.open("GET","",true);
+			
+			obj.data = params(obj.data);
+			
+		   if(/get/i.test(obj.method)){//如果为真，表示为get请求！
+		   		//如果是get请求，我们就把参数拼接到url后面
+		   	/// key=value  ,regname=lisa&age=13
+		   	 obj.url += obj.data.length>0 ? ("?"+obj.data) :"";
+		   }
+		   
+		   xhr.open(obj.method,obj.url,obj.async);
+		   
+		   //3.调用send（）方法
+		   if(/get/i.test(obj.method)){//如果是get请求
+		   		xhr.send(null);
+		   }else{//如果是post请求
+		   		xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoder");
+		   		xhr.send(obj.data);
+		   }
+		   
+		   //4.监听状态
+		   if(obj.async){//异步请求,
+		   		xhr.onreadystatechange = function(){
+		   			if(xhr.readyState==4){
+		   				callBack();
+		   			}
+		   		}
+		   }else{//同步请求
+		   	   callBack();
+		   }
+		   
+		   
+		   	//把请求结果返回给调用者
+		function callBack(){
+			if(xhr.status==200){//请求成功
+				//回调执行obj里的success函数
+				obj.success(xhr.responseText);
+			}else{
+				//回到执行obj里的failure函数
+				obj.failure(xhr.status);
+			}
+			
+			
+		}
+		
+		}
+		
+	
+	
+	//把data对象里的属性转化成url需要的字符串形式的参数
+	function params(data){
+		//遍历对象里的属性，然后返回成字符串
+		var arr = [];
+		for(var i in data){
+			var str = i+"="+data[i];//type=send
+			arr.push(str);
+		}
+		// type=send&sender=george
+		// [type=send,sender=geroge]
+		return arr.join("&");
+	}
+//========================测试代码
+
+     ajax({
+     	method:"GET",
+     	url:"http://localhost:8080/ajax/checkname",
+     	data:{
+     		regname:"lisa",
+     		age:14
+     	},
+     	async:true,
+     	//两个回调函数，一个成功回调函数，一个失败回调函数
+     	success:function(responseText){
+     		console.log("服务器返回的数据为："+responseText);
+     	},
+     	failure:function(code){
+     		console.log("请求失败："+code);
+     	}
+     });
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

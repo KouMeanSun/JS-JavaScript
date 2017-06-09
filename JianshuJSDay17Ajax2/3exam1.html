@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="AjaxBase.js" ></script>
+		<script type="text/javascript">
+			onload = function(){
+				var oToast = document.getElementById("toast");
+				var aInput = document.getElementsByTagName("input");
+				
+				aInput[0].onblur = function(){
+					//调用接口，判断用户名是否可用！
+				var xhr = createXHR();
+				
+				xhr.open("GET","http://localhost:8080/ajax/checkname?regname="+this.value,true);
+				
+				xhr.send(null);
+				
+				xhr.onreadystatechange = function(){
+					if(xhr.readyState == 4 && xhr.status == 200){
+						if(xhr.responseText == "yes"){
+							oToast.innerHTML = "该用户名已经注册！";
+						}else{
+							oToast.innerHTML = "该用户名可以使用!";
+						}
+					}else{
+						console.log("请求失败！");
+					}
+					
+				}
+				
+				}
+				
+			}
+		</script>
+	</head>
+	<body>
+		<input type="text" placeholder="请输入用户名" /><span id="toast"></span><br />
+		<input type="password" placeholder="请输入密码" /><br />
+		<input type="button" value="注册" />
+	</body>
+</html>
