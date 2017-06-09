@@ -1,0 +1,67 @@
+<!--<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			//鼠标点击事件
+//			document.onclick = function(evt){
+//				var oEvent = evt || event;
+//				//同时按住shift和ctrl触发
+//				if(oEvent.shiftKey&&oEvent.ctrlKey){
+//					console.log("shiftKey+ctrlKey");
+//				}else{
+//					var arr = [];
+//					if(oEvent.shiftKey){//判断是否按住了shift键
+//						arr.push("shift")
+//					}
+//					if(oEvent.ctrlKey){//判断是否按住了ctrl键
+//						arr.push("ctrl");
+//					}
+//					if(oEvent.altKey){//判断是否按住了alt键
+//						arr.push("alt");
+//					}
+//					if(oEvent.metaKey){//window,command
+//						arr.push("Window/Command");
+//					}
+//					var str = arr.join("+");
+//					console.log(str);
+//				}
+//			};
+			//键码
+			/**
+			 * keyCode属性，可以获取按键的编码
+			 */
+			/**
+			 * 空格：32
+			 * 方向键：37左，38上，39右，40下
+			 * 大小写字母：(A~Z/a~z),65~90
+			 * 数字（0~9）；48~57
+			 */
+			//键码一般在onkeydown事件中使用
+			document.onkeydown = function(evt){
+				var oEvent = evt || event;
+				console.log("--"+oEvent.keyCode);
+			};
+			
+			//字符编码：
+			//charCode属性：值就是ascii码的值
+			/**
+			 * 字符键：数字，字母，区分大小写，字符，空格，回车
+			 * 字符编码要使用onkeypress事件
+			 */
+			/**
+			 * 和键码的区别，字符编码小写字母的范围（97~122）
+			 * 
+			 */
+			document.onkeypress = function(evt){
+				var oEvent = evt || event;
+				console.log(oEvent.charCode);
+				console.log(String.fromCharCode(oEvent.charCode));
+			};
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>-->

@@ -1,0 +1,58 @@
+<!--<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			onload = function(){
+				console.log("onload,页面加载完毕！");
+				
+				//onselect:当选择文本框内容时，触发
+				var aInput = document.getElementsByTagName("input");
+				aInput[0].onselect = function(){
+					console.log("文本框内容被选中");
+				};
+				//onchange:文本框内容修改，并且失去焦点时触发
+				aInput[0].onchange  = function(){
+					console.log("文本框内容被修改!");
+				};
+				//onfocus:获得焦点时触发
+				aInput[0].ofocus = function(){
+					console.log("文本框获得焦点！");
+				};
+				
+				//onblur:失去焦点时触发
+				aInput[0].onblur = function(){
+					console.log("文本框失去焦点");
+				};
+				
+				//onsubmit:form节点上点击提交按钮时触发
+				var oForm = document.getElementsByTagName("form")[0];
+				oForm.onsubmit = function(){
+					console.log("点击了提交按钮===================！");
+				};
+				//onreset:点击重置按钮触发！
+				oForm.onreset  =  function(){
+					console.log("点击了重置按钮！");
+				};
+				//onscroll:当页面滚动时
+				window.onscroll = function(){
+					console.log("界面正在滚动。。。。");
+				};
+				
+				
+			};
+			//onunload:页面卸载时触发
+			window.onunload = function(){
+				console.log("onunload，页面卸载完毕！");
+			};
+		</script>
+	</head>
+	<body style="height: 1000px;">
+		<form >
+			<input type="text" value="1615是很棒的！" />
+			<input type="submit" name="" id="" value="" />
+			<input type="reset" name="" id="" value="" />
+		</form>
+	</body>
+</html>-->

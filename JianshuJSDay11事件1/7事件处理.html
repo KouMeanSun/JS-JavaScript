@@ -1,0 +1,51 @@
+<!--<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			/**
+			 * 事件处理组成部分
+			 * 1.事件触发对象
+			 * 2.事件处理函数
+			 * 3.事件执行函数
+			 * 
+			 */
+			/**
+			 * document:事件的触发对象
+			 * onclick:事件处理函数 ，on+事件名
+			 * funtion（）{}；事件执行函数
+			 */
+			document.onclick = function(){
+				console.log("宝宝离婚了！宝宝心里苦，但是宝宝要说出来！");
+			};
+			
+			//this:指针，指向触发事件的对象
+			onload = function(){
+				var oBox = document.getElementById("box");
+				oBox.onclick = function(){
+					//这里的this其实就是oBox
+					console.log(this.id);//
+				};
+				var aInput = document.getElementsByTagName("input");
+				for(var i=0;i<aInput.length;i++){
+					aInput[i].index = i;//给每个input添加一个下标属性
+					aInput[i].onclick = function(){
+						//使用this，这里的this表示你所触发事件的对象
+						console.log(this.value);
+						
+						
+					};
+				};
+				
+				
+			};
+		</script>
+	</head>
+	<body>
+		<div id="box" style="background: red;width: 100px;height: 100px;"></div>
+		<input type="button" name="" id="" value="按钮1" />
+		<input type="button" name="" id="" value="按钮2" />
+		<input type="button" name="" id="" value="按钮3" />
+	</body>
+</html>-->

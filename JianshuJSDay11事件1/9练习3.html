@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			document.onclick = function(evt){
+				//获取event对象
+				var oEvent = evt || event;
+				//box对象
+				var oBox = document.getElementById("box");
+				oBox.style.left = oEvent.clientX-50+"px";
+				oBox.style.top = oEvent.clientY-50+"px";
+			};
+			
+			onload = function(){
+				var oBox = document.getElementById("box");
+				
+				document.onmousemove = function(evt){
+					var oEvent = evt || event;
+					oBox.style.left = oEvent.clientX-50+"px";
+					oBox.style.top = oEvent.clientY-50+"px";
+				};
+			};
+		</script>
+	</head>
+	<body style="background: black;">
+		<div id="box" style="background: url(imgs/girl.gif) no-repeat center;width: 100px;height: 100px;position: absolute;left: 10px;top: 10px;" >
+			
+		</div>
+	</body>
+</html>

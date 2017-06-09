@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			onload = function(){
+				var oBox = document.getElementById("box");
+				//键按下时
+				document.onkeydown = function(evt){
+					var oEvent = evt || event;
+					//1.ctrl+c
+					if(oEvent.ctrlKey&&oEvent.keyCode==67){
+						var color = "rgba("+parseInt(Math.random()*256)+","+parseInt(Math.random()*256)+","+parseInt(Math.random()*256)+",1)";
+						oBox.style.backgroundColor = color;
+					}else if(oEvent.ctrlKey&&oEvent.shiftKey&&oEvent.keyCode==82){
+						//2.ctrl+shift+r
+						oBox.style.backgroundColor = "red";
+					}
+					
+				  //3.上下左右移动：
+				  var tmp = 10;//每次移动距离
+				  //ctrl+左 ，37
+				  if(oEvent.keyCode==37&&oEvent.ctrlKey){
+				  	console.log("ctrl+左 ，37 ");
+				  	oBox.style.left = parseInt(oBox.style.left)-tmp*5+"px";
+				  }
+				  //ctrl+右，39
+				  else if(oEvent.keyCode==39&&oEvent.ctrlKey){
+				  	oBox.style.left = parseInt(oBox.style.left)+tmp*5+"px";
+				  }
+				  //ctrl+上，38
+				   else if(oEvent.keyCode==38&&oEvent.ctrlKey){
+				  	oBox.style.top = parseInt(oBox.style.top)-tmp*5+"px";
+				  }
+				  //ctrl+下，40
+				 else if(oEvent.keyCode==40&&oEvent.ctrlKey){
+				  	oBox.style.top = parseInt(oBox.style.top)+tmp*5+"px";
+				  }
+				 //左，37
+ 					else if(oEvent.keyCode==37){
+ 						oBox.style.left = parseInt(oBox.style.left)-tmp+"px";
+ 					}
+ 					//右，39
+				  else if(oEvent.keyCode==39){
+ 						oBox.style.left = parseInt(oBox.style.left)+tmp+"px";
+ 					}
+				  //上，38
+				else if(oEvent.keyCode==38){
+ 						oBox.style.top = parseInt(oBox.style.top)-tmp+"px";
+ 					}
+				else if(oEvent.keyCode==40){
+ 						oBox.style.top = parseInt(oBox.style.top)+tmp+"px";
+ 					}
+				 }
+				
+				
+				
+			};
+		</script>
+	</head>
+	<body>
+		<div id="box" style="background: red; width: 100px;height: 100px;position: absolute;left: 10px;top: 10px;">
+			
+		</div>
+	</body>
+</html>

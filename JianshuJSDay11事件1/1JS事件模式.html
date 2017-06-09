@@ -1,0 +1,47 @@
+<!--<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			/**
+			 * 事件模式，事件模型
+			 * 1.内联模式
+			 * 2.脚本模式
+			 * 
+			 */
+			//1.内联模式，是将事件写在html标签中
+			function btnClick(){
+				alert("你好，内联模式");
+			};
+			onload = function(){
+				//写在window。onload中的函数，无法被内联模式调用
+				function btnClick1(){
+					alert("我调用不到");
+				};
+			//2.脚本模式，用脚本的方式调用，可以让html和js代码分离
+			var aInput = document.getElementsByTagName("input");
+			//方式1，采用匿名函数
+			aInput[3].onclick = function(){
+				alert("脚本模式调用，采用匿名函数执行");
+			};
+				
+			//方式2，采用普通函数调用
+			aInput[4].onclick  = func;
+			function func(){
+				alert("脚本模式，采用普通函数执行");
+			};
+			};
+			
+		</script>
+	</head>
+	<body>
+		<input type="button" value="按钮1" onclick="alert('Hello')" />
+		<input type="button" value="按钮2" onclick="btnClick()" />
+		<input type="button" value="按钮3" onclick="btnClick1()" /><br />
+		
+		
+		<input type="button" value="按钮4-脚本模式" />
+		<input type="button" value="按钮5-脚本模式" />
+	</body>
+</html>-->

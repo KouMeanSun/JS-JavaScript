@@ -1,0 +1,86 @@
+<!--<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			//event对象，事件对象,通过浏览器传到执行函数中
+			
+			/**
+			 * 普通函数，
+			 * arguments：是函数中的隐藏参数，保存实参数组
+			 * 
+			 * @param {Object} name
+			 */
+			function func(name){
+				console.log(arguments.length);//1
+				console.log(name);//hellojs
+			};
+//			func("hellojs");
+
+			//事件，
+			//arguments长度为1，说明存在一个参数
+//			document.onclick  = function(){
+//				console.log(arguments.length);//1
+//				//会得到一个鼠标对象参数，MouseEvent
+//				console.log(arguments[0]);//MouseEvent
+//			};
+			
+			//是将对象参数放在evt中，evt相当于arguments【0】
+//			document.onclick = function(evt){
+////				alert(evt);//MouseEvent
+////				alert(window.event);//MouseEvent
+//			};
+			/**
+			 * window.event:可以获取事件对象，event
+			 * evt:在ie不兼容
+			 * window.event：在火狐不兼容
+			 * 谷歌浏览器都兼容
+			 */
+//			document.onclick = function(evt){
+////				var oEvent = evt || window.event;
+////			会兼容，火狐，id，谷歌浏览器
+//				var oEvent = evt || event;
+//				alert(oEvent);
+//			};
+
+		//event 对象属性
+		/**
+		 * button属性
+		 * 值  0 鼠标左键被点击
+		 *     1 鼠标中间键被点击
+		 *     2 鼠标右键被点击
+		 */
+//		document.onclick = function(evt){
+//			//获取event对象
+//			var oEvent = evt || event;
+//			switch(oEvent.button){
+//				case 0:
+//				console.log("鼠标左键被点击了");
+//				break;
+//				case 1:
+//				console.log("鼠标滚轮被点击了");
+//				break;
+//				case 2:
+//				console.log("鼠标右键被点击了");
+//				break;
+//				default:
+//				console.log("其他");
+//				break;
+//				
+//			};	
+//		};
+
+			//2.
+			document.onclick = function(evt){
+				var oEvent = evt ||event;
+				//可视区域
+				console.log(oEvent.clientX+","+oEvent.clientY);
+				//屏幕区域
+				console.log(oEvent.screenX+","+oEvent.screenY);
+			};
+		</script>
+	</head>
+	<body>
+	</body>
+</html>-->

@@ -1,0 +1,39 @@
+<!--<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			/**
+			 * 有这么一块区域，
+			 * 当鼠标移动到区域内，显示”亲爱的，我爱你“
+			 * 当鼠标移开的时候，显示“对不起，开玩笑”
+			 * 当鼠标不停的在区域内移动的时候，变换颜色
+			 */
+			onload = function(){
+				var oBox = document.getElementById("box");
+				
+				//添加鼠标移入事件，
+				oBox.onmouseover  =  function(){
+					oBox.innerHTML = "亲爱的，我爱你!";
+				};
+				//添加鼠标移出事件，
+				oBox.onmouseout = function(){
+					oBox.innerHTML = "对不起!,开玩笑呢！";
+				};
+				
+				//添加鼠标移动事件，
+				oBox.onmousemove = function(){
+					//r红,g绿,b蓝,a透明度
+					var color = "rgba("+parseInt(Math.random()*256)+","+parseInt(Math.random()*256)+","+parseInt(Math.random()*256)+",1)";
+					oBox.style.background = color;
+					console.log("鼠标移动了");
+				};
+				
+			};
+		</script>
+	</head>
+	<body>
+		<div id="box" style="width: 200px;height: 200px;"></div>
+	</body>
+</html>-->

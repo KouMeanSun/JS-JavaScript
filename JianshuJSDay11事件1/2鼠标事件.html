@@ -1,0 +1,74 @@
+<!--<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			/**
+			 * 事件处理函数：on+事件名称
+			 * onclick,onload,onkeydown等
+			 * 注意，都是小写字母
+			 * 
+			 * js事件分三种
+			 * 1，鼠标事件
+			 * 2，键盘事件
+			 * 3，html事件
+			 * 
+			 */
+			
+			onload = function(){
+				var aInput = document.getElementsByTagName("input");
+				//1.鼠标事件
+				//onclick:点击事件，点击松开时触发
+				aInput[0].onclick = function(){
+					alert("鼠标单击了");
+				};
+				//ondbclick:双击事件，连续点击两次触发
+				aInput[1].ondblclick = function(){
+					alert("鼠标双击了！");
+				};
+				
+				//onmousedown:鼠标按下时就触发，和点击的区别是在鼠标松开之前触发
+				aInput[2].onmousedown = function(){
+//					alert("鼠标按下了，还没松开呢!");
+					console.log("鼠标按下了！");
+				};
+				aInput[2].onmouseup = function(){
+//					alert("鼠标松开的瞬间！");
+					console.log("鼠标松开了！")
+				};
+				
+				//onmouseup:鼠标松开时触发，松开的瞬间
+				aInput[3].onmouseup = function(){
+					alert("鼠标松开的瞬间！");
+				};
+				
+				//鼠标移动
+				var oBox  = document.getElementById("box");
+				//onmouseover:鼠标移入
+				oBox.onmouseover = function(){
+					console.log("鼠标进入了box");
+				};
+				
+				//onmouseout:鼠标移出
+				oBox.onmouseout = function(){
+					console.log("鼠标移出了box");
+				};
+				
+				//onmousemove :鼠标在区域内移动
+				oBox.onmousemove = function(){
+					console.log("鼠标移动了...");
+				};
+				
+			};
+			
+		</script>
+	</head>
+	<body>
+		<input type="button" value="单击:onclick"  />
+		<input type="button" value="双击:ondbclick"  />
+		<input type="button" value="鼠标按下:onmousedown"  />
+		<input type="button" value="鼠标松开后触发:onmouseup" />
+		<div id="box" style="background: red;width: 100px;height: 100px;"></div>
+	</body>
+</html>-->
