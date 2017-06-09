@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			onload = function(){
+				var oInput = document.getElementsByTagName("input")[0];
+				var oBox   = document.getElementById("box");
+				
+				//点击按钮，移动div
+				oInput.onclick = function(){
+					//开启定时器
+					var timer = setInterval(function(){
+						
+						//获取当前值  // 10px
+						var current = parseInt(oBox.style.left);
+						
+						//判断是否到达临界值，到了就不运动
+						if(current >= 500){
+							//清除定时器，
+							clearInterval(timer);
+							//结束当前函数,代码就不会再往下执行
+							return ;
+						}
+						
+						
+						oBox.style.left = current + 5 + "px";
+						
+					},30);
+					
+				}
+				
+			}
+		</script>
+	</head>
+	<body>
+		<input type="button" value="匀速运动" />
+		<div id="box" style="background: red;width: 100px;height: 100px;position: absolute;left: 10px;top: 100px;"></div>
+	</body>
+</html>

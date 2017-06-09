@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box{
+				width: 100px;
+				height: 100px;
+				background: orange;
+				position: absolute;
+				left: 10px;
+				top: 50px;
+			}
+		</style>
+		<script type="text/javascript">
+			onload = function(){
+				var oInput = document.getElementsByTagName("input")[0];
+				var oBox   = document.getElementById("box");
+				
+				oInput.onclick = function(){
+					/**
+					 * 1.先把高度变成400
+					 * 2.然后再把宽度变成400
+					 * 3.再把left变成200
+					 * 4.在把top变成200
+					 */
+//	错误的写法！				startMove(oBox,"height",400,startMove(oBox,"width",400,startMove(oBox,"left",200,startMove(oBox,"top",200))));
+		startMove(oBox,"height",400,function(){
+			startMove(oBox,"width",400,function(){
+				startMove(oBox,"left",200,function(){
+					startMove(oBox,"top",200);
+				});
+			});
+		});
+					
+				}
+				
+//				function toast(){
+//					startMove(oBox,"width",400,toast1);
+//				}
+//				
+//				function toast1(){
+//					startMove(oBox,"left",200,toast2);
+//				}
+//				
+//				function toast2(){
+//					startMove(oBox,"top",200);
+//				}
+				
+				/**
+				 * 
+				 * @param {Object} obj
+				 * @param {Object} attr
+				 * @param {Object} iTarget
+				 * @param {Object} 回调函数
+				 */
+				function startMove(obj,attr,iTarget,fn){
+					clearInterval(obj.timer);
+					obj.timer = setInterval(function(){
+						var current = parseInt(getStyleAttr(obj,attr));
+						var iSpeed = (iTarget - current)/8;
+						iSpeed = iSpeed >0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
+						if(current == iTarget){
+							clearInterval(obj.timer);
+							console.log("当前动画执行完毕！");
+							//判断回调函数是否存在！
+							if(fn){
+							  fn();
+							}
+							
+							return;
+							
+						}
+						obj.style[attr] = current + iSpeed + "px";
+						
+					},30);
+					
+				}
+				
+				
+				//获取元素节点的某个值
+			/**
+			 * 
+			 * @param {Object} 需要获取属性值的元素节点，oBox
+			 * @param {Object} 需要获取的属性，“left”
+			 */
+			function getStyleAttr(obj,attr){
+				if(window.getComputedStyle){
+					return getComputedStyle(obj,null)[attr];
+				}
+				return obj.currentStyle[attr];
+			}
+			}
+		</script>
+	</head>
+	<body>
+		<input type="button" value="链式运动" />
+		<div id="box"></div>
+	</body>
+</html>

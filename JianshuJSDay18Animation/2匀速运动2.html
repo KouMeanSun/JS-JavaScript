@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box{
+				width: 100px;
+				height: 100px;
+				background: red;
+				position: absolute;
+				left: 10px;
+				top: 50px;
+			}
+		</style>
+		<script type="text/javascript">
+			/**
+			 * div向下移动到500px
+			 * 
+			 * 封装一个动画的方法 startMove()
+			 * 
+			 */
+			onload = function(){
+				var oInput = document.getElementsByTagName("input")[0];
+				var oBox   = document.getElementById("box");
+				
+				oInput.onclick = function(){
+					startMove(oBox,"top",500);
+				}
+			
+			/**
+			 * 
+			 * @param {Object} 需要运动的对象           比如：oBox
+			 * @param {Object} 需要改变的属性 	如：'left'
+			 * @param {Object} 需要移动到的目标位置   如：500
+			 */
+			function startMove(obj,attr,iTarget){
+				//清除旧的定时器
+				clearInterval(obj.timer);
+				
+				//设置新的定时器
+			   obj.timer = setInterval(function(){
+			   	//1.获取当前的值
+			   	var current = parseInt(getStyleAttr(obj,attr));
+			   	
+			   	//2.给一个速度
+			   	var iSpeed = 5;
+			   	
+			   	//3.判断是否已经到达了临界值
+			   	if(current>=iTarget){
+			   		clearInterval(obj.timer);//关闭定时器
+			   		return ;//退出函数
+			   	}
+			   	
+			   	//4.运动
+			   	obj.style[attr] = current + iSpeed + "px";
+			   },30);
+			}
+			
+			//获取元素节点的某个值
+			/**
+			 * 
+			 * @param {Object} 需要获取属性值的元素节点，oBox
+			 * @param {Object} 需要获取的属性，“left”
+			 */
+			function getStyleAttr(obj,attr){
+				if(window.getComputedStyle){
+					return getComputedStyle(obj,null)[attr];
+				}
+				return obj.currentStyle[attr];
+			}
+			
+//			var person = {
+//				name:"Alice",
+//				age:14
+//			}
+//			person.sex = "male"
+//			person.name;
+//			person["name"];
+		//============
+		
+					
+//					var timer = setInterval(function(){
+//					//1.获取当前值	
+//					var current = parseInt(getStyleAttr(oBox,"top"));
+//						
+//					//2.给一个速度
+//					var speed = 5;
+//					
+//					//3.判断是否到达临界值
+//					if(current >=500){
+//						clearInterval(timer);
+//						return;
+//					}
+//					
+//					//4.运动起来
+//					oBox.style.top = current + speed + "px";
+//					},30);
+					
+				
+		//===========
+			}
+		</script>
+	</head>
+	<body>
+		<input type="button" value="匀速运动" />
+		<div id ="box" ></div>
+	</body>
+</html>

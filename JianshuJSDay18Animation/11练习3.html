@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box{
+				width: 100px;
+				height: 100px;
+				background: red;
+				position: absolute;
+				left: 10px;
+				top: 50px;
+			}
+		</style>
+		<script type="text/javascript">
+			onload = function(){
+				var oInput = document.getElementsByTagName("input")[0];
+				var oBox   = document.getElementById("box");
+				
+				oInput.onclick = function(){
+					
+					startMove(oBox,"left",400,function(){
+						startMove(oBox,"left",10);
+					});
+				}
+			
+			function startMove(obj,attr,iTarget,fn){
+				clearInterval(obj.timer);
+				obj.timer = setInterval(function(){
+					var current = parseInt(getStyleAttr(obj,attr));
+					var iSpeed = (iTarget - current)/8;
+					iSpeed = iSpeed >0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
+					if(current == iTarget){
+						clearInterval(obj.timer);
+						if(fn){
+							fn();
+						}
+						return;
+					}
+					obj.style[attr] = current + iSpeed + "px";
+				},30);
+				
+			}
+			
+			//获取元素节点的某个值
+			/**
+			 * 
+			 * @param {Object} 需要获取属性值的元素节点，oBox
+			 * @param {Object} 需要获取的属性，“left”
+			 */
+			function getStyleAttr(obj,attr){
+				if(window.getComputedStyle){
+					return getComputedStyle(obj,null)[attr];
+				}
+				return obj.currentStyle[attr];
+			}	
+			}
+		</script>
+	</head>
+	<body>
+		<input type="button" value="运动" />
+		<div id="box"></div>
+	</body>
+</html>

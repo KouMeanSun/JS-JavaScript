@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box{
+				width: 100px;
+				height: 100px;
+				background: red;
+				position: absolute;
+				left: 300px;
+				top: 300px;
+			}
+		</style>
+		<script type="text/javascript">
+			onload = function(){
+				var aInput = document.getElementsByTagName("input");
+				var oBox   = document.getElementById("box");
+				
+				aInput[0].onclick = function(){
+					//向上运动
+					startMove(oBox,"top",20);
+				}
+				aInput[1].onclick = function(){
+					//向下运动
+					startMove(oBox,"top",500);
+				}
+				aInput[2].onclick = function(){
+					//向左运动
+					startMove(oBox,"left",20);
+				}
+				aInput[3].onclick = function(){
+					//向右运动
+					startMove(oBox,"left",500);
+				}
+				
+				
+				
+				function startMove(obj,attr,iTarget){
+					//先关闭旧的定时器
+					clearInterval(obj.timer);
+					
+					//开启新的定时器
+					obj.timer = setInterval(function(){
+						//1.获取当前值
+						var current = parseInt(getStyleAttr(obj,attr));
+						
+						//2.速度
+						var iSpeed = (iTarget - current)/8;
+						//判断运动方向，决定向上还是向下取整，保证了最小移动单位都是1
+						iSpeed = iSpeed>0 ?Math.ceil(iSpeed) : Math.floor(iSpeed);
+						
+						//3.判断临界值
+						if(current == iTarget){
+							clearInterval(obj.timer);
+							return;
+						}
+						
+						//4.运动
+						obj.style[attr] = current + iSpeed + "px";
+						
+					},30);
+				}
+				
+				//获取元素节点的某个值
+			/**
+			 * 
+			 * @param {Object} 需要获取属性值的元素节点，oBox
+			 * @param {Object} 需要获取的属性，“left”
+			 */
+			function getStyleAttr(obj,attr){
+				if(window.getComputedStyle){
+					return getComputedStyle(obj,null)[attr];
+				}
+				return obj.currentStyle[attr];
+			}
+			}
+		</script>
+	</head>
+	<body>
+		<input type="button" value="上" />
+		<input type="button" value="下" />
+		<input type="button" value="左" />
+		<input type="button" value="右" />
+		
+		<div id="box"></div>
+	</body>
+</html>

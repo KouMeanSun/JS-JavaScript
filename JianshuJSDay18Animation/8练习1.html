@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			div{
+				width: 100px;
+				height: 100px;
+				background: red;
+				margin-bottom: 10px;
+			}
+		</style>
+		<script type="text/javascript">
+			onload = function(){
+				var aDiv = document.getElementsByTagName("div");
+				
+				//遍历数组，添加事件
+				for(var i=0;i<aDiv.length;i++){
+					//鼠标移入
+					aDiv[i].onmouseover = function(){
+						startMove(this,'width',500);
+					}
+					//鼠标移除
+					aDiv[i].onmouseout = function(){
+						startMove(this,"width",100);
+					}
+				}
+				
+				function startMove(obj,attr,iTarget){
+					clearInterval(obj.timer);
+					obj.timer = setInterval(function(){
+						var current = parseInt(getStyleAttr(obj,attr));
+						var iSpeed = (iTarget - current)/8;
+						if(current == iTarget){
+							clearInterval(obj.timer);
+							return;
+						}
+						obj.style[attr] = current + iSpeed + "px";
+						 
+						
+					},30);
+					
+				}
+				//获取元素节点的某个值
+			/**
+			 * 
+			 * @param {Object} 需要获取属性值的元素节点，oBox
+			 * @param {Object} 需要获取的属性，“left”
+			 */
+			function getStyleAttr(obj,attr){
+				if(window.getComputedStyle){
+					return getComputedStyle(obj,null)[attr];
+				}
+				return obj.currentStyle[attr];
+			}
+			}
+		</script>
+	</head>
+	<body>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+	</body>
+</html>

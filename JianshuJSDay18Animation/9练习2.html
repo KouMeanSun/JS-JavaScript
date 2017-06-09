@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+				border: none;
+			}
+			ul,li{
+				list-style: none;
+			}
+			#nav{
+				width: 400px;
+				height: 30px;
+				background: #cdf;
+			}
+			#nav li{
+				width: 100px;
+				height: 30px;
+				float: left;
+				text-align: center;
+				line-height: 30px;
+				cursor: pointer;
+			}
+			.list{
+				width: 100px;
+				height: 0px;
+				background: blue;
+				position: absolute;
+				overflow: hidden;
+				
+			}
+		</style>
+		<script type="text/javascript">
+			onload  = function(){
+				var oNav = document.getElementById("nav");
+				var aLi  = oNav.getElementsByTagName("li");
+				var aUL  = document.getElementsByTagName("ul");
+				
+				//遍历
+				for(var i=0;i<aLi.length;i++){
+					
+					aLi[i].index = i;
+					//添加鼠标移入事件
+					aLi[i].onmouseover = function(){
+						//显示
+						startMove(aUL[this.index+1],"height",200);
+					}
+					//鼠标移出事件
+					aLi[i].onmouseout = function(){
+						//隐藏
+						startMove(aUL[this.index+1],"height",0);
+					}
+					
+					//===二级菜单添加事件
+					aUL[i+1].onmouseover = function(){
+						startMove(this,"height",200);
+					}
+					
+					aUL[i+1].onmouseout = function(){
+						startMove(this,"height",0);
+					}
+					
+				}
+				
+				
+				
+				
+				
+				function startMove(obj,attr,iTarget){
+					clearInterval(obj.timer);
+					obj.timer = setInterval(function(){
+						var current = parseInt(getStyleAttr(obj,attr));
+						var iSpeed = (iTarget - current)/8;
+						iSpeed = iSpeed>0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
+						if(current==iTarget){
+							clearInterval(obj.timer);
+							return;
+						}
+						obj.style[attr] = current +　iSpeed + "px";
+						
+					},30);
+					
+				}
+			//获取元素节点的某个值
+			/**
+			 * 
+			 * @param {Object} 需要获取属性值的元素节点，oBox
+			 * @param {Object} 需要获取的属性，“left”
+			 */
+			function getStyleAttr(obj,attr){
+				if(window.getComputedStyle){
+					return getComputedStyle(obj,null)[attr];
+				}
+				return obj.currentStyle[attr];
+			}	
+			}
+		</script>
+	</head>
+	<body>
+		<ul id="nav">
+			<li>bbbbbbb</li>
+			<li>bbbbbbb</li>
+			<li>bbbbbbb</li>
+			<li>bbbbbbb</li>
+		
+		</ul>
+		<ul class="list" style="left: 0px;">
+			<li>aaaaaa</li>
+			<li>aaaaaa</li>
+			<li>aaaaaa</li>
+			<li>aaaaaa</li>
+			<li>aaaaaa</li>
+		</ul>
+		<ul class="list" style="left: 100px;">
+			<li>aaaaaa</li>
+			<li>aaaaaa</li>
+			<li>aaaaaa</li>
+			<li>aaaaaa</li>
+			<li>aaaaaa</li>
+		</ul>
+		<ul class="list" style="left: 200px;">
+			<li>aaaaaa</li>
+			<li>aaaaaa</li>
+			<li>aaaaaa</li>
+			<li>aaaaaa</li>
+			<li>aaaaaa</li>
+		</ul>
+		<ul class="list" style="left: 300px;">
+			<li>aaaaaa</li>
+			<li>aaaaaa</li>
+			<li>aaaaaa</li>
+			<li>aaaaaa</li>
+			<li>aaaaaa</li>
+		</ul>
+	
+	</body>
+</html>
