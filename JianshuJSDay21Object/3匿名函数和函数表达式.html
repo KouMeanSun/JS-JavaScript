@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			/**
+			 * 匿名函数：没有名字的函数
+			 * 
+			 */
+			function fn1(){
+				console.log("fn1");
+			}
+			//主动调用：
+//			fn1();
+			//匿名函数，没有函数名字
+//			function(){
+//				console.log("匿名函数");
+//			}
+				//fn2是一个指向后面的匿名函数的对象
+			var fn2 = function(name){
+				console.log(name);
+			};
+			//fn2是匿名函数
+//			fn2("欧阳修");
+			
+			//普通函数fn3里包含了一个函数fn4
+			function fn3(){
+				//这里返回的是fn4
+				return function fn4(){
+					console.log("fn4");
+				};
+			}
+//			fn3()();
+			
+			//函数表达式
+			//普通函数，需要主动调用才会执行
+			function fn5(name){
+				console.log(name);
+			}
+//			fn5("苏轼");
+			
+			//匿名函数的自行运行
+//			(function(){
+//				console.log("匿名函数的自行运行！");
+//			})();//匿名函数的自行运行！
+		
+			var 	fn6 = function(){
+				console.log("匿名函数的自运行");	
+			};
+//			fn6();
+			
+			var aa = (function(){
+				//bb是一个普通函数，需要主动调用，
+				function bb(){
+					console.log("bb");
+				}
+				return bb;//返回函数bb
+			})();
+//			aa();//相当于调用bb（）；
+	        //这里的aaa等于bbb，相当于内部函数赋值了给aaa
+	        var aaa = (function(){
+	        	return function bbb(name){
+	        		console.log("bbb:"+name);
+	        	};
+	        })();
+			
+//			aaa("曾巩");//相当于调用了bbb（“曾巩”）;
+		
+//		 (function(name){
+//		 	console.log("name:"+name);
+//		 })("马蓉");
+
+//----------继续
+		
+		          
+//          var b1 = function(n){
+//				console.log("b1:n="+n);
+//          }
+//          b1(4);
+
+            
+
+           
+//          var a1 = function(m){
+//               console.log(m)
+//           }
+//           
+//		
+//		a1(3);//3会传递给m,传参数到内部函数中
+		
+		
+		
+		
+		
+		//匿名函数的自运行，第一个括号表示优先级提高，
+		//第二个括号表示调用，就可以传递参数
+//		var a1 = (function(n){
+//			return function(m){
+//				console.log(m+n);
+//			}
+//		})(4);//4会传递给n
+//		
+//		a1("B");
+		
+
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

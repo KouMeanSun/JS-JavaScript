@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			/**
+			 * 面向对象语言：	JS,Java,C++,OC,Swift,Delphi,C#...
+			 * 面向过程，c，
+			 * 
+			 * 面向对象，侧重的是对象，做一个事情，其中会有很多对象（object），
+			 * 每个对象分配工作,类的概念，class，类可以创建对象，object
+			 * 
+			 * 面向过程，侧重的是过程，做一个事情，多个函数按照步骤执行，
+			 * （侧重过程，）先做什么，然后再做1什么
+			 * 
+			 */
+			//小狗吃屎(闻一闻，舔一舔，咬一咬)
+			//面向过程
+			//闻一闻
+				function smell(){
+					console.log("smell");
+				}
+			//舔一舔
+			 function lick(){
+			 	console.log("lick");
+			 }
+			//咬一咬
+			function bite(){
+				console.log("bite");
+			}
+			
+//			smell();
+//			lick();
+//			bite();
+
+			//面向对象：
+			//属性和方法（函数）
+			//属性，对象自带的
+			//方法：功能、行为
+			var dog = new Object();
+			dog.smell = function(){
+				console.log("smell");
+			}
+			dog.lick = function(){
+				console.log("lick");
+			}
+			dog.bite = function(){
+				console.log("bite");
+			}
+			//面向对象三大特征：
+			/**
+			 * 封装，继承，多态
+			 * 1.封装：可以把部分属性和方法封装起来，不提供给其他对象使用
+			 * 2.继承：可以把原有对象（父类）的属性和方法复制给一个新的对象，
+			 * 新的对象（子类），可以有自己另外的属性和方法
+			 * 3.多态：基于继承，父类可以指向不同的子类，父类调用一个函数时，
+			 * 可以让不同的子类执行不同的效果
+			 */
+			
+			//对象object
+			//new 创建对象object
+			var person = new Object();
+			person.name = "岳飞";
+			person.age  = 20;
+			person.show = function(){
+				//这里的this指的是当前对象person
+				console.log("姓名："+this.name+",年龄："+this.age);
+			};
+			
+//			person.show();
+
+			//字面量的方式：
+			var person = {
+				name:"戚继光",
+				age:30,
+				show:function(){
+					console.log("姓名："+this.name+",年龄："+this.age);
+				}
+			}
+//			person.show();
+			
+			person.gender = "男";//添加一个属性
+			person.fight = function(){//添加一个方法
+				console.log("抗击倭寇！");
+			};
+			
+//			person.fight();
+			
+			//三个人三个对象：
+			var person1 = {
+				name:"颜如玉",
+				age:16,
+				show:function(){
+				console.log("姓名："+this.name+",年龄："+this.age);
+				}
+			};
+			
+			var person2 = {
+				name:"林黛玉",
+				age:18,
+				show:function(){
+				console.log("姓名："+this.name+",年龄："+this.age);
+				}
+			}
+			
+			var person3 = {
+				name:"梁红玉",
+				age:19,
+				show:function(){
+				console.log("姓名："+this.name+",年龄："+this.age);
+				}
+			}
+	//=========工程模式（设计模式）
+	//生产同一类型对象
+	 function createOjbect(name,age){
+	 	var obj = new Object();//创建一个对象
+	 	obj.name = name;//前面的的name是属性名，后面的属性的值
+	 	obj.age  = age;
+	 	obj.show = function(){
+	 		console.log("姓名："+this.name+",年龄："+this.age);
+	 	}
+	 	return obj;
+	 }
+	 var person1 =createOjbect("林黛玉",18);
+	 var person2 =createOjbect("颜如玉",19);
+	 //梁红玉（1102—1135年），原籍安徽池州，生于江苏淮安，宋朝著名抗金女英雄，
+	 //祖父与父亲都是武将出身，梁红玉自幼随父兄练就了一身功夫。
+	 //史书中不见其名，只称梁氏。“红玉”是其战死后各类野史和话本中所取的名字，
+	 //首见于明朝张四维所写传奇《双烈记》：“奴家梁氏，小字红玉。父亡母在，
+	 //占籍教坊，东京人也
+	 var person3 =createOjbect("梁红玉",28);
+	 
+//	 console.log(person1.name);
+//	 console.log(person2.name);
+//	 console.log(person3.name);
+//	 console.log(typeof person1);//object
+//	 console.log(person1 instanceof Object);
+
+		//创建人对象的工厂模式
+		function createPerson(name,age){
+			var obj = new Object();
+			obj.name = name;
+			obj.age = age;
+			obj.show = function(){
+				console.log(obj.name);
+			}
+			return obj;
+		}
+		//创建动物对象工厂模式
+		function createAnimal(name,age){
+			var obj = new Object();
+			obj.name = name;
+			obj.age = age;
+			obj.show = function(){
+				console.log(obj.name);
+			}
+			return obj;
+		}
+		var  erlangshen = createPerson("二郎神",28);
+		var xiaotianquan = createAnimal("哮天犬",18);
+		console.log(typeof erlangshen);//object
+		console.log(typeof xiaotianquan);//object
+		console.log(erlangshen instanceof Object);//true
+		console.log(xiaotianquan instanceof Object);//true
+		
+	
+	</script>
+	</head>
+	<body>
+	</body>
+</html>

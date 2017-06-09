@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			/**
+			 * 闭包，函数嵌套函数，内部函数会调用外部函数的变量和参数
+			 * 变量或参数不会被系统回收（不会释放内存）
+			 */
+			//1.函数嵌套函数
+			function m1(){
+				function m2(){
+					
+				}
+			}
+			//不可以调用函数内部的嵌套函数
+//			m2();//
+
+			//2，垃圾回收机制
+			function m3(){
+				var a = 1;
+				console.log(a);
+			}
+			//在调用完之后，变量a会被系统的垃圾回收机制回收（把内存释放）
+//			m3();
+
+			//3.作用域
+			//全局变量
+		    var a = 1;
+		    function m4(){
+		    	a++;
+		    	console.log(a);
+		    }
+		    /**
+		     * 全局变量不会被释放，常驻内存，
+		     * 在全局都可以使用a
+		     */
+//		    m4();//2
+//			m4();//3
+
+			//局部变量
+			function m5(){
+				var b = 1;
+				console.log(b++);
+			}
+			//b不会一直存在内存，b在外部不可以使用
+//			m5();//1
+//			m5();//1
+
+			//闭包写法
+			var cc = (function(){
+				var a = 1;//a是匿名函数（外部函数）的局部变量
+				return function(){
+					a++;
+					console.log(a);
+				}
+			})();
+//			cc();//2
+//			cc();//3
+			
+			/**
+			 * 相比全局变量和局部变量相比
+			 * 1.可以保证外部函数局部变量不被释放，
+			 * 2.这个变量或参数不可以被外部调用，
+			 */
+			onload = function(){
+				var oList = document.getElementById("list");
+				var aLi   = document.getElementsByTagName("li");
+				//循环给所有li标签添加点击事件
+				for(var i=0;i<aLi.length;i++){
+//					aLi[i].index = i;
+//					aLi[i].onclick = function(){
+//						console.log(this.index);
+//					}
+				//把i赋值给index，index实际上是外部函数的一个参数（也是外部函数的一个局部变量）
+//				(function(index){
+//					console.log("==========");
+//					aLi[index].onclick = function(){
+//						console.log(index);
+//					}
+//				})(i);
+
+
+				//即保证一直存在内存中，又保证了不被外界调用
+//				   aLi[i].onclick = (function(index){
+//                      //index会一直保存在内存中
+//                      return function(){
+//                          console.log("onclick:"+index);
+//                      }
+//                  })(i);
+
+
+				
+				}
+
+				
+			};
+		</script>
+	</head>
+	<body>
+		<ul id="list">
+			<li>111111111</li>
+			<li>222222222</li>
+			<li>333333333</li>
+			<li>444444444</li>
+		</ul>
+	</body>
+</html>

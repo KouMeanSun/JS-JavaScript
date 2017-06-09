@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+            div {
+                width: 100px;
+                height: 100px;
+                position: absolute;
+                left: 10px;
+                top: 10px;
+            }
+
+            .red {
+                background: red;
+            }
+
+            .yellow{
+                background: yellow;
+            }
+
+        </style>
+        
+        <script type="text/javascript">
+        		onload = function(){
+        			  //工厂模式: 可以用来作为创建对象的函数
+                function createDragobj(id){
+
+                    var dragObj = {};
+                    dragObj.box = document.getElementById(id);
+
+                    dragObj.startMove = function(x, y){
+                        this.disX = x - this.box.offsetLeft;
+                        this.disY = y - this.box.offsetTop;
+
+                        var self = this;
+                        document.onmousemove = function(evt){
+                            var oEvent = evt || event;
+                            //移动过程
+                            self.moving(oEvent.clientX, oEvent.clientY);
+                        }
+                        document.onmouseup = function(){
+                            //停止移动
+                            self.stopMove();
+                        }
+                    }
+                    dragObj.moving = function(x, y) {
+                        this.box.style.left = x - this.disX + "px";
+                        this.box.style.top = y - this.disY + "px";
+                    }
+                    dragObj.stopMove = function(){
+                        document.onmousemove = null;
+                        document.onmouseup = null;
+                    }
+
+                    dragObj.box.onmousedown = function(evt){
+                        var oEvent = evt || event;
+                        dragObj.startMove(oEvent.clientX, oEvent.clientY);
+                    }
+
+                    return dragObj;
+                }
+                createDragobj("box");
+                createDragobj("box1");
+                createDragobj("box2");
+                createDragobj("box3");
+        		}
+        </script>
+	</head>
+	<body>
+		
+		<div id="box" class="red"></div>
+        <div id="box1" class="yellow"></div>
+        <div id="box2" class="red"></div>
+        <div id="box3" class="yellow"></div>
+	</body>
+</html>

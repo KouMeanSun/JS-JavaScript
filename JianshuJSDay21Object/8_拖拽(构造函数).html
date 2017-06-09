@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+            div{
+                width: 100px;
+                height: 100px;
+                position: absolute;
+                left: 10px;
+                top: 10px;
+            }
+            .red {
+                background: red;
+            }
+            .yellow {
+                background: yellow;
+            }
+
+        </style>
+        <script type="text/javascript">
+        		onload = function(){
+        			//构造函数
+                function Dragobj(id){
+
+                    //保存this, 而此时的this=dragbox,
+                    //self = this = dragbox;
+                    //self = dragbox
+                    var self = this;
+
+                    //box属性(节点属性)
+                    this.box = document.getElementById(id);
+
+                    //开始移动
+                    this.startMove = function(x, y){
+                        this.disX = x - this.box.offsetLeft;
+                        this.disY = y - this.box.offsetTop;
+
+                        //移动事件
+                        document.onmousemove = function(evt){
+                            var oEvent = evt || event;
+                            //这里的this是document
+                            self.moving(oEvent.clientX, oEvent.clientY);
+                        }
+                        //鼠标松开事件
+                        document.onmouseup = function() {
+                            //这里的this是document
+                            self.stopMove();
+                        }
+                    }
+                    //移动过程
+                    this.moving = function(x, y){
+                        //这里的this和外面this一致
+                        this.box.style.left = x - this.disX + "px";
+                        this.box.style.top = y - this.disY + "px";
+                    }
+                    //停止移动
+                    this.stopMove = function(){
+                        document.onmousemove = null;
+                        document.onmouseup = null;
+                    }
+
+                    //给box添加鼠标按下事件
+                    this.box.onmousedown = function(evt){
+                        var oEvent = evt || event;
+                        //这里的this是this.box
+                        //这里的self是外面的this(dragbox)
+                        self.startMove(oEvent.clientX, oEvent.clientY);
+                    }
+                }
+
+                //使用new关键字调用
+                var dragbox = new Dragobj("box");
+                new Dragobj("box1");
+        		};
+        </script>
+	</head>
+	<body>
+		<div id="box" class="red"></div>
+        <div id="box1" class="yellow"></div>
+	</body>
+</html>

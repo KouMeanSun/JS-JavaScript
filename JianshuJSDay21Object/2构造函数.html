@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			//构造函数1
+			function Person(name,age){
+				//this指的是使用new关键字调用Person所创建的对象
+				this.name = name;
+				this.age = age;
+				this.show = function(){
+					console.log(this.name);
+				}
+			}
+		//韩愈、柳宗元和宋代苏轼、苏洵、苏辙、欧阳修、王安石、曾巩
+			//使用new关键字创建，
+			var person1 = new Person("韩愈",29);
+//			console.log(person1 instanceof Person);//true
+			var person2 = new Person("柳宗元",30);
+//			console.log(person1 == person2);//false
+
+			var person3 = person2;//引用类型，person3和person2指向同一个对象（内存地址）
+//			console.log(person3 == person2)//true
+			//JS没有类的概念，但是我们认为，构造函数就是类
+			//上面Person就是类，person1就是对象
+			//类和对象，
+			//类是对象的抽象
+			//对象是累的具体
+			//人，类
+			//我，你，他，对象
+			//老师，类
+			//苍老师 ，对象
+			
+			/**
+			 * 在Person使用new关键字创建的过程中，内部自动会创建一个对象，
+			 * 把this指向创建的这个对象
+			 * 执行完代码后，还会返回这个对象
+			 */
+			//动物类，（动物构造函数）
+			function Animal(name,age){
+				this.name = name;
+				this.age = age;
+				this.show = function(){
+					console.log(this.name);
+				}
+			}
+			
+			var dog = new Animal("旺财",29);
+//			console.log(dog);//狗
+//			console.log(typeof dog);//object
+//			console.log(dog instanceof Animal);//true
+//			console.log(dog instanceof Person );//false
+
+//			console.log(person1.age == dog.age);//true
+//			console.log(person1.show == dog.show);//false  引用类型
+//			console.log(person1.show == person2.show);//false 引用类型
+			
+			/**
+			 * 构造函数写法规范
+			 * 1.函数名尽量以大写字母开头！
+			 * 2.必须使用new关键字创建！
+			 */
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
