@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			onload = function(){
+				// 接口  http://localhost:8080/json/person.json
+			/**
+			 * 1.请求数据
+			 * 2.解析数据
+			 * 3.局部刷新网页
+			 */
+			var oInput = document.getElementsByTagName("input")[0];
+			var oTable = document.getElementById("tb");
+			oInput.onclick = function(){
+				
+				//同步请求
+//				var xhr = createXHR();
+//				
+//				xhr.open("GET","http://localhost:8080/json/person.json",false);
+//				
+//				xhr.send(null);
+//				
+//				if(xhr.status == 200){
+//					//获取服务器数据，解析，局部刷新界面
+//					refreshUI(xhr);
+//				}
+			
+			//异步请求！
+			var xhr = createXHR();
+			
+			xhr.open("GET","http://localhost:8080/json/person.json",true);
+			
+			xhr.send(null);
+			
+			//监听状态的改变！
+			xhr.onreadystatechange = function(){
+				
+				if(xhr.readyState==4 && xhr.status==200){
+					//已经请求到了完整的数据
+					refreshUI(xhr);
+					
+				}else{
+					console.log("请求数据不完整或者请求失败！"+xhr.readyState+","+xhr.status);
+				}
+				
+				
+			};
+			
+			}
+			
+			function refreshUI(xhr){
+				var jsonStr = xhr.responseText;
+				
+				var jsonArr = JSON.parse(jsonStr);
+				for(var i=0;i<jsonArr.length;i++){
+//					jsonArr[i].name
+					
+					//动态创建tr
+					var trNode = document.createElement("tr");
+					
+					//创建6个td
+					var tdNode1 = document.createElement("td");
+					//给td赋值
+					tdNode1.innerHTML = jsonArr[i].name;
+					var tdNode2 = document.createElement("td");
+					tdNode2.innerHTML = jsonArr[i].age;
+					var tdNode3 = document.createElement("td");
+					tdNode3.innerHTML = jsonArr[i].sex;
+					var tdNode4 = document.createElement("td");
+					tdNode4.innerHTML = jsonArr[i].phone;
+					var tdNode5 = document.createElement("td");
+					tdNode5.innerHTML = jsonArr[i].address;
+					var tdNode6 = document.createElement("td");
+					tdNode6.innerHTML = jsonArr[i].qq;
+					
+					
+					//把td追加到tr上
+				  trNode.appendChild(tdNode1);
+				  trNode.appendChild(tdNode2);
+				  trNode.appendChild(tdNode3);
+				  trNode.appendChild(tdNode4);
+				  trNode.appendChild(tdNode5);
+				  trNode.appendChild(tdNode6);
+				  
+				  oTable.appendChild(trNode);
+				}
+			}
+			
+			// 创建xhr
+			function createXHR(){
+				if(window.XMLHttpRequest){
+					return new XMLHttpRequest();
+				}
+				
+				return new ActiveXObject("Microsoft.XMLHTTP");
+			}
+				
+			}
+		</script>
+	</head>
+	<body>
+		<input type="button" value="点我加载" />
+		<table border="1" id="tb">
+			<tr>
+				<th>name</th>
+				<th>age</th>
+				<th>sex</th>
+				<th>phone</th>
+				<th>address</th>
+				<th>qq</th>
+			</tr>
+		</table>
+	</body>
+</html>

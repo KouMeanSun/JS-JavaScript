@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+			<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+				border: none;
+			}
+			ul,li{
+				list-style: none;
+			}
+			ul{
+				width: 400px;
+				margin: 10px auto;
+			}
+			li{
+				
+				line-height: 30px;
+				border: 1px solid red;
+				margin-bottom: 10px;
+			}
+			.name{
+				width: 100px;
+				
+				color: red;
+				font-size: 18px;
+				
+			}
+			.content{
+				width: 350px;
+				
+			}
+		</style>
+		<script type="text/javascript">
+			onload   = function(){
+	function createXHR(){
+ 	//判断是否支持这个属性！如果支持，则是IE7+,FF,Chrome,
+ 	if(window.XMLHttpRequest){
+ 		return new XMLHttpRequest();
+ 	}
+ 	//ie6-
+ 	return new ActiveXObject("Microsoft.XMLHTTP");
+ }
+		
+		var oList = document.getElementById("list");
+		var oBox  = document.getElementById("box");
+		var datas = null;
+		//先获取网络数据
+		getDatas();
+		var count = 0;
+		oBox.onclick  = function(){
+			if(count<datas.length){
+				var obj = datas[count];
+				var liNode = document.createElement("li");
+				var divNode1 = document.createElement("div");
+				divNode1.className = "name";
+				var divNode2 = document.createElement("div");
+				divNode2.className = "content";
+				divNode1.innerHTML = obj.name;
+				divNode2.innerHTML = obj.content;
+				
+				liNode.appendChild(divNode1);
+				liNode.appendChild(divNode2);
+				
+				oList.appendChild(liNode);
+				count++;
+				if(count==datas.length){
+					oBox.innerHTML = "已经加载完全部数据！"
+				}
+			}else{
+				alert("数据加载完毕！");
+			}
+		};
+		
+		//请求网络数据
+		function getDatas(){
+				
+			//请求数据
+			var xhr = createXHR();
+			xhr.open("GET","http://localhost:8080/json/football.json",true);
+			xhr.send(null);
+			xhr.onreadystatechange = function(){
+				if(xhr.readyState==4 && xhr.status == 200){
+					console.log(xhr.responseText);
+					var dataList = JSON.parse(xhr.responseText);
+					datas = dataList;
+				}
+				
+			}
+			}
+		};
+				
+		</script>
+	</head>
+	<body>
+		<div id="bg">
+			<ul id="list">
+			<li>
+				<div class="name">罗志祥:</div>
+				<div class="content">好球！！！！！</div>
+			</li>
+		</ul>
+		</div>
+		
+		<div id="box" style="background: orange;">加载下一条数据</div>
+	</body>
+</html>

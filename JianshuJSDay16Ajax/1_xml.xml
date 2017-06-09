@@ -1,0 +1,22 @@
+<xml>
+	<person>
+		<name>张三</name>
+		<age>14</age>
+		<gender>male</gender>
+	</person>
+	<person>
+		<name>张四</name>
+		<age>16</age>
+		<gender>male</gender>
+	</person>
+	<person>
+		<name>张五</name>
+		<age>16</age>
+		<gender>female</gender>
+	</person>
+	<person>
+		<name>李三</name>
+		<age>14</age>
+		<gender>male</gender>
+	</person>
+</xml>

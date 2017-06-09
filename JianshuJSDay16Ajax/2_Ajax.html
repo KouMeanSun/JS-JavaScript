@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			/**
+			 * 买电脑：CPU
+			 * 
+			 * 单核：一个cpu在工作！只能处理一个线程！
+			 * 双核：两个cpu在工作！同时处理两个线程！
+			 * 多核：多个cpu在工作！同时处理多个线程！
+			 *
+			 * 线程：
+			 * 1.主线程：软件默认就有的！软件的多线程是建立在硬件基础上的！
+			 * 2.在主线程之外的叫做分线程（其他线程）
+			 * 
+			 * 同步：在主线程中执行！
+			 * 异步：在子线程中实行！（系统内部创建）
+			 * 
+			 */
+			
+			//http:
+			/**
+			  *客户端和服务器通讯用的！
+			  * 一般是客户端向服务器发送一个请求！然后服务器根据这个请求，再给客户端一个相应！
+			  * request  ：客户端向服务器发送请求
+			  * response ：服务器根据请求作出的相应响应
+			  */
+			 /**
+			  * Ajax :是一种局部刷新技术！可以访问服务器，而不用刷新整个界面！
+			  * XMLHttpRequest :Ajax的核心！
+			  */
+			 
+			 //1.创建一个http请求
+			 //XMLHttpRequest ,可以进行http请求，
+//			 var xhr = new XMLHttpRequest();//不支持IE6
+//			 console.log(xhr);//XMLHttpRequest
+//			 console.log(typeof xhr);//object
+
+//			var xhr = new ActiveXObject("Microsoft.XMLHTTP");//支持ie6
+//			alert(xhr);//object
+			 
+			 
+			 //封装一个方法，来创建http请求
+			 function createXHR(){
+			 	if(window.XMLHttpRequest){
+			 		return new XMLHttpRequest();
+			 	}
+			 	
+			 	return  new ActiveXObject("Microsoft.XMLHTTP");
+			 }
+			
+			//同步请求！
+			var xhr = createXHR();
+			
+			//open() 方法！
+			//是服务器请求之前的一些准备工作！
+			/**
+			 * 参数1  表示请求方式！GET,POST,
+			 * 参数2  表示要请求的url路径
+			 * 参数3  是否是异步请求！true，异步请求，false，同步请求！
+			 */
+			xhr.open("GET","http://localhost:8080/json/person.json",false);
+			
+			//send(),向服务器发送请求！
+			//如果是get请求，则方一个参数，null
+			xhr.send(null);
+			
+			/**
+			 * GET 请求参数是放在url后面的！
+			 * POST 请求参数是放在请求体里的
+			 */
+			
+			//判断服务器请求是否成功
+			if(xhr.status==200){
+				console.log(xhr.responseText);
+			}else{
+				console.log("请求失败！状态码："+xhr.status+","+xhr.statusText);
+			}
+			
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

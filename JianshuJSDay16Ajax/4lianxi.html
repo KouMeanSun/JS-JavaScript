@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	
+		<script type="text/javascript">
+			onload = function(){
+				///   http://localhost:8080/json/news.json
+			
+			var oInput = document.getElementsByTagName("input")[0];
+			var oTable = document.getElementById("tb");
+			oInput.onclick = function(){
+				
+				var xhr = createXHR();
+				
+				xhr.open("GET","http://localhost:8080/json/news.json",true);
+				
+				xhr.send(null);
+				
+				//添加监听事件
+				xhr.onreadystatechange = function(){
+					if(xhr.status==200 && xhr.readyState == 4){
+						var dataList = JSON.parse(xhr.responseText);
+						
+						for(var i=0;i<dataList.length;i++){
+							var trNode = document.createElement("tr");
+							
+							var tdNode1 = document.createElement("td");
+							var tdNode2 = document.createElement("td");
+							
+							tdNode1.innerHTML = dataList[i].title;
+							tdNode2.innerHTML = dataList[i].time;
+							
+							trNode.appendChild(tdNode1);
+							trNode.appendChild(tdNode2);
+							
+							oTable.appendChild(trNode);
+						}
+						
+						
+					}else{
+						console.log("xhr.status="+xhr.status+",xhr.readyState="+xhr.readyState);
+					}
+					
+				}
+				
+				
+			};
+			
+			
+			
+			
+				
+			// 创建xhr
+			function createXHR(){
+				if(window.XMLHttpRequest){
+					return new XMLHttpRequest();
+				}
+				
+				return new ActiveXObject("Microsoft.XMLHTTP");
+			}	
+			}
+		</script>
+	</head>
+	<body>
+		<input type="button" value="点击加载" />
+		<table id="tb" border="1">
+			<tr>
+				<th>title</th>
+				<th>time</th>
+			</tr>
+		</table>
+	</body>
+</html>
