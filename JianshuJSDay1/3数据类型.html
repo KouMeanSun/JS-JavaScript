@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			/**
+			 * 数据类型
+			 * 布尔类型：Boolean;
+			 * 数字类型：Number
+			 * 字符串类型:String
+			 * 数组类型：Array
+			 * 对象类型：Object
+			 * 特殊类型，Null,Undefined
+			 */
+			//typeof 操作符，检测值，或者变量的数据类型
+			//最好我们在声明一个变量的同时就赋值，或者赋值了之后再使用
+			var boss = "Jack";
+//			console.log(typeof "Jack");//string
+//			console.log(typeof boss);//string
+			
+			//Undefined类型,
+			var myGirlFriend ;//变量的值是undefined ,变量的类型的值是undefined
+//			console.log(myGirlFriend);//undefined 
+//			console.log(typeof myGirlFriend);//undefined
+
+			//Null类型，
+			var myWife = null;//Null类型，变量的值是null，变量的类型的值是object
+//			console.log(myWife);//null
+//			console.log(typeof myWife);//object
+			/**
+			 * 中国人和美国人都说自己没钱，值是相等的，是没钱
+			 * 但是具体的类型就不同，中国人说的钱类型是人民币
+			 *                     美国人说的钱类型是美金
+			 */
+//			console.log(undefined == null);//true undefined和null值相等
+//			console.log(typeof undefined == typeof null);//false，类型不相等
+			
+			
+			//Number类型
+			//整数
+			var box = 100;//Number类型，变量的值为100，类型的值为number
+//			console.log(box);//100
+//			console.log(typeof box);//number
+
+			//浮点数
+			var box = 140.9;//
+//			console.log(box);//140.9
+//			console.log(typeof box);//number
+			
+			//科学计数法
+			var box = 4.12e5;
+//			console.log(box);//412000
+		
+			//无穷大:Infinity
+			//负无穷大-Infinity
+			var box = -1/0;
+//			console.log(box);
+				
+			//NaN(Not a Number)
+			var box = 0/0;
+//			console.log(box);//NaN
+			
+//		console.log("=========");
+
+
+			
+			/**
+			 * isNaN():判断是不是合法的数值
+			 * NaN是不合法
+			 * 数值，或者数值类型的字符串都是合法的
+			 * 布尔类型true／false就是1/0的数值
+			 */
+//			console.log(isNaN(NaN));//true
+//			console.log(isNaN(11));//false
+//			console.log(isNaN("11"));//false
+//			console.log(isNaN(true));//false
+			
+			
+			
+			//Boolean类型，真，假
+			var georgeIsHandSome = true;//变量的值是true，变量的类型的值是boolean
+//			console.log(georgeIsHandSome);//true
+//			console.log(typeof georgeIsHandSome);//boolean
+
+			/**
+			 * Boolean()
+			 * Boolean（逻辑）对象用于将非逻辑值转换为逻辑值（true 或者 false）。
+			 */
+			var hello ;
+			var hello2 = Boolean(hello);
+//			console.log(hello2);//false
+//			console.log(typeof hello2);//boolean
+		
+			/**
+			 * String:非空字符串为true，空字符串为false
+			 * Number:非0为true，0或者NaN 为false
+			 * object:非null 为true，null为false
+			 * Undefined:undefined为false
+			 */
+			var person = new Object();
+			person.name = "Bom";
+			person.age  = 18;
+			
+			console.log(Boolean("烟笼寒水月笼沙"));//true
+			console.log(Boolean(""));//false
+			console.log(Boolean(188));//true
+			console.log(Boolean(0));//false
+			console.log(Boolean(person));//true
+			console.log(Boolean(null));//false
+			console.log(Boolean(undefined));//false
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

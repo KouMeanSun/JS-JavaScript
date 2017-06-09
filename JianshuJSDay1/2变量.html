@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			/**
+			 * JS代码
+			 * 变量：可以改变的量。使用var 声明
+			 * 
+			 */
+			var age ;//声明一个变量，名字是age，var是关键字
+//			alert(age);//undefined;为定义，标示声明了，但是没有赋值
+			
+			age = 14;//=,等号代表赋值，现实age为14
+//			alert(age);//14
+
+			//变量可以重复，允许多次声明一个变量，但是后面的会覆盖前面的
+			var age = 16;//声明一个变量age，值为16
+//			alert(age);
+			//还可以一次声明多个变量，比如同时声明一个人的信息，姓名，性别，年龄
+			var name = "Alice",gender = "female";age = 18;
+//			alert(name+","+gender+","+age);
+
+		//JS是弱类型语言，用var声明一个变量，但是如果声明的时候不赋值，是不知道其类型的
+		var temp ;//这里只声明了一个变量temp，并没有赋值，所以还不知道其类型
+//		alert(typeof temp);//undefined
+		temp = 18;
+//		alert(typeof temp);//number,数字类型
+		/**
+		 * 枫桥夜泊 / 夜泊枫江
+朝代：唐代
+作者：张继
+原文：
+月落乌啼霜满天，江枫渔火对愁眠。
+姑苏城外寒山寺，夜半钟声到客船。
+		 */
+		temp = "月落乌啼霜满天";
+//		alert(typeof temp);//string 字符串
+
+		/**
+		 * 标示符命名规范,变量名，函数名
+		 * 1.必须是字母，数字，下划线或者美元符号$
+		 * 2.首字母不能是数字
+		 * 3.不能使用系统关键字，或者保留字
+		 * 4.尽量遵循驼峰命名规则，getStudentMoney
+		 * 5.命名尽量要见名知意
+		 */
+		var $abc = 1;
+//		var 1adg = 2;//不允许
+
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
