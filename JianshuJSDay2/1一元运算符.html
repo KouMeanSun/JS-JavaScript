@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			/**
+			 * 一元运算符：
+			 * ++   :自身加1
+			 * --   :自身减1
+			 */
+			//++
+			var  c = 3;
+//			c++;//c增加1
+//			++c;//c增加1
+//			console.log(c);//4
+
+			
+			var c = 3;
+//			var b = c++;//如果是后++，c会先把值赋给b，然后在自身加1
+//			console.log(b);//3
+//			var b = ++c;//如果是前++，先把自身加1，然后再把值赋给b
+//			console.log(b);
+
+			//--
+			var c = 10;
+//			c--;//自身减1
+//			--c;//自身减1
+//			console.log(c);//9
+			
+			
+			var c = 10;
+//			var b = c--;//先赋值给变量b，然后再自身减1
+//			var b = --c;//先自身减1，然后再赋值给变量b
+//			console.log(b);
+
+			//=========对数值类型的字符串的++、--
+			var a = "40";
+//			console.log(typeof a);///string
+//			a++;
+//			console.log(a);//41
+
+			var  b = a++;
+//			console.log(b);//40
+//			console.log(typeof b);//number
+			
+			//非数值类型的字符串
+//			var a = "Alice";
+//			a++;
+//			console.log(a);//NaN
+			
+			//Boolean;类型,如果是true调用++，则true为1，false为0
+//			var a = true;
+//			a++;//
+//			console.log(a);//2
+
+			//浮点型
+			var a = 3.3;
+			a++;
+//			console.log(a);///   4.3
+			
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			/**
+			 * 逻辑运算符
+			 * &&  与、且
+			 * ||   或
+			 * ！         非（取反）
+			 * 
+			 */
+			//&&
+			//两边都为真菜为真，否则为假
+//			console.log(true && true);//true
+//			console.log(true && false);//false
+//			console.log(false && true);//false
+//			console.log(false && false);//false
+
+
+			// || 或，只要有真就为真
+//			console.log(true ||true);//true
+//			console.log(true || false);//true
+//			console.log(false || true);//true
+//			console.log(false || false);//false
+
+			//!,非，取反
+//			console.log(!true);//false
+//			console.log(!false);//true
+//			
+//		    console.log(!(4>3));//false
+
+			//&&  扩展
+			//短路操作,如果第一个为false，则直接返回false
+			var flag = true && false  && true;
+//			console.log(flag);//false
+
+			//  || 扩展
+			//短路操作，如果第一个为true，则直接返回true
+			var flag = true || true || false;
+//			console.log(flag);//true
+
+			
+			//!  取反   Boolean()
+//			console.log(!"");//true
+//			console.log(!"千锋用良心做教育");//false
+			
+			
+			/**
+			 * String :非空字符串为true，空字符串为false
+			 * Number: 0或者NaN为false，其他为true
+			 * Object: null为false，其他非空对象为true
+			 * Undefined: false
+			 */
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

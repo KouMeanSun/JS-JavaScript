@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			/**
+			 * 关系运算符,
+			 * 返回值是boolean类型
+			 * == ,===,<,>,<=,>=,!=,!==,
+			 * === 恒等于    :变量的值要相等，变量的类型也要相等
+			 * ！== 不恒等于:变量值不相等或变量的类型不相等
+			 */
+			//数字和数字比较
+//			console.log(3==3);//true,
+//			console.log(3!=4);//true
+//			console.log(3>2);//true
+//			console.log(3<2);//false
+//			console.log(3>=3);//true
+//			console.log(3<=4);//true
+//			
+//			console.log(4===4);//ture
+//			console.log(1==true);//ture
+//			console.log(1===true);//false
+//			console.log(1!==true);//true
+
+
+			//字符串和数字的比较
+			//先把字符串强制转化为数字，然后再进行比较
+//			console.log("34">33);//true
+
+//        	如果是非数值类型的字符串，在强制转化为数字之后会得到NaN，如果存在NaN，则返回false
+//			console.log("hello">10);//false
+
+			/**
+			 * 如果都是字母类型的字符串如何进行比较
+			 * 
+			 * 字母类型的字符串进行比较，会先转化成ASCII码，然后再进行比较
+			 * ASCII码，
+			 * 
+			 */
+//			console.log("a"<"b");//true
+			
+//			console.log("abcd">"abdc");//false
+			/**
+			 * a a //==
+			 * b b //==
+			 * c d c小于d，所以返回false
+			 * 
+			 * d c 就不进行比较了，因为上面已经有返回结果了
+			 */
+			
+			//Boolean :true  转化为1，false  转化为0
+//			console.log(true==1);//true
+//			console.log(false==0);//true
+
+
+			//NaN  ,NaN和任何数做任何比较，都是false
+//			console.log(NaN>3);//false
+//			console.log(NaN<3);//false
+//			console.log(NaN==3);//false
+        
+            // NaN,自己都不等于自己
+//			console.log(NaN==NaN);//false
+//			console.log(NaN!=NaN);//true
+
+			//特殊值
+//			console.log(null==undefined);//true
+			/// null类型是Object，undefined 类型是Undefined
+			console.log(typeof null  === typeof undefined);//false
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
