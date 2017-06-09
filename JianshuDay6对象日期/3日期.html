@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			/**
+			 * 日期
+			 * 
+			 * Date
+			 * 
+			 * 
+			 */
+			//创建一个日期：如果什么参数都不加！显示的就是当前时间！
+			var d = new Date();
+			
+//			console.log(d);//Tue Sep 20 2016 14:30:05 GMT+0800 (中国标准时间)
+//			console.log(typeof d);//  object
+
+			/**
+			 * 2016-09-20
+			 * 2016/9/20
+			 * 2016,9,29,14,33
+			 */
+			var d = new Date("2016-09-20");
+//			console.log(d);//  Tue Sep 20 2016 08:00:00 GMT+0800 (中国标准时间)
+	
+			var d = new Date("2016/09/20");
+//			console.log(d);//Tue Sep 20 2016 00:00:00 GMT+0800 (中国标准时间)
+
+			//  这种写法，月份是从0开始到11 
+			var d = new Date(2016,8,20,14,38);
+//			console.log(d);// Tue Sep 20 2016 14:38:00 GMT+0800 (中国标准时间)
+			
+			//时间的格式化！
+			var d = new Date();//创建一个日期对象
+			var a = d.toDateString();//返回的就是一个日期
+//			document.write(a);//Tue Sep 20 2016
+//			document.write(typeof a);//string
+
+			var a = d.toTimeString();//返回时间！
+//			document.write(a);//14:47:03 GMT+0800 (中国标准时间)
+
+			var a = d.toLocaleDateString();
+//			document.write(a);//2016/9/20
+
+			var a = d.toLocaleTimeString();
+//			document.write(a);//下午2:50:18
+
+			var a = d.toUTCString();
+//			document.write(a);//Tue, 20 Sep 2016 06:51:06 GMT
+			
+			var a = d.toString();
+//			document.write(a);//Tue Sep 20 2016 14:52:43 GMT+0800 (中国标准时间)
+			
+			
+			//日期转化成时间戳！因为计算机操作数字比较方便！
+			var d = new Date("2016-09-20");
+			var a = Date.parse("2013-09-20");
+			
+//			console.log(a);//1379635200000
+//			console.log(typeof a);//number
+
+			//设置日期的方法，获取日期
+			//
+			//=============get
+			var d = new Date();
+			//获取今天是几号！
+			var a = d.getDate();//20  获取今天是几号！
+//			document.write(a);
+
+			//获取时间戳！
+			var a = d.getTime();
+//			document.write(a);//1474354987577
+
+			//获取今天星期几
+			var day = d.getDay();
+//			document.write(day);//2
+
+			//获取年份
+			var year  = d.getFullYear();
+//			document.write(year);//2016
+
+			//获取月份,月份的范围，是从0~11，分别代表1月到12月
+			var month = d.getMonth();
+//			document.write(month);//8
+			
+			//获取小时
+			var hour = d.getHours();
+//			document.write(hour);//15
+			
+			//获取分钟数
+			var minutes = d.getMinutes();
+//			document.write(minutes);//8
+
+			//获取秒
+			var seconds = d.getSeconds();
+//			document.write(seconds);//27
+
+			//获取毫秒！
+			var mseconds = d.getMilliseconds();
+//			document.write(mseconds);//928
+	
+			//本地时间和格林威治时间的差
+			var tmp = d.getTimezoneOffset();
+//			document.write(tmp);// -480(分)
+			
+			///=================set 设置时间
+			
+			//设置日期	
+			d.setDate(24);//
+//			document.write(d);//Sat Sep 24 2016 15:14:52 GMT+0800 (中国标准时间)
+
+			//通过时间戳设置时间
+			d.setTime(1379635200000);
+//			document.write(d);//Fri Sep 20 2013 08:00:00 GMT+0800 (中国标准时间)
+
+			d.setFullYear(2011);
+//			document.write(d);//Tue Sep 20 2011 08:00:00 GMT+0800 (中国标准时间)
+
+			d.setMonth(0);
+//			document.write(d);// Thu Jan 20 2011 08:00:00 GMT+0800 (中国标准时间)
+			
+			d.setHours(18);
+//			document.write(d);//Thu Jan 20 2011 18:00:00 GMT+0800 (中国标准时间)
+
+			d.setMinutes(31);
+//			document.write(d);//Thu Jan 20 2011 18:31:00 GMT+0800 (中国标准时间)
+
+			d.setSeconds(4);
+//			document.write(d);//Thu Jan 20 2011 18:31:04 GMT+0800 (中国标准时间)
+
+			d.setMilliseconds(444);
+//			document.write(d.getTime());//1295519464444
+			
+	//=============练习：
+	//1.显示当前时间！ 例如：2016年9月20号15时24分14秒
+	  var d = new Date();
+	  var year = d.getFullYear();
+	  var month  = d.getMonth()+1;
+	  var day   = d.getDate();//获取日期
+	  var hours = d.getHours();
+	  var minutes = d.getMinutes();
+	  var seconds = d.getSeconds();
+	  
+//	  document.write(year+"年"+month+"月"+day+"号"+hours+"时"+minutes+"分"+seconds+"秒");
+	  
+	
+	//2.封装一个函数，包含两个参数，日期和天数！
+	//可以根据你输入的参数，显示你输入天数之后的日期
+	// 例如 2016,9,20    1 ->2016,9,21
+	
+	 /**
+	  * 
+	  * day + n > theDays  ->月份就要++   如果月份大于了12年份还要++
+	  * 
+	  * 2016,9,20  ,1 ->2016,9,21
+	  *            ,2 ->2016,9,22
+	  *            ,10 ->2016,9,30
+	  * 
+	  *           ,11 ->2016,10,1
+	  */
+	
+	  //封装一个函数，计算某个月有多少天！
+	  function getDaysOFmonth(year,month){
+	  	   if(month==2){//判断一下是不是二月！
+	  	   	  if((year%4==0 && year%100!=0) || year%400==0){
+	  	   	  	  //闰年
+	  	   	  	  return 29;
+	  	   	  }else{
+	  	   	  	//平年
+	  	   	  	  return 28;
+	  	   	  }	  
+	  	   }else if(month==4 ||month==6 ||month ==9 ||month==11){
+	  	   	   return 30;
+	  	   }else{
+	  	   	   return 31;
+	  	   }/
+	  }
+	  
+	  //计算n天之后的日期
+	  function setAfterDateDate(date,n){
+	  	  var year = date.getFullYear();
+	  	  var month = date.getMonth()+1;
+	  	  var day  = date.getDate();//获取几号！
+	  	  //day + n > theDays  ->月份就要++   如果月份大于了12年份还要++
+	  	  
+	  	  
+	  	  while(n){
+	  	  	var theDays = getDaysOFmonth(year,month);//循环里面获取月份！
+	  	  	
+	  	  	if((day+n)<=theDays){
+	  	   	   //就是当前月份，这个月份就是我们要的！
+	  	   	   day += n;
+	  	   	   break;
+	  	   }else{
+	  	   	  month++;//进入下一个月！
+//	  	   	  n -= (theDays-day);
+			 n = n-(theDays-day);
+	  	   	  day = 0;//
+	  	   	  
+	  	   	  if(month>12){
+	  	   	  	 //进入下一年
+	  	   	  	 year++;
+	  	   	  	 month=1;
+	  	   	  }
+	  	   }
+	  	  }
+	  	  
+			//重新设置一下时间
+			var afterDate = new Date();
+			afterDate.setFullYear(year);
+			afterDate.setMonth(month-1);
+	  		afterDate.setDate(day);
+	  		
+	  		return afterDate;
+	  }
+	    var d = new Date();
+	    
+		var afterDay = setAfterDateDate(d,365);
+//		document.write(afterDay);// 《明年今日》
+		
+		
+		
+	
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

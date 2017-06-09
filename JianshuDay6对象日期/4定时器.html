@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			/**
+			 * 定时器：
+			 * 
+			 */
+//			console.log("用良心做教育！");
+			/**
+			 * 设置一个定时器！
+			 * 参数1    是实行函数！即定时器运行起来要做的事情
+			 * 参数2    定时器的间隔时间，即隔多久执行一次实行函数！
+			 * 
+			 */
+//		var timer =	setInterval(function(){
+//			   console.log("用良心做教育！");	
+//			},1000);
+			
+			//清除定时器！
+			/**
+			 * 参数  要清除的定时器！
+			 */
+//			clearInterval(timer);
+				
+				
+			function btnClick(){
+				var oHours = document.getElementById("hours");
+				var oMinutes = document.getElementById("minutes");
+				var oSeconds = document.getElementById("seconds");
+				
+				
+				var i = 0;//秒数
+				
+				
+			timer = setInterval(function(){
+					i++;
+					
+					var hours = parseInt(i/3600)//小时
+					var minutes = parseInt(i/60)%60;//分
+					var seconds = i%60;//秒
+					
+				oHours.innerHTML = hours<10?"0"+hours:hours;
+				oMinutes.innerHTML = minutes<10?"0"+minutes:minutes;
+				oSeconds.innerHTML = seconds<10?"0"+seconds:seconds;
+				
+				
+					
+				},1000);
+				
+			}
+			
+			function cancelClick(){
+				clearInterval(timer);
+			}
+		</script>
+	</head>
+	<body>
+		<span id="hours">00</span>时<span id="minutes">00</span>分<span id="seconds">00</span>秒
+		<br />
+		<input type="button" value="开始计时"  onclick="btnClick()"/>
+		<input type="button" value="结束计时" onclick="cancelClick()"/>
+	</body>
+</html>

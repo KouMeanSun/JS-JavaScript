@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			/**
+			 * 对象的创建！
+			 */
+			// 利用 new 关键字来创建对象！
+			var xiaofang = new Object();
+			xiaofang.name = "小芳";
+			xiaofang.beauty = "长的好看又漂亮";
+			xiaofang.gender = "女";
+			xiaofang.hair  = "长发飘飘";
+			xiaofang.age  = 16;
+			
+//			console.log(xiaofang);//Object { name: "小芳", beauty: "长的好看又漂亮", gender: "女", hair: "长发飘飘", age: 16 }
+//			console.log(typeof xiaofang);//object
+//			//获取对象的属性的值！
+//			console.log(xiaofang.age);//16
+			
+			/// 用字面量的方式创建一个对象！
+			var  gf = {};//创建了一个空的对象！
+		    gf.name = "Swift";//霉霉
+			gf.age  = 27;//
+			gf.gender = "female";
+			gf.height = 160;
+			gf.weight = 40;
+			
+			gf.nunchuang = function(){
+				console.log("女朋友在暖床！");
+			};
+			
+//			console.log(gf);//Object { name: "Swift", age: 27, gender: "female", height: 160, weight: 40, nunchuang: gf.nunchuang() }
+//			console.log(typeof gf);//object
+//			console.log(gf.name);//Swift
+//			//要调用对象的方法，名字后面要加一个（）
+//			gf.nunchuang();//  女朋友在暖床！
+
+
+			//创建对象的同时！设置它的属性
+			var girlFriend = {name:"Alice",age:28};
+			
+//			console.log(girlFriend);//Object { name: "Alice", age: 28 }
+//			console.log(typeof girlFriend);//object
+//			console.log(girlFriend.name);//Alice
+
+
+			//属性名，也可以是字符串形式！
+			var bf = {"name":"颜王","age":48};
+			
+//			console.log(bf);//Object { name: "颜王", age: 48 }
+//			console.log(typeof bf);//object
+//			console.log(bf.name);//颜王
+//			console.log(bf['name']);//颜王
+
+
+			//给对象添加方法（函数）
+			var lover = {
+				name:"Angela",
+				//添加方法！
+				cook:function(){
+					console.log("情人在做饭！"");
+				}
+			};
+			
+//			lover.cook();//情人在做饭！
+			
+			
+			//删除对象的属性！
+			var beauty = {
+				name:"Rose",
+				bing:"公主病",
+				
+				
+			};
+//			console.log(beauty);
+//			//  delete   删除对象的属性
+//			delete  beauty.bing;
+//			console.log(beauty);
+			
+			//1.创建一个对象！添加属性！姓名，性别，年龄，爱好，期望薪资！
+			//并且添加一个方法，打印这些属性的信息！
+//			var person = {
+//				name:"张无忌",
+//				gender:"man",
+//				age:100,
+//				
+//				aihao:"耍剑",
+//				salary:1000000,
+//				printInfo:function(){
+//					document.write(person.name+","+person.gender+","+person.age+","+person.aihao+","+person.salary);
+//				}
+//			};
+//			person.printInfo();
+
+			//2.创建一个锤子，有属性：宽，高，重！添加方法！打钉子！
+//			var hammer = {
+//				width:40,
+//				height:80,
+//				weight:20,
+//				ddz:function(){
+//					alert("锤子在打钉子！");
+//				}
+//			}
+//			hammer.ddz();
+			
+			//3.有车，速度50迈，有路，长1000km,问多长时间能跑完！（创建两个对象！）
+			//c,面向过程！c++,java,oc,swift,js,面向对象的开发语言！
+			//  面向过程：更像是解决数学问题，按照解题步骤来写代码
+			//  面向对象：万事万物皆对象，解决问题先考虑创建哪些对象！
+			// 时间  = 长度/速度
+			// t = l/v
+			
+			//创建一个车
+			var car = {
+				speed:50,
+				run:function(lu){
+					
+					return lu.length/car.speed;
+					//需要一个返回值，知道多长时间跑完！
+				}
+			};
+			//创建一个路
+			var road = {
+				length:1000
+			}
+			
+			var road2 = {
+				length:8000
+			}
+			
+			var t = car.run(road2);
+			document.write(t);
+			
+			//coding   ,尽量少修改源码，实现不同的需求
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
