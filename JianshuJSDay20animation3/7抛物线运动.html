@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box {
+				width: 50px;
+				height: 50px;
+				background: red;
+				border-radius: 50%;
+				position: absolute;
+				left: 50px;
+				top: 200px;
+			}
+		</style>
+		
+		<script>
+			onload = function() {
+				//红色的球
+				var oBox = document.getElementById("box");
+				
+				//给速度
+				//水平方向的速度
+				var xSpeed = 10;
+				//垂直方向的速度
+				var ySpeed = -20;
+				
+				var timer = setInterval(function() {
+					
+					ySpeed += 2;
+					oBox.style.left = oBox.offsetLeft + xSpeed + "px";
+					oBox.style.top = oBox.offsetTop + ySpeed + "px";
+					 
+					if (oBox.offsetTop >= document.documentElement.clientHeight-oBox.offsetHeight) {
+						//console.log("到达底部");
+						oBox.style.top = document.documentElement.clientHeight-oBox.offsetHeight + "px";
+						ySpeed *= -0.9;
+						console.log("ySpeed:"+ySpeed);
+//						document.write("ySpeed:"+ySpeed);
+					}
+					console.log("----------timer");
+					
+				}, 30); 
+				
+				var timer2 = setInterval(function(){
+//		
+					if(--xSpeed<=0){
+						clearInterval(timer);
+						clearInterval(timer2);
+					}
+					console.log("xSpeed:"+xSpeed);
+					console.log("======timer2");
+				}, 600);
+				
+			}
+		</script>
+		
+	</head>
+	<body>
+		<div id="box"></div>
+	</body>
+</html>

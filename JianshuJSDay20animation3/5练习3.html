@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box {
+				width: 48px;
+				height: 40px;
+				background: url(images/images2/1.gif);
+				position: absolute;
+				left: 10px;
+				top: 10px;
+			}
+		</style>
+		<script src="move.js"></script>
+		<script>
+			
+			onload = function() {
+				//猴子
+				var oBox = document.getElementById("box");
+				//在页面上点击
+				document.onclick = function(evt) {
+					var oEvent = evt || event;
+					
+					//在移动之前先改成跳跃状态
+					oBox.style.background = "url(images/images2/2.gif)";
+					
+					//动画移动
+					startMove(oBox, {left:oEvent.clientX, top:oEvent.clientY}, function(){
+						//在移动停止之后改回站立状态
+						oBox.style.background = "url(images/images2/1.gif)";
+					});
+					
+					//不能写在这
+					//oBox.style.background = "url(images/images2/1.gif)";
+				}
+			}
+		</script>
+		
+	</head>
+	<body>
+		<div id="box"></div>
+	</body>
+</html>

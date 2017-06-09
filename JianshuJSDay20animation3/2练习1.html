@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body{
+				height: 2000px;
+			}
+			#box{
+				width: 100px;
+				height: 100px;
+				background: blue;
+				position: absolute;
+				right: 0;
+				top: 0;
+				cursor: pointer;
+			}
+		</style>
+		<!--<script type="text/javascript" src="move.js" ></script>-->
+		<script type="text/javascript">
+		//获取元素节点的某个值
+			/**
+			 * 
+			 * @param {Object} 需要获取属性值的元素节点，oBox
+			 * @param {Object} 需要获取的属性，“left”
+			 */
+			function getStyleAttr(obj,attr){
+				if(window.getComputedStyle){
+					return getComputedStyle(obj,null)[attr];
+				}
+				return obj.currentStyle[attr];
+			}
+			
+
+//封装一下动画(startMove)代码
+		function startMove(obj,attr,iTarget,fn){
+			//关闭之前的定时器
+			clearInterval(obj.timer);
+			//再开启新的定时器
+			obj.timer = setInterval(function(){
+				
+				/**
+				 * a.能够实现，left，top，height，width动画 px
+				 * b.还能够实现透明度动画     
+				 */
+			//1.获取当前值
+			var current = 0;
+			if(attr=="opacity"){//透明度
+				current = parseFloat(getStyleAttr(obj,attr))*100;
+				current = Math.round(current);
+				
+			}else{//left,top,height,width
+				current = parseInt(getStyleAttr(obj,attr));
+			}
+			
+			
+			//2.给一个速速
+			var iSpeed = (iTarget-current)/8;
+			iSpeed = iSpeed >0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
+			
+			
+			//3.判断是否到达边界，目标值
+			if(current==iTarget){
+				//动画结束
+				clearInterval(obj.timer);
+				//回调
+				if(fn){
+					fn();
+				}
+				return ;//退出函数，后面的代码不会执行
+			}
+			
+			//4.运动
+			if(attr == "opacity"){//透明度
+				obj.style.opacity = (current + iSpeed)/100;
+				obj.style.filter  = "alpha(opacity="+(current+iSpeed)+")";
+				
+			}else{//left,top,height,width
+				obj.style[attr] = current + iSpeed + "px";
+			}
+				
+			},30);
+			
+		}
+			onload = onscroll = onresize = function(){
+				var oBox = document.getElementById("box");
+				//offsetHeight:内容高度，包括边框
+				//clientHeight:内容高度，不包括边框
+				//浏览器内容高度
+				var clientHeight = document.documentElement.clientHeight || document.body.clientHeight;
+				var boxHeight = oBox.clientHeight;
+				//滚动的隐藏高度，偏移高度
+				var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+				
+				//动画移动
+				var iTarget = (clientHeight - boxHeight)/2 +scrollTop;
+				startMove(oBox,"top",iTarget);
+//				startMove(oBox,{top:parseInt(iTarget)});
+
+				
+				//瞬间移动
+//				oBox.style.top = (clientHeight - boxHeight)/2 + "px";
+			};
+		</script>
+	</head>
+	<body>
+		<div id="box">我是广告</div>
+	</body>
+</html>

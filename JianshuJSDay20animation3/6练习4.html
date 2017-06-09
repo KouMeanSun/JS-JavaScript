@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box {
+				width: 48px;
+				height: 40px;
+				background: url(images/images2/1.gif);
+				position: absolute;
+				left: 10px;
+				top: 10px;
+			}
+		</style>
+		
+		<script>
+			
+			onload = function() {
+				//猴子
+				var oBox = document.getElementById("box");
+				
+				//空数组, 记录拖拽过程中的每一个点
+				var arr = [];
+				
+				//拖拽
+				//onmousedown
+				document.onmousedown = function(evt) {
+					var oEvent = evt || event;
+					var x = oEvent.clientX;
+					var y = oEvent.clientY;
+					
+					//先清空数组arr
+					arr.length = 0;
+					
+					//保存第一个点
+					var point = {left:x, top:y};
+					arr.push(point);
+					
+					//鼠标移动: onmousemove
+					document.onmousemove = function(evt) {
+						var oEvent = evt || event;
+						var x = oEvent.clientX;
+						var y = oEvent.clientY;
+						//console.log("(" + x + "," + y + ")");
+
+						//移动过程中保存每一个点到数组arr中
+						arr.push({left:x, top:y})						
+					}
+					
+					//鼠标松开: onmouseup
+					document.onmouseup = function() {
+						document.onmousemove = null;
+						document.onmouseup = null;
+						
+						//已经有了本次拖拽的所有点
+						console.log(arr.length);
+						
+						//猴子开始移动
+						//猴子开始在数组arr里面的所有点的位置按顺序依次移动 
+						//[{2,3},{4,5},{21,31},{22,33},{24,35},{26,73},{82,83}....]
+						
+						//先初始化到第一个点的位置
+						oBox.style.left = arr[0].left + "px";
+						oBox.style.top = arr[0].top + "px";
+						
+						//把猴子变成跳跃状态
+						oBox.style.background = "url(images/images2/2.gif)";
+						
+						
+						var i = 0; //记录猴子所在数组的点的下标的位置
+						var timer = setInterval(function(){
+							i++; //移动到下一个点的位置
+							
+							//如果i超过了数组arr的下标最大值
+							if (i >= arr.length) {
+								clearInterval(timer); //停止定时器, 停止运动
+								oBox.style.background = "url(images/images2/1.gif)"; //改回站立状态
+							}
+							else {
+								oBox.style.left = arr[i].left + "px";
+								oBox.style.top = arr[i].top + "px";
+							}
+						}, 30);
+						
+					}
+				}
+				
+			}
+			
+		</script>
+		
+	</head>
+	<body>
+		<div id="box"></div>
+	</body>
+</html>

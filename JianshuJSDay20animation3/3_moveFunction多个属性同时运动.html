@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box {
+				width: 100px;
+				height: 100px;
+				background: red;
+				position: absolute;
+				left: 10px;
+				top: 50px;
+				opacity: 0.5;
+				filter: alpha(opacity=50);
+			}
+		</style>
+		
+		<script src="move.js"></script>
+		<script>
+			
+			onload = function() {
+				var oInput = document.getElementsByTagName("input")[0];
+				var oBox = document.getElementById("box");
+				
+				oInput.onclick = function() { 
+//					startMove(oBox, "width", 200); 
+//					startMove(oBox, "height", 300, function(){});
+					
+					//同时改变多个不同的属性
+					startMove(oBox, {left:100, top:200, width:200, height:300, opacity:100});
+
+				}
+			}
+			
+		</script>
+		
+	</head>
+	<body>
+		<input type="button" value="开始运动" />
+		<div id="box"></div>
+	</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+				border: none;
+			}
+			ul,li{
+				list-style: none;
+			}
+			#list{
+				width: 400px;
+				height: 30px;
+				margin: 100px auto;
+				position: relative;
+				
+			}
+			#list li{
+				width: 98px;
+				height: 28px;
+				border: 1px solid #ccc;
+				float: left;
+				line-height: 28px;
+				text-align: center;
+				cursor: pointer;
+			}
+			#list .bg{
+				width: 100px;
+				height: 3px;
+				background: red;
+				position: absolute;
+				top: 25px;
+			}
+		</style>
+		<script type="text/javascript">
+			onload = function (){
+				var oList = document.getElementById("list");
+				var aLi  = oList.getElementsByTagName("li");
+				var oBg = aLi[aLi.length-1];//红色的bg
+				//给前面四个li添加鼠标移入事件
+				for(var i=0;i<aLi.length-1;i++){
+					aLi[i].onmouseover  = function(){
+						startMove(oBg,this.offsetLeft);
+					}
+				}
+				
+			//没有动画的切换效果
+//			function startMove(obj,iTarget){
+//				//瞬间移动到指定位置
+//				obj.style.left = iTarget + "px";
+//				
+//			}
+			//弹性动画
+			function startMove(obj,iTarget){
+				//弹性运动，
+				//速度
+				var iSpeed = 0;
+				//清除之前的定时器
+				clearInterval(obj.timer);
+				obj.timer = setInterval(function(){
+					//1.获取当前值
+					var current = obj.offsetLeft;
+					
+					//2.给一个速度，
+					//这样写到大目标位置就会停止
+//					iSpeed = (iTarget - current)/5 ; 
+//					iSpeed = Math.round(iSpeed);
+					//正常一般弹性运动速度计算方法
+					iSpeed += (iTarget-current)/5;
+					iSpeed *= 0.7;//弹性系数
+					
+//					console.log("current:"+current);
+//					console.log("iTarget:"+iTarget);
+					//3.判断临界值,
+					//当速度很小并且当前值和目标值非常接近是，关闭定时器，把left=iTarget
+					if(Math.abs(iSpeed)<1 && Math.abs(iTarget-current)<1){
+						obj.style.left = iTarget + "px";
+						clearInterval(obj.timer);
+						return;
+					}
+					
+					//4.运动
+					obj.style.left = current + iSpeed +"px";
+					
+				},30);
+			}
+				
+			};
+		</script>
+	</head>
+	<body>
+		<ul id="list">
+			<li>首页</li>
+			<li>关于我们</li>
+			<li>产品</li>
+			<li>练习我们</li>
+			<li class="bg"></li>
+		</ul>
+	</body>
+</html>
+
