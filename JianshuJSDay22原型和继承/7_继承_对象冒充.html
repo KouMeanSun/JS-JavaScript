@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			/**
+			 * 对象冒充：借用构造函数
+			 * call(),apply()
+			 * 
+			 */
+			//父类
+			function Person(_name,_age){
+				this.name = _name;
+				this.age  = _age;
+			}
+			//子类
+			function Employee(_name,_age,_gender){
+				/**
+				 * 借用构造函数Person
+				 * 对象冒充：this冒充Person
+				 * 这里this就是employee
+				 * employee.name = _name;
+				 * employee.age  = _age;
+				 * 
+				  * 
+				  */
+				 Person.call(this,_name,_age);
+				 Person.apply(this,[_name,_age]);//参数使用数组
+				 
+				 this.gender = _gender;
+			}
+			
+			//创建一个子类对象
+			var employee = new Employee("孔明",200,"男");
+			console.log(employee.gender);//男
+			console.log(employee.name);//孔明
+			console.log(employee.age);//200
+			employee.name = "卧龙"
+			console.log(employee.name);//卧龙
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			/**
+			 * 继承
+			 * Animal：动
+			 * Human：动，吃饭，两条腿
+			 * 男人：动，吃饭，两条腿（或者不是？哈哈哈），养家
+			 * 女人：动，吃饭，两条腿，败家
+			 * 
+			 * 
+			 * Person 
+			 * 属性：姓名，年龄，性别。。。
+			 * 吃饭（什么都吃）
+			 * 
+			 * 工人：继承Person，属性，姓名，性别，年龄
+			 * 吃饭，（只吃饭）
+			 * 方法：干活
+			 * 
+			 * 工人，子类，Person，父类
+			 * 
+			 * 重写，把父类的方法覆盖掉
+			 * 
+			 * JS中的超类是Object
+			 * 
+			 * 继承的过程，就是一般到特殊的过程
+			 * 
+			 * Person类（人）
+			 * Employee类（员工）
+			 * Manager类（管理者）
+			 */
+			
+			//Person类，构造函数
+			function Person(){
+				this.name = "绿珠";
+			}
+			//Employee类，员工
+			function Employee(){
+				this.age = 100;
+			}
+			var person = new Person();
+//			console.log(person.name);//绿珠
+			Employee.prototype  = person;//使用原型链继承
+//			console.log(Employee.prototype.name);//绿珠
+			
+			
+			//继承的作用：可以把父类的属性和方法当成自己的
+			var employee = new Employee();
+//			console.log(employee.age);//100
+//			console.log(employee.name);//绿珠
+//			console.log(employee.__proto__.name);//绿珠
+
+			//Manager类（管理者，领导）
+			function Manager(){
+				this.gender = "man";
+			}
+			Manager.prototype = new Employee();//继承了Employee，原型链继承
+			
+			//创建一个manager对象
+			var manager = new Manager();//
+//			console.log(manager.gender);//man
+//			console.log(manager.age);//100
+//			console.log(manager.name);//绿珠
+			
+			/**
+			 * 父类 Cat
+			 * 方法，eat，Miao
+			 * 属性，fur（软毛）
+			 * 说明：eat吃各种东西
+			 * 
+			 * 
+			 * 子类1：GarfieldCat
+			 * 方法，eat，Miao，talk
+			 * 属性，fur，glasses
+			 * 说明，eat吃肉
+			 * 
+			 * 子类2：Tomcat
+			 * 方法，eat，Miao，catchMouse
+			 * 属性：fur，friend
+			 * 说明，只吃面包
+			 */
+			
+			//Cat类构造函数，父类
+			function Cat(){
+				this.fur = "有软毛";
+				this.eat = function(){
+					console.log("各种吃东西！");
+				}
+				this.miao = function(){
+					console.log("喵~🐱")
+				}
+			}
+			//加菲猫类，子类1
+			function GarfiledCat(){
+				this.glasses = "戴了眼镜";
+				this.talk = function(){
+					console.log("会说话");
+				}
+				this.eat = function(){//重写父类的eat方法
+					console.log("只吃肉");
+				}
+			}
+			GarfiledCat.prototype = new Cat();//使用原型链继承Cat类
+			
+			//汤姆猫类，子类2
+			function TomCat(){
+				this.friend = "有朋友";
+				this.catchMouse = function(){
+					console.log("会抓老鼠");
+				}
+				this.eat = function(){//重写父类的eat
+					console.log("只吃面包");
+				}
+			}
+			TomCat.prototype = new Cat();//使用原型链继承Cat类
+			
+			//创建一只加菲猫
+			var garfieldCat = new GarfiledCat();
+			console.log(garfieldCat.glasses);//戴了眼镜
+			console.log(garfieldCat.fur);//有软毛
+			garfieldCat.eat();//只吃肉
+			garfieldCat.talk();//会说话
+			garfieldCat.miao();//喵~🐱
+			
+			console.log("--------------");
+			//创建一只汤姆猫
+			var tomCat = new TomCat();
+			console.log(tomCat.friend);//有朋友
+			console.log(tomCat.fur);//有软毛
+			tomCat.eat();//只吃面包
+			tomCat.catchMouse();//会抓老鼠
+			tomCat.miao();//喵~🐱
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

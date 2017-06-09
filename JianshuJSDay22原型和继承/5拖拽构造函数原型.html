@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			div{
+				width: 100px;
+				height: 100px;
+				position: absolute;
+			}
+			.red{
+				background: red;
+			}
+			.yellow{
+				background: yellow;
+			}
+			
+		</style>
+		<script type="text/javascript">
+			onload = function(){
+				/**
+				 * 原型：对象可以设置公共属性和方法
+				 * 构造函数+原型：
+				 * 构造函数：传参数（初始化），保存私有属性和方法
+				 * 原型：写共有方法和属性
+				 */
+				
+				//拖拽
+				//属性，box
+				//方法，startMove，moving，stopMove
+				
+				//构造函数
+				function DragBox(id){
+					this.box = document.getElementById(id);
+					var self = this;
+					this.box.onmousedown = function(evt){
+						var oEvent = evt || event;
+						self.startMove(oEvent.clientX,oEvent.clientY);
+					}
+				}
+				
+			DragBox.prototype.startMove = function(x,y){
+				this.disX = x  - this.box.offsetLeft;
+				this.disY = y - this.box.offsetTop;
+				var self  = this;
+				document.onmousemove = function(evt){
+					var oEvent = evt || event;
+					self.moving(oEvent.clientX,oEvent.clientY);
+				}
+				document.onmouseup = function(){
+					self.stopMove();
+				}
+			}
+			
+			DragBox.prototype.moving = function(x,y){
+				this.box.style.left = x-this.disX+"px";
+				this.box.style.top = y - this.disY + "px";
+			}
+			
+			//stopMove
+			DragBox.prototype.stopMove = function(){
+				document.onmousemove = null;
+				document.onmouseup   = null;
+			}
+			
+			//创建两个box
+			var box = new DragBox("box");
+			var box1 = new DragBox("box1");
+			
+			}
+		</script>
+	</head>
+	<body>
+		<div id="box" class="red"></div>
+		<div id="box1" class="yellow"></div>
+	</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			//组合继承：原型链+借用构造函数（对象冒充）
+			//可以借用构造函数（对象冒充）继承属性
+			//可以使用原型链继承方法
+			
+			//父类，
+			//在构造函数中写属性
+			function Person(_name,_age){
+				this.name = _name;
+				this.age  = _age;
+			}
+			//在原型中写方法
+			Person.prototype.show = function(){
+				console.log(this.name+","+this.age);
+			}
+			//子类
+			function Employee(_name,_age,_gender){
+				//对象冒充，继承属性并初始化
+				Person.call(this,_name,_age);
+				this.gender = _gender;
+			}
+			Employee.prototype = new Person();//使用原型链继承
+			
+			//创建子类对象
+			var emp = new Employee("钟馗",100,"god");
+//			console.log(emp.gender);//god
+//			console.log(emp.name);//钟馗
+//			console.log(emp.age);//100
+//			emp.show();//钟馗,100
+			
+			/**
+			 * 父类：Cat
+			 * 方法：eat
+			 * 属性：fur
+			 * 说明：eat吃各种东西
+			 * 
+			 * 子类：TomCat
+			 * 方法，eat，catchMouse
+			 * 属性，fur，friend
+			 * 说明，只吃面包
+			 */
+			//父类
+			function Cat(_fur){
+				this.fur = _fur;
+			}
+			Cat.prototype.eat = function(){
+				console.log("吃各种东西！");
+			}
+			//子类
+			function TomCat(_fur,_friend){
+				Cat.call(this,_fur);
+				this.friend = _friend;
+			}
+			TomCat.prototype = new Cat();//用原型链继承
+			
+			//在原型中添加eat方法
+			TomCat.prototype.eat = function(){
+				console.log("只吃面包");
+			}
+			//在原型中添加了catchMouse方法
+			TomCat.prototype.catchMouse = function(){
+				console.log("会抓老鼠");
+			}
+			
+			//创建一个tomcate对象
+			var tom = new TomCat("有皮毛","有朋友");
+			console.log(tom.fur);//有皮毛
+			console.log(tom.friend);//有朋友
+			tom.eat();//只吃面包
+			tom.catchMouse();//会抓老鼠
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

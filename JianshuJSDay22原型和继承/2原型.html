@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			/**
+			 * 构造函数
+			 * 普通的函数使用new关键字创建就是构造函数，构造函数可以认为就是类
+			 */
+			function Person(){
+				this.name = "袭人",
+				this.show = function(){
+					console.log(this.name);
+				}
+			}
+			//person:对象，会占用内存
+			//Person：类，不占用内存
+//			var person = new Person();
+
+			//原型prototype，
+			/**
+			 * 是每一个函数都拥有的属性，prototype
+			 * 这个属性是一个指针，指向一个对象
+			 * 这个对象可以被所有使用构造函数所创建的对象共享
+			 */
+			//构造函数box
+			function Box(){
+				
+			}
+			Box.prototype.name = "美杜莎";
+			Box.prototype.age  = 100;
+			Box.prototype.show = function(){
+				console.log(this.name+","+this.age);
+			}
+			var box1 = new Box();
+//			console.log(box1.name);
+//			console.log(box1.age);
+//			box1.show();
+//			
+//			var box2 = new Box();
+//			console.log(box2.name);
+//			console.log(box2.age);
+//			console.log(box1.show()==box2.show());//true
+
+			//constructor :是原型对象prototype的属性，指向当前原型所属于的构造函数
+//			console.log(Box.prototype.constructor == Box);//true
+			
+			//__proto__ :实例对象的属性，指向该实例对象所属的构造函数中的原型对象
+//			console.log(box1.__proto__ == Box.prototype);//true
+//			console.log(box1.__proto__.name);//美杜莎
+			
+			//isPrototypeof();//是原型对象的方法，可以判定某对象是否指向该原型
+//			console.log(Box.prototype.isPrototypeOf(box1));//true
+
+			//查找对象的属性
+			//1.查找实例对象中是否存在该属性，如果有就返回该属性的值
+			//2.如果没有，则查找原型对象中是否存在该属性，如果存在则返回该属性的值，如果不存在，则返回undefined
+//			box1.name = "雅典娜";//给box1一个属性name，值是“雅典娜“
+//			console.log(box1.name);//雅典娜
+//			console.log(box1.__proto__.name);//美杜莎
+				
+				//delete :删除实例对象的属
+//				delete box1.name;
+//				console.log(box1.name);//美杜莎
+//				console.log(box1.__proto__.name);//美杜莎
+			
+				//hasOwnProperty();判断属性是否是实例对象的属性
+				/**
+				 * true   表示实例对象存在该属性
+				 * false  表示实例对象不存在该属性
+				 */
+//				console.log(box1.hasOwnProperty("name"));//true
+			
+			//in操作符，判断属性是否在实例对象或者原型对象中
+//			console.log("name" in box1);//true,name属于box1对象或者其原型对象中
+			
+			//判断属性name，是否只属于该对象，obj的原型对象中
+			function isInProtoType(obj,name){
+				return (name in obj) && (!obj.hasOwnProperty(name))
+			}
+//			console.log(isInProtoType(box1,"name"));//true
+			
+			//字面量给原型对象赋值
+			function Person(){
+				
+			}
+			Person.prototype = {
+				constructor:Person,//强制constructor指向Person
+				name:"聂小倩",
+				age:100,
+				show:function(){
+					console.log(this.name+","+this.age);
+				}
+			}
+//			console.log(Person.prototype.constructor == Person );//true
+//			console.log(Person.prototype.contructor == Object);//false
+
+		//内置构造函数
+//		function Array(){
+//			//不需要我们写，系统就提供了构造函数
+//		}
+//		var arr = new Array();
+		
+//		console.log(Array.prototype.sort);
+//		console.log(String.prototype.substring);
+			
+		//可以使用原型对内置引用类型（Array，String）扩展方法或者属性
+		//使用原型给String，或者其他构造函数添加方法或属性
+		String.prototype.addString = function(name){
+			return this+" love "+name;
+		}
+//		var str = new String("宁采臣");
+//		console.log(str.addString("聂小倩"));
+//		
+//		var str2= new String("梁山伯");
+//		console.log(str2.addString("祝英台"));
+
+		function Person(){
+			
+		}
+		Person.prototype = {
+			constructor:Person,
+			name:"貂蝉",
+			age:100,
+			family:["王允","吕布"],
+			show:function(){
+				console.log(this.name);
+			}
+		}
+		var person1 = new Person();
+//		console.log(person1.family);//[ "王允", "吕布" ]
+//		person1.family.push("干哥哥");
+//		console.log(person1.family);//[ "王允", "吕布", "干哥哥" ]
+//		
+//		var person2 = new Person();
+//		console.log(person2.family );//[ "王允", "吕布", "干哥哥" ]
+		
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

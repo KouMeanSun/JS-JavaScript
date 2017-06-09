@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			div{
+				width: 100px;
+				height: 100px;
+				background: red;
+				position: absolute;
+				left: 10px;
+				top: 10px;
+			}
+		</style>
+		<script type="text/javascript">
+			onload = function(){
+				//使用原型之前，要先有个构造函数
+				//构造函数x
+				
+				function DragBox(){
+					
+				}
+				//给原型对象添加属性：box
+				DragBox.prototype.box = document.getElementById("box");
+				//给原型对象添加方法
+				//startMove
+				DragBox.prototype.startMove = function(x,y){
+					this.disX = x-this.box.offsetLeft;
+					this.disY = y-this.box.offsetTop;
+					
+					var self = this;
+					document.onmousemove = function(evt){
+						var oEvent = evt || event;
+						self.moving(oEvent.clientX,oEvent.clientY);
+					}
+					document.onmouseup = function(){
+						self.stopMove();
+					}
+				}
+				
+				//moving
+				DragBox.prototype.moving = function(x,y){
+					this.box.style.left = x-this.disX+"px";
+					this.box.style.top = y-this.disY+"px";
+				}
+				//stopMove
+				DragBox.prototype.stopMove = function(){
+					document.onmousemove = null;
+					document.onmouseup = null;
+				}
+				
+				//创建拖拽对象
+				var dragBox = new DragBox();
+				dragBox.box.onmousedown = function(evt){
+					var oEvent = evt || event;
+					dragBox.startMove(oEvent.clientX,oEvent.clientY);
+				}
+				
+			}
+		</script>
+	</head>
+	<body>
+		<div id="box"></div>
+	</body>
+</html>

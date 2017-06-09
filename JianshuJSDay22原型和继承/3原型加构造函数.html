@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			/**
+			 * 构造函数，可以传参（属性的初始化），包含私有属性和方法
+			 * 原型，把公有的属性和方法都写在这里，节省内存
+			 */
+			//构造函数，包含 name，age，family，其他对象无法访问
+			function Person(_name,_age){
+				this.name = _name;
+				this.age  = _age;
+				this.family = ["爸爸","妈妈","妹妹"];
+			}
+			
+			//原型对象中添加show方法：所有通过Person创建的对象都可以使用
+			Person.prototype.show = function(){
+				console.log(this.name);
+			};
+			var person1 = new Person("陆游",100);
+			var person2 = new Person("唐婉",99);
+			person1.family.push("哥哥");
+			console.log(person1.family);//Array [ "爸爸", "妈妈", "妹妹", "哥哥" ]
+			console.log(person2.family);//Array [ "爸爸", "妈妈", "妹妹" ]
+			
+			person1.show();//陆游
+			person2.show();//唐婉
+			/**
+			 * 构造函数:
+			 * 1.可以传参数，为了实例化
+			 * 2.写在构造函数中的属性私有化（只能是我自己这个对象使用）
+			 * 3.写在原型对象中的方法公有化（共享，是使用Person创建的所有对象都能够使用），节省内存空间
+			 */
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

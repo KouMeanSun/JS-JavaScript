@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+				border: none;
+			}
+			body,html{
+				width: 100%;
+				height: 100%;
+				background: url(images/bg.jpg) no-repeat center;
+				background-size: cover;
+			}
+			img{
+				width: 18px;
+				height: 18px;
+				position: absolute;
+			}
+		</style>
+		<script type="text/javascript" src="move.js" ></script>
+		<script type="text/javascript">
+			//随机生成点的方法
+			function randowPoint(){
+				var x = parseInt(Math.random()*document.documentElement.clientWidth);
+				var y = parseInt(Math.random()*document.documentElement.clientHeight);
+				return {left:x,top:y};
+			}
+			
+			//萤火虫，Fireworm
+			function FireWorm(){
+				//属性
+				this.ele = document.createElement("img");
+				this.ele.src = "images/1.jpg";//图片
+				this.ele.style.left = randowPoint().left + "px";//随机点
+				this.ele.style.top  = randowPoint().top + "px";
+				document.body.appendChild(this.ele);//添加都body中
+				
+				//方法
+				this.fly = function(){
+					//飞
+					var self = this;//保存this
+					startMove(this.ele,randowPoint(),function(){
+						self.fly();//继续飞
+					});
+				};
+			}
+			
+		//========
+		 onload = function(){
+		 	var count = 10;//限制萤火虫最大的数目
+		 	var timer = setInterval(function(){
+		 		if(count--){
+		 			var fireWorm = new FireWorm();//创建萤火虫
+		 			fireWorm.fly();//飞
+		 		}else{
+		 			//可以停止定时器
+		 			clearInterval(timer);
+		 		}
+		 	},1000);
+		 }
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
