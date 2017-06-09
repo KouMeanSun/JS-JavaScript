@@ -1,0 +1,67 @@
+<!--<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			window.onload = function(){
+				var oBox = document.getElementById("box");
+				console.log(oBox.childNodes.length);//7
+				
+				//firstChild:第一个子节点
+				console.log(oBox.firstChild.nodeValue);//内容
+				console.log(oBox.childNodes[0].nodeValue);//内容
+				
+				//lastChild:最后一个子节点
+				console.log(oBox.lastChild.nodeValue);//结束
+				console.log(oBox.childNodes[oBox.childNodes.length-1].nodeValue);//结束
+				
+				var oBox1 = document.getElementById("box1");
+				var oBox2 = document.getElementById("box2");
+				var oBox3 = document.getElementById("box3");
+				
+				console.log("父节点$$$$$$$$$$$$$$$$$$$$$$")
+				//parentNode:父节点
+				console.log(oBox1.parentNode.id);//box
+				console.log(oBox2.parentNode.id);//box
+				console.log(oBox3.parentNode.id);//box
+				console.log(oBox1.parentNode == oBox);//true
+				
+				console.log("previousSibling=====");
+				//previousSibling:上一个同级节点
+				console.log(oBox1.previousSibling.nodeValue);//内容
+				console.log(oBox.lastChild.previousSibling);//<div id="box3">内容3</div>
+				
+				console.log("nextSibling$$$$$$$$$$$$$$$$$$$$$");
+				//nextSibling:下一个同级节点
+				console.log(oBox3.nextSibling.nodeValue);//结束
+				console.log(oBox.firstChild.nextSibling.id);//box1
+				console.log("ownerDocument:document$$$$$$$$$$$$$$$");
+				console.log(oBox.ownerDocument==document);//true
+				
+				console.log("忽略空白文本节点-------");
+				function filterSpaceNode(nodes){
+					for(var i=0;i<nodes.length;i++){
+						//固定写法
+						if(nodes[i].nodeType == 3 && /^\s+$/.test(nodes[i].nodeValue)){
+							//说明是空白节点，则删除该空白节点，
+							//removeChild();//删除子节点
+							//通过父节点删除自己
+							nodes[i].parentNode.removeChild(nodes[i]);
+						}
+					}
+					return nodes;
+				};
+				var newNodes = filterSpaceNode(oBox.childNodes);
+				console.log("新节点："+newNodes.length);
+			};
+		</script>
+	</head>
+	<body>
+		<div id="box">内容
+			<div id="box1">内容1</div>
+			<div id="box2">内容2</div>
+			<div id="box3">内容3</div>结束
+		</div>
+	</body>
+</html>-->

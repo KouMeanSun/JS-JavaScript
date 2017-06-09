@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			window.onload = function(){
+				var oBox = document.getElementById("box");
+				//红色div方块
+				var oBox1  = document.getElementById("box1");
+				//蓝色div方块
+				var oBox2  = document.getElementById("box2");
+				
+				
+				console.log(oBox1.offsetLeft);
+				console.log(oBox1.offsetTop);
+				
+				//每次移动的大小
+				var tmpX = 4;//x方向的运动量
+				var tmpY = 10;//y方向的运动量
+				
+				var tmpX2 = 2;//x方向的运动量
+				var tmpY2 = 5;//y方向的运动量
+				
+				//创建定时器
+				setInterval(function(){
+					//红色方块
+				if(parseInt(oBox1.offsetLeft)+parseInt(oBox1.style.width)>parseInt(oBox.style.width) || parseInt(oBox1.offsetLeft)<0){
+					tmpX *= -1;//取反
+				}
+				if(parseInt(oBox1.offsetTop)+parseInt(oBox1.style.height)>parseInt(oBox.style.height) || parseInt(oBox1.offsetTop)<0){
+					tmpY *= -1;//取反
+				}
+				
+				//蓝色方块
+				if(parseInt(oBox2.offsetLeft)+parseInt(oBox2.style.width)>parseInt(oBox.style.width) || parseInt(oBox2.offsetLeft)<0){
+					tmpX2 *= -1;//取反
+				}
+				if(parseInt(oBox2.offsetTop)+parseInt(oBox2.style.height)>parseInt(oBox.style.height) || parseInt(oBox2.offsetTop)<0){
+					tmpY2 *= -1;//取反
+				}		
+				
+				//修改红色方块的位置
+				oBox1.style.left = parseInt(oBox1.offsetLeft)+tmpX+"px";
+				oBox1.style.top = parseInt(oBox1.offsetTop)+tmpY+"px";
+				
+				//修改蓝色方块的位置
+				oBox2.style.left = parseInt(oBox2.offsetLeft)+tmpX2+"px";
+				oBox2.style.top = parseInt(oBox2.offsetTop)+tmpY2+"px";
+				
+				},5);
+				
+			};
+		</script>
+	</head>
+	<body>
+		<div id="box" style="background: #666;width: 400px;height: 400px;position: absolute;left: 200px;top: 30px;">
+			<div id="box1" style="background: red;width: 20px;height: 20px;position: absolute;left: 10px;top: 10px;"></div>
+			
+			<div id="box2" style="background: blue;width: 20px;height: 20px;position: absolute;left: 10px;top: 10px;"></div>
+			
+		</div>
+	</body>
+</html>

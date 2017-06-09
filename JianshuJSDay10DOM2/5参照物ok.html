@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			onload = function(){
+				var oBox = document.getElementById("box");
+				var oBox1 = document.getElementById("box1");
+				var oBox2 = document.getElementById("box2");
+				
+				/**
+				 * offsetLeft  :left
+				 * offsetTop   :top
+				 */
+				//红色div本身进行了css定位：所以offsetLeft，offsetTop就有值，分别就是left属性的值和top属性的值
+				console.log(oBox.offsetLeft+","+oBox.offsetTop);//50,30
+				//蓝色的div，父节点进行了css定位，所以就会以父节点作为参照物
+				console.log(oBox1.offsetLeft+","+oBox1.offsetTop);//0,0
+				//黄色div，父节点也没有进行css定位，它就会找最近的，有css定位的父辈节点作为参照物
+				console.log(oBox2.offsetLeft+","+oBox2.offsetTop);// 0.0
+			}
+		</script>
+	</head>
+	<body style="background: pink;">
+		<div id="box" style="background: red;width: 400px;height: 400px;position: absolute;left: 50px;top: 30px;">
+			<div id="box1" style="background: blue;width: 300px;height: 300px;">
+				<div id="box2" style="background: yellow;width: 200px;height: 200px;"></div>
+			</div>
+		</div>
+	</body>
+</html>

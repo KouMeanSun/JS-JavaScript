@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			//DOM节点操作
+			window.onload = function(){
+				//write();在文档界面显示内容
+				//write会覆盖已经加载好的html内容
+//				document.write("对不起，我要覆盖你了");
+
+		//document.create();//创建元素节点
+		//获取body节点
+		var oBody = document.getElementsByTagName("body")[0];
+		//创建一个元素节点div
+		var oDiv = document.createElement("div");
+		console.log(oDiv.nodeName);//DIV
+		oDiv.innerHTML = "我是js创建的div";
+		//appendChild();在元素节点的子节点末尾添加一个新节点
+		oBody.appendChild(oDiv);
+		
+		
+		//段落
+		var textNode = document.createTextNode("段落");
+		//p
+		var pNode = document.createElement("p");
+		//<p>段落</p>
+		pNode.appendChild(textNode);
+		
+		//在body子节点后再添加一个pNode
+		oBody.appendChild(pNode);
+		
+		function createMyElement(elementName,txt){
+				var oElement = document.createElement(elementName);//创建元素节点
+				var oText = document.createTextNode(txt);
+				oElement.appendChild(oText);
+				return oElement;
+		};
+		
+		//<p>段落2</p>
+		var newElement = createMyElement("p","段落");
+		oBody.parentNode.appendChild(newElement);
+		
+		/*
+		 * 需要通过父节点调用
+		  * 参数1 要插入的节点
+		  * 参数2 目标节点
+		  */
+		//insertBefore(newElement,targetElement);//在某节点之前插入新节点
+		
+		//创建一个新的节点
+		var newElement = createMyElement("p","这是插入的节点1");
+		//目标节点
+		var oBox = document.getElementById("box");
+		//插入节点
+		oBody.insertBefore(newElement,oBox);
+		
+		//自己封装一个插入节点后的函数insertAfter
+		function insertAfter(newElement,targetElement){
+			var parent = targetElement.parentNode;//父节点
+			if(parent.lastChild==targetElement){
+				//要插入到节点的末尾
+				parent.appendChild(newElement);
+			}else{
+				//插入到目标节点的下一个节点的前面
+				parent.insertBefore(newElement,targetElement.nextSibling);
+				
+			}
+		};
+		//创建一个新的节点
+		var newElement = createMyElement("p","这是插入的节点2");
+		insertAfter(newElement,oBody.lastChild);
+		
+		//替换节点，replaceChild(element1,element2);替换节点
+		//是element1替换element2
+		//通过父节点调用
+		var aNode = createMyElement("a","我替换了p节点");
+		oBody.replaceChild(aNode,oBody.lastChild);
+		
+		//cloneNode(true):复制节点
+		//有一个参数，如果是true，则复制标签和内容
+		//如果是false，则只复制标签
+		var clone = oBody.firstChild.nextSibling.cloneNode(true);
+		oBody.appendChild(clone);
+		
+		//removeChild();//删除节点
+		oBody.parentNode.removeChild(oBody.nextSibling);
+		
+			};
+		</script>
+	</head>
+	<body>
+		<div id="box">内容
+			<p>绿蚁新醅酒</p>
+		</div>
+	</body>
+</html>
