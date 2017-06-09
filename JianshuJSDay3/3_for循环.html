@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			/**
+			 * for  循环
+			 * 
+			 * 表达式1：定义一个初始值，只会执行一次！
+			 * 表达式2：循环条件
+			 * 表达式3：修改变量
+			 * for(表达式1：表达式2：表达式3){
+			 * 	  js语句;
+			 * }
+			 */
+			
+//			var i = 1;
+//			var　sum = 0;
+//			while(i<=100){
+//				sum += i;
+//				i++;
+//			}
+			
+//			var sum = 0;
+// 			for(var i =1;i<=100;i++){
+// 				sum +=i;
+// 			}
+// 			alert(sum);
+
+			//5阶乘    
+			
+//			var m = 1;
+//			for(var i=1;i<=5;i++){
+//				m *= i;
+//			}
+//			alert(m);
+			
+			/**
+			 * 打印如下三角形   
+			 *  *
+			 *  * *
+			 *  * * * 
+			 *  * * * *
+			 *  * * * * * 
+			 */
+			
+//			for(var i=1;i<=5;i++){
+//				
+//				for(var j=1;j<=i;j++){
+//					document.write(" *");
+//				}
+//				document.write("<br />");
+//			}
+			
+			/**
+			 * 打印如下三角形
+			 * i ,代表多少行  
+			 * j, 代表多少列
+			 * 
+			 *    * *　* * *   i=1,j  1~5
+			 *    * * * *      i=2, j  1~4
+			 *    * * *       i=3 ,j  1~3
+			 *    * *         i=4,j   1~2
+			 *    *           i=5,j 1
+			 *               j 的最大值= 6-i
+			 */
+			
+//			for(var i=1;i<=5;i++){
+//				for(var j=1;j<=6-i;j++){
+//					document.write(" *");
+//				}
+//				document.write("<br />");
+//			}
+			
+			/**
+			 * 打印如下三角形
+			 * i ,控制打印到第几行
+			 * j，控制打印及格空格！！！！！！！！！！！！！
+			 * k，控制打印多少个星星
+			 * 
+			 *           *   i = 1,j=4,k=1
+			 *         * *   i = 2,j=3,k=2
+			 *       * * *   i = 3,j=2,k=3
+			 *     * * * *   i = 4,j=1,k=4
+			 *   * * * * *   i = 5,j=0,k=5
+			 */
+//			for(var i = 1;i<=5;i++){
+//				for(var j=1;j<=5-i;j++){
+//					document.write("&nbsp;");//循环打印空格
+//				}
+//				for(var k=1;k<=i;k++){
+//					document.write("* ");//循环打印星星
+//				}
+//				document.write("<br />");
+//			}
+			
+			// 1!+2!+3！+4！+5！
+//				var sum = 0;
+//				for(var i=1;i<=5;i++){
+//					
+//					var s = 1;
+//					for(var j=1;j<=i;j++){
+//						//求 对应i的阶乘
+//						s *= j;
+//					}
+//					
+//					sum += s;
+//				}
+//				alert(sum);
+			//新入职员工，月薪为2000，每年涨当年月薪的5%，求50年之后的月薪
+//					var salary = 2000;
+//					for(var i=2;i<=50;i++){
+//						salary = salary + salary*0.05;
+//					}
+//					alert(salary);
+			
+			//从前有座山，山里有个水缸
+			//可以装50升水，现在只装了15升水
+			//每次挑5升水
+			//问，挑几次才能把水缸挑满
+			var w = 50 - 15;
+			var count = 0;//多少次能把水缸挑满
+			
+			while(w>0){
+				w = w - 5;
+				count++;
+			}
+			alert(count);
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

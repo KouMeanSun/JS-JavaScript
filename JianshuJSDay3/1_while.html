@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			/**
+			 * while:
+			 * 
+			 * while(表达式){
+			 * 	 js语句；
+			 * }
+			 * 
+			 * 表达式为真，则执行大括号里的代码
+			 * 如果为假，就跳出了循环，不执行大括号里的代码
+			 */
+			//1.求1~100的和
+			var i = 1;//循环变量i
+			var sum = 0;//用来存储最后累加出来的和
+			/**
+			 * 第一次： i = 1,sum = 1; i++ ->2
+			 * 第二次；i = 2,sum = 3; i++ ->3
+			 * 第三次：i= 3，sum　= 6; i++ ->4
+			 * ....
+			 *  最后一次 ;i = 101,不符合i<=100的条件，所以不再执行while大括号里的代码，跳出循环
+			 */
+//			while(i<=100){
+//				sum += i;
+//				i++;//跳出循环的一个条件
+//			}
+//			alert(sum);
+
+				// 打印 100 以内的 7 的倍数
+//				var i = 1;
+//				while(i<=100){
+//					if(i%7==0){
+//						document.write(i+"<br />");
+//					}
+//					i++;//
+//				}
+				
+				//打印 100 以内的奇数
+//				var i = 0;
+//				while(i<=100){
+//					if(i%2!=0){
+//						document.write(i+"<br />");
+//					}
+//					i++;
+//				};
+				
+				//打印 100 以内的所有偶数的和
+//					var i = 1;	
+//				    var sum = 0;
+//				    while(i<=100){
+//				    	if(i%2==0){
+//				    		sum += i;
+//				    	}
+//				    	i++;
+//				    }
+//				    document.write("sum:"+sum);
+
+//				while(表达式){
+//					while(表达式){
+//						
+//					}
+//				}
+//				var j = 0;
+//				while(j<5){
+//				var i = 0;
+//				while(i<5){
+//					document.write(" *");
+//					i++;
+//				}
+//				document.write("<br />");
+//				j++;
+//			}
+				
+				/**
+				 *   * * * * *
+				 *   * * * * *
+				 *   * * * * *
+				 *   * * * * *
+				 *   * * * * *
+				 */
+				
+//				var i =1;//控制外层循环，控制打印多少行 
+//				while(i<=5){
+//					//每行打印多少个星星
+//					var j = 1;
+//					while(j<=i){
+//						document.write(" *");
+//						j++;
+//					}
+//					document.write("<br />");
+//					i++;
+//				}
+				
+				
+				/**
+				 *   * 
+				 *   * * 
+				 *   * * * 
+				 *   * * * * 
+				 *   * * * * *
+				 */
+				
+				//  7的倍数和包含7 的数 （100）
+//				var i = 1;
+//				while(i<=100){
+//					if(i%7==0 || i%10==7 || parseInt(i/10)==7){
+//						document.write("i="+i+"<br />");
+//					}
+//					
+//					i++;
+//				};
+				
+				//
+//				var n = 10;
+//				//最后一次1
+//				while(n--){
+//					console.log("n="+n);
+//				}
+//				
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

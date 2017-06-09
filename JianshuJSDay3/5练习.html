@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			/**
+			 * 1.九九乘法表
+			 * 
+			 * 2. 20-80之间的数，闭区间，能被3整除的数，每5个数换一行
+			 * 
+			 * 3.求 100~1000 的水仙花数！     abc = a^3 +b^3+c^3
+			 * 
+			 * 4.打印两个数之间的所有的数！（需要考虑谁大！）
+			 * 
+			 * 5.求两个数的最大公约数
+			 * 
+			 * 6.求两个数的最小公倍数
+			 * 
+			 * 7.回文数  12321   （10000~100000）
+			 */
+//			var a = 7;
+//			var b = 8;
+//			document.write(a+"*"+b+"="+a*b);
+//1.
+//		 for(var i=1;i<=9;i++){
+//		 	
+//		 	for(var j=1;j<=i;j++){
+//		 		document.write(j+"x"+i+"="+j*i+"  ");
+//		 	}
+//		 	document.write("<br />")
+//		 }
+//2.          
+//		var n = 0;
+//		for(var i=20;i<=80;i++){
+//			
+//			if(i%3==0){
+//				document.write(i+",");
+//				n++;
+//				if(n%5==0){
+//					document.write("<br />");
+//				}
+//			}
+//		}
+
+		//3.
+//		   for(var i=100;i<1000;i++){
+//		   	 var a = parseInt(i/100);//取百位
+//		   	 var b = parseInt(i/10)%10;//取十位
+//		   	 var c = i%10;//取个位
+//		   	 
+//		   	 if(a*a*a+b*b*b+c*c*c==i){
+//		   	 	//满足水仙花数的条件
+//		   	 	document.write(i+",");
+//		   	 }
+//		   }
+			//4.
+//			 var a = 8;
+//			 var b = 5;
+//			 
+//			 var min = a;
+//			 var max = b;
+//			 if(a>b){
+//			 	min = b;
+//			 	max = a;
+//			 }
+//			 for(var i = min ;i<=max;i++){
+//			 	document.write(i+",");
+//			 }
+
+			//5.
+//			var a = 12;
+//			var b = 8;
+//			
+//			var min = a<b?a:b;//求较小的数
+//			for(var i=min;i>=1;i--){
+//				if(a%i==0 && b%i==0){//最大公约数
+//					document.write(a+"和"+b+"的最大公约数为："+i);
+//					break;
+//				}
+//			}
+
+		//6.
+//			var a = 9;
+//			var b = 6;
+//			var max = a>b?a:b;//求较大的数
+//			for(var i=max;i<=a*b;i++){
+//				if(i%a==0 && i%b==0){//最小公倍数
+//					document.write(a+"和"+b+"的最小公倍数为："+i);
+//					break;
+//				}
+//			}
+
+			//7.
+//			for(var i=10000;i<100000;i++){
+//				var a = parseInt(i/10000);//取万位
+//				var b = parseInt(i/1000)%10;//取千位
+//				
+//				var c = parseInt(i/10)%10;//取十位
+//				var d = i%10;//个位
+//				
+//				if(a==d && b==c){//回文数
+//					document.write(i+"<br />");
+//				}
+//			}
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
