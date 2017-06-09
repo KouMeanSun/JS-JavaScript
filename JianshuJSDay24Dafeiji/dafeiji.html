@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/dafeiji.css" />
+		
+		<script type="text/javascript" src="js/common.js" ></script>
+		<script type="text/javascript" src="js/MyPlane.js" ></script>
+		<script type="text/javascript" src="js/Bullet.js" ></script>
+		<script type="text/javascript" src="js/Enemy.js" ></script>
+		<script type="text/javascript" src="js/GameEngine.js" ></script>
+		
+		<script type="text/javascript">
+			onload = function(){
+				var oList = document.getElementById("list");
+				var aLi   = oList.getElementsByTagName("li");
+				for(var i = 0;i<aLi.length;i++){
+					//点击事件
+					aLi[i].onclick = function(){
+						//清除ul
+						oList.parentNode.removeChild(oList);
+						
+						//游戏引擎：
+						/**
+						 * 主要控制游戏进度
+						 * 监听键盘：左，右
+						 * 碰撞检测：用定时器一直检测（判断是否有子弹和敌机碰撞）
+						 * 创建敌机，随机创建
+						 * 
+						 * 角色（对象、类）
+						 * 我的飞机，对象
+						 * 子弹：类（构造函数）
+						 * 敌机：类（构造函数）
+						 * 
+						 * //游戏难度（子弹发射间隔）
+						 * var fireInterver = this.value;
+						 * //设置子弹的发射间隔
+						 * myPlanefireInterver 1= fireInteer - 0;
+						 */
+						
+						//开始游戏
+						gameEngine.init().start();
+					};
+				}
+				
+			};
+		</script>
+	</head>
+	<body>
+		<div id="body_main" class="main">
+			<ul id="list">
+				<li value="1000">超级困难</li>
+				<li value="500">非常困难</li>
+				<li value="150">比较困难</li>
+				<li value="50">春哥附体</li>
+			</ul>
+		</div>
+	</body>
+</html>
