@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			/**
+			 * history  历史记录
+			 * 
+			 */
+			window.onload = function(){
+				console.log(history.length);//历史记录长度！ 2
+				/**
+				 * forward() 前进
+				 * 
+				 * go(1)  前进
+				 * go(0)  刷新
+				 * go(-1) 后退
+				 */
+			};
+		</script>
+	</head>
+	<body>
+		<a href="javascript:location.href='history2.html'">进入第二页</a>
+		<a href="javascript:history.forward()">前进</a>
+		<a href="javascript:history.go(1)">前进</a>
+		<a href="javascript:history.go(0)">刷新</a>
+	</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body{
+				height: 2000px;
+			}
+		</style>
+		<script type="text/javascript">
+			/**
+			 * 滚动事件
+			 * onscroll
+			 */
+			window.onscroll = function(){
+				console.log("触发了滚动事件！");
+				//获取到顶部的距离！
+//				document.documentElement.scrollTop;//不支持谷歌
+//				document.body.scrollTop //支持谷歌！
+		var scrollTop = document.body.scrollTop || 	document.documentElement.scrollTop;
+		
+		var oBox = document.getElementById("box");
+		oBox.innerHTML = scrollTop;
+			oBox.onclick = function(){
+				console.log("点击了div");
+//				oBox.style.display = "none"
+document.body.scrollTop = 	document.documentElement.scrollTop = 0
+			};
+			
+			
+			}
+		</script>
+	</head>
+	<body>
+		<div id="box" style="background: red; width: 100%;height: 30px;position: absolute;top: 400px;">0</div>
+	</body>
+</html>

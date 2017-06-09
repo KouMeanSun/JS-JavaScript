@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body{
+				height: 2000px;
+			}
+		</style>
+		<script type="text/javascript">
+			
+			window.onscroll = function(){
+				//获取到顶部的距离
+				var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+				var oBox = document.getElementById("box");
+				//根据和顶部的距离判断是否显示div
+				if(scrollTop >1000){//显示
+					oBox.style.display = "block";
+				}else{//隐藏
+					oBox.style.display = "none";
+				}
+				
+			oBox.onclick = function(){
+				//修改到顶部的距离为0
+//			document.documentElement.scrollTop = 0;
+//			document.body.scrollTop = 0;
+
+  document.documentElement.scrollTop = document.body.scrollTop = 0
+			};
+			}
+			
+		</script>
+	</head>
+	<body>
+		<div id="box" style="background: red;width: 100px;height: 100px;position: fixed;right: 10px; bottom: 10px; display: none;">回到顶部</div>
+	</body>
+</html>

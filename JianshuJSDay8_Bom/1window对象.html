@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			/**
+			 * window对象,是BOM里的核心内容
+			 * 
+			 * 
+			 */
+//			alert("你若安好我便是晴天霹雳");
+//			window.alert("南朝四百八十寺");
+		
+//		    window.onload 	 在页面资源加载完毕的时候调用！
+//			onload
+
+//			var a = confirm("Do you love me?");
+//			if(a){//点击了【确定】就会返回为真
+//				console.log("YES");
+//			}else{//点击了【取消】就会返回为假
+//				console.log("NO");
+//			}
+
+			//prompt
+			/**
+			 * 参数1  提示信息
+			 * 参数2 输入框的默认值
+			 * return 返回值是输入框里的内容
+			 */
+//			var num = prompt("请输入你的年龄",0);
+//			alert(num);
+
+			//open()     //打开一个新的窗口
+			//window.open()
+//			open("index.html");//
+
+			/**
+			 * 参数1    要打开的网页
+			 * 参数2   是设置打开网页的window.name
+			 */
+//			open("index.html","索引页");
+			/**
+			 * 参数1  要打开的网页
+			 * 参数2 打开网页的方式，_parent 在当前窗口打开，_blank(默认值)是在新的窗口下打开
+			 */
+//			open("index.html","_parent");
+			/**
+			 * 参数1   要打开的网页
+			 * 参数2  是设置打开网页的window.name
+			 * 参数3 设置打开网页的窗口大小和位置
+			 */
+//			open("index.html","索引页","width = 400,height = 400,top = 400,left = 300");
+			
+			//子窗口对象
+//			window.alert("山外青山楼外楼");//  默认alert写在哪里就会在哪个网页打开！
+//			var subWindow = open("index.html","索引页","width = 400,height = 400,top = 400,left = 300");
+//			subWindow.alert("多少楼台烟雨中");
+
+		   //父窗口对象！opener,父窗口对象，
+		   open("sub1.html");
+		   
+		
+		</script>
+	</head>
+	<body>
+		
+	</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			/**
+			 * location 对象
+			 * 保存我们的窗口信息！地址，域名，端口号等等，还可以打开，刷新网页等
+			 */
+//			console.log(window.location);//Location
+//			console.log(document.location);//Location
+//			console.log(location);//Location
+
+			//锚点
+//			location.hash = "#1";
+
+			//端口号！端口号，可读，不可写！
+//			alert(location.port);//8020
+//			location.port = 8888;
+//			alert(location.port);
+		
+			//获取域名！www.baidu.com  
+//			document.write(location.hostname);//127.0.0.1
+			
+			
+			//获取服务器的地址！
+//			document.write(location.pathname);///JS8_BOM/location%E5%AF%B9%E8%B1%A1.html
+
+			//参数
+//			document.write(location.search);
+
+			//href:
+//			location.href = "sub1.html";///一般在设置之后就会立即跳转！
+
+			// ?id=5&search=ok&key=432
+			//返回值类型是数组[5,ok,432]
+			
+			function getArray(search){
+				if(search.length>0  && search[0]=="?" ){
+					//有参数！
+					var str = search.substring(1);//id=5&search=ok&key=432
+					
+					//根据 & 进行拆分字符串
+					var arr = str.split("&");//[id=5,search=ok,key=432]
+					var newArr = [];
+					for(var i=0;i<arr.length;i++){
+						//按照 = 来拆分
+						var arr2 = arr[i].split("=");//[id,5]
+						if(arr2.length>=2){
+							newArr.push(arr2[1]);
+						}
+						
+					}
+					return newArr;
+				}else{
+					return [];
+				}
+				
+			}
+//			document.write(getArray("?id=5&search=ok&key=432"));
+
+			//assign() ;加载一个新的文档
+//			location.assign("sub1.html");
+
+			//reload()  ;刷新
+//			location.reload();
+			
+			//replace()  //替换
+//			location.replace("sub1.html");
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
