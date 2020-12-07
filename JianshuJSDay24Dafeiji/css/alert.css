@@ -1,0 +1,135 @@
+/* 弹出框最外层 */
+.msg__wrap {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 10;
+    transition: all .3s;
+    transform: translate(-50%, -50%) scale(0, 0);
+    max-width: 50%;
+
+    background: #fff;
+    box-shadow: 0 0 10px #eee;
+    font-size: 10px;
+}
+
+/* 弹出框头部 */
+.msg__wrap .msg-header {
+    padding: 10px 10px 0 10px;
+    font-size: 1.8em;
+}
+
+.msg__wrap .msg-header .msg-header-close-button {
+    float: right;
+    cursor: pointer;
+}
+
+/* 弹出框中部 */
+.msg__wrap .msg-body {
+    padding: 10px 10px 10px 10px;
+    display: flex;
+}
+
+/* 图标 */
+.msg__wrap .msg-body .msg-body-icon{
+    width: 80px;
+}
+
+.msg__wrap .msg-body .msg-body-icon div{
+    width: 45px;
+    height: 45px;
+    margin: 0 auto;
+    line-height: 45px;
+    color: #fff;
+    border-radius: 50% 50%;
+    font-size: 2em;
+}
+
+.msg__wrap .msg-body .msg-body-icon .msg-body-icon-success{
+    background: #32a323;
+    text-align: center;
+}
+
+.msg__wrap .msg-body .msg-body-icon .msg-body-icon-success::after{
+    content: "成";
+}
+
+.msg__wrap .msg-body .msg-body-icon .msg-body-icon-wrong{
+    background: #ff8080;
+    text-align: center;
+}
+
+.msg__wrap .msg-body .msg-body-icon .msg-body-icon-wrong::after{
+    content: "误";
+}
+
+.msg__wrap .msg-body .msg-body-icon .msg-body-icon-info{
+    background: #80b7ff;
+    text-align: center;
+}
+
+.msg__wrap .msg-body .msg-body-icon .msg-body-icon-info::after{
+    content: "注";
+}
+
+/* 内容 */
+.msg__wrap .msg-body .msg-body-content{
+    min-width: 200px;
+    font-size: 1.5em;
+    word-break: break-all;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    box-sizing: border-box;
+}
+
+/* 弹出框底部 */
+.msg__wrap .msg-footer {
+    padding: 0 10px 10px 10px;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.msg__wrap .msg-footer .msg-footer-btn {
+    width: 50px;
+    height: 30px;
+    border: 0 none;
+    color: #fff;
+    outline: none;
+    font-size: 1em;
+    border-radius: 2px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.msg__wrap .msg-footer .msg-footer-cancel-button{
+    background-color: #ff3b3b;
+}
+
+.msg__wrap .msg-footer .msg-footer-cancel-button:active{
+    background-color: #ff6f6f;
+}
+
+.msg__wrap .msg-footer .msg-footer-confirm-button{
+    background-color: #4896f0;
+}
+
+.msg__wrap .msg-footer .msg-footer-confirm-button:active{
+    background-color: #1d5fac;
+}
+
+/* 遮罩层 */
+.msg__overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 5;
+    background-color: rgba(0, 0, 0, .4);
+    transition: all .3s;
+    opacity: 0;
+}
+
+
+CSS

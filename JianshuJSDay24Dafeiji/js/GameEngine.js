@@ -162,7 +162,27 @@
  						setTimeout(function(){
  							gameEngine.crashListening();//开始碰撞检测
  						},2000);
- 					}
+ 					}else {
+						clearInterval(timer);//清除定时器（碰撞检测的）
+						window.location.reload();
+
+					}
+					// clearInterval(timer);//清除定时器（碰撞检测的）
+					// new $Msg({
+					// 	content:"GameOver,是否继续？",
+					// 	type:"success",
+					// 	cancle:function(){
+					// 			clearInterval(timer);//清除定时器（碰撞检测的）
+					// 			window.location.reload();
+					// 	},
+					// 	confirm:function(){
+					// 			clearInterval(timer);//清除定时器（碰撞检测的）
+					// 			//延迟2秒再重新开始检测碰撞
+					// 			setTimeout(function(){
+					// 				gameEngine.crashListening();//开始碰撞检测
+					// 			},2000);
+					// 	}
+					// })
  				}
  				
  			}
